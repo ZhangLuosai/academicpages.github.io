@@ -18,13 +18,14 @@ main:
   #   url: /cv-json/
 
 zh:
-  - title: "首页"
-    url: /zh/
 
-  - title: "发表论文"
+  - title: "科研论文"
     url: /zh/publications/
-
-  - title: "教学"
+    
+  - title: "学术会议"
+    url: /zh/talks/
+    
+  - title: "教学经验"
     url: /zh/teaching/
 
   - title: "简历"
