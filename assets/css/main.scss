@@ -39,26 +39,44 @@
 ;
 
 /* ============================================================
-   头像尺寸调整
-   - 桌面端：填满侧边栏宽度，上限 260px
-   - 手机端：约 4 倍，上限 440px
+   侧边栏与头像调整
    ============================================================ */
 
+/* 侧边栏加宽 */
+.sidebar {
+  width: 300px !important;
+}
+
+/* 头像：填满侧边栏，上限 280px */
 .sidebar .author__avatar {
   width: 100% !important;
   max-width: 100% !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 2rem !important;
 }
 
 .sidebar .author__avatar img {
   width: 100% !important;
-  max-width: 260px !important;
+  max-width: 280px !important;
   height: auto !important;
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
+/* 名字和简介往下移 */
+.sidebar .author__content {
+  padding-top: 1.5rem !important;
+}
+
+.sidebar .author__name {
+  margin-top: 0.5rem !important;
+}
+
+/* 手机端 */
 @media (max-width: 768px) {
+  .sidebar {
+    width: auto !important;
+  }
+
   .sidebar .author__avatar img {
     max-width: 440px !important;
   }
