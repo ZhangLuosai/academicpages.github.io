@@ -51,7 +51,7 @@
 .sidebar .author__avatar {
   width: 100% !important;
   max-width: 100% !important;
-  margin-bottom: 2rem !important;
+  margin-bottom: 3rem !important;
 }
 
 .sidebar .author__avatar img {
@@ -62,13 +62,15 @@
   object-fit: cover;
 }
 
-/* 名字和简介往下移 */
-.sidebar .author__content {
+/* 名字、简介、链接整体下移 */
+body .sidebar .author__content {
+  margin-top: 1.5rem !important;
   padding-top: 1.5rem !important;
 }
 
-.sidebar .author__name {
-  margin-top: 0.5rem !important;
+body .sidebar .author__urls-wrapper {
+  margin-top: 1.5rem !important;
+  padding-top: 1rem !important;
 }
 
 /* 手机端 */
