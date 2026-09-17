@@ -1,37 +1,36 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve -l -H localhost`. If you change this file, please restart the 
-# server process.
-
+# ============================================================
 # Basic Site Settings
+# ============================================================
+
 locale                   : "en-US"
 site_theme               : "default"
 title                    : "Luosai Zhang"
-title_separator          : "-"
+title_separator          : "|"
 name                     : &name "Luosai Zhang"
-description              : &description "Luosai Zhang's academic portfolio"
-url                      : https://Zhangluosai.github.io
+description              : &description "Luosai Zhang is an economist specializing in matching theory, market design, game theory, mechanism design, and dynamic matching."
+url                      : "https://zhangluosai.github.io"
 baseurl                  : ""
-repository               : "academicpages/academicpages.github.io"
+repository               : "Zhangluosai/Zhangluosai.github.io"
 
+
+# ============================================================
 # Site Author
+# ============================================================
+
 author:
   avatar           : "profile.png"
   name             : "Luosai Zhang"
   pronouns         : "she/her"
-  bio              : "Game Theory · Mechanism Design · Dynamic Matching"
+  bio              : "Matching Theory · Market Design · Dynamic Matching"
   location         : "Jinan, Shandong, China"
-  employer         : "Center for Economic Research, Shandong University"
+  employer         : "Shandong University"
   uri              :
   email            : "zhangluosai@126.com"
 
-  # Academic websites
+  # Academic profiles
   academia         :
   arxiv            :
-  googlescholar    : "https://scholar.google.com/citations?user=xj1qrhgAAAAJ&hl=zh-CN"
+  googlescholar    : "https://scholar.google.com/citations?user=xj1qrhgAAAAJ&hl=en"
   inspire-hep      :
   impactstory      :
   orcid            :
@@ -42,7 +41,7 @@ author:
   scopus           :
   zotero           :
 
-  # Repositories and software development
+  # Code repositories
   bitbucket        :
   codepen          :
   dribbble         :
@@ -58,8 +57,8 @@ author:
   foursquare       :
   goodreads        :
   google_plus      :
-  keybase          :
   instagram        :
+  keybase          :
   lastfm           :
   linkedin         :
   mastodon         :
@@ -77,83 +76,85 @@ author:
   youtube          :
   zhihu            :
 
-# Publication Category
+
+# ============================================================
+# Publication Categories
+# ============================================================
+
 publication_category:
   books:
-    title: 'Books'
+    title: "Books"
   manuscripts:
-    title: 'Journal Articles'    
+    title: "Journal Articles"
   conferences:
-    title: 'Conference Papers'
+    title: "Conference Papers"
 
-# Site Settings
+
+# ============================================================
+# General Site Settings
+# ============================================================
+
 teaser                   :
 breadcrumbs              : false
 words_per_minute         : 160
 future                   : true
 read_more                : "disabled"
 talkmap_link             : false
+
 comments:
   provider               :
-  disqus:
-    shortname            :
-  discourse:
-    server               :
-  facebook:
-    appid                :
-    num_posts            :
-    colorscheme          :
-staticman:
-  allowedFields          : ['name', 'email', 'url', 'message']
-  branch                 : "gh-pages"
-  commitMessage          : "New comment."
-  filename               : comment-{@timestamp}
-  format                 : "yml"
-  moderation             : true
-  path                   : "_data/comments/{options.slug}"
-  requiredFields         : ['name', 'email', 'message']
-  transforms:
-    email                : "md5"
-  generatedFields:
-    date:
-      type               : "date"
-      options:
-        format           : "iso8601"
+
 atom_feed:
   hide                   : false
   path                   :
 
-# SEO Related
+
+# ============================================================
+# SEO
+# ============================================================
+
 google_site_verification :
 bing_site_verification   :
-alexa_site_verification  :
 yandex_site_verification :
 
-# Social Sharing
 twitter:
-  username               : &twitter
+  username               :
+
 facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :
-og_description           :
-social:
-  type                   :
-  name                   :
-  links:
 
+og_image                 :
+og_description           : *description
+
+social:
+  type                   : "Person"
+  name                   : *name
+  links:
+    - "https://scholar.google.com/citations?user=xj1qrhgAAAAJ&hl=en"
+    - "https://github.com/Zhangluosai"
+
+
+# ============================================================
 # Analytics
+# ============================================================
+
 analytics:
-  provider               :  "false"
+  provider               : "false"
   google:
     tracking_id          :
 
-# Reading Files
+
+# ============================================================
+# Files
+# ============================================================
+
 include:
   - .htaccess
   - _pages
   - files
+
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -181,46 +182,59 @@ exclude:
   - README
   - tmp
   - vendor
+
 keep_files:
   - .git
   - .svn
-encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
-# Conversion
-markdown: kramdown
-highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
+encoding                 : "utf-8"
+markdown_ext             : "markdown,mkdown,mkdn,mkd,md"
 
-# Markdown Processing
+
+# ============================================================
+# Markdown and Conversion
+# ============================================================
+
+markdown                 : kramdown
+highlighter              : rouge
+lsi                      : false
+excerpt_separator        : "\n\n"
+incremental              : false
+
 kramdown:
-  input: GFM
-  hard_wrap: false
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
+  input                  : GFM
+  hard_wrap              : false
+  auto_ids               : true
+  footnote_nr            : 1
+  entity_output          : as_char
+  toc_levels             : 1..6
+  smart_quotes           : lsquo,rsquo,ldquo,rdquo
+  enable_coderay         : false
 
+
+# ============================================================
 # Collections
+# ============================================================
+
 collections:
   teaching:
-    output: true
-    permalink: /:collection/:path/
+    output               : true
+    permalink            : /:collection/:path/
   publications:
-    output: true
-    permalink: /:collection/:path/
+    output               : true
+    permalink            : /:collection/:path/
   portfolio:
-    output: true
-    permalink: /:collection/:path/
+    output               : true
+    permalink            : /:collection/:path/
   talks:
-    output: true
-    permalink: /:collection/:path/
+    output               : true
+    permalink            : /:collection/:path/
 
-# Defaults
+
+# ============================================================
+# Default Page Settings
+# ============================================================
+
 defaults:
   - scope:
       path: ""
@@ -229,57 +243,75 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: true
-      share: true
-      related: true
+      comments: false
+      share: false
+      related: false
+
   - scope:
       path: ""
       type: pages
     values:
       layout: single
       author_profile: true
+
   - scope:
       path: ""
       type: teaching
     values:
       layout: single
       author_profile: true
-      share: true
-      comments: true
+      share: false
+      comments: false
+
   - scope:
       path: ""
       type: publications
     values:
       layout: single
       author_profile: true
-      share: true
-      comments: true
+      share: false
+      comments: false
+
   - scope:
       path: ""
       type: portfolio
     values:
       layout: single
       author_profile: true
-      share: true
-      comment: true
+      share: false
+      comments: false
+
   - scope:
       path: ""
       type: talks
     values:
       layout: talk
       author_profile: true
-      share: true
+      share: false
+      comments: false
 
-# Sass/SCSS
+
+# ============================================================
+# Sass / SCSS
+# ============================================================
+
 sass:
-  sass_dir: _sass
-  style: compressed
+  sass_dir               : _sass
+  style                  : compressed
 
-# Outputting
-permalink: /:categories/:title/
-timezone: Etc/UTC
 
+# ============================================================
+# Output
+# ============================================================
+
+permalink                : /:categories/:title/
+timezone                 : "Asia/Shanghai"
+
+
+# ============================================================
 # Plugins
+# ============================================================
+
 plugins:
   - jekyll-feed
   - jekyll-gist
@@ -296,15 +328,25 @@ whitelist:
   - jekyll-redirect-from
   - jemoji
 
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
 
+# ============================================================
+# Archives
+# ============================================================
+
+category_archive:
+  type                   : liquid
+  path                   : /categories/
+
+tag_archive:
+  type                   : liquid
+  path                   : /tags/
+
+
+# ============================================================
 # HTML Compression
+# ============================================================
+
 compress_html:
-  clippings: all
+  clippings              : all
   ignore:
-    envs: development
+    envs                 : development
