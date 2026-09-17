@@ -40,17 +40,17 @@
 
 /* ============================================================
    头像尺寸调整
-   - 桌面端：约 1.5 倍（默认约 175px → 260px）
-   - 手机端：约 4 倍，但最大不超过屏幕宽度（上限 440px）
+   - 桌面端：约 1.5 倍
+   - 手机端：约 4 倍，上限 440px
    ============================================================ */
 
-.author__avatar {
+.sidebar .author__avatar {
   width: auto !important;
   height: auto !important;
   max-width: none !important;
 }
 
-.author__avatar img {
+.sidebar .author__avatar img {
   width: 260px !important;
   height: 260px !important;
   max-width: 260px !important;
@@ -58,7 +58,11 @@
 }
 
 @media (max-width: 768px) {
-  .author__avatar img {
+  .sidebar .author__avatar {
+    max-width: 100% !important;
+  }
+
+  .sidebar .author__avatar img {
     width: 100% !important;
     max-width: 440px !important;
     height: auto !important;
