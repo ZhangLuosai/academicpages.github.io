@@ -1,6 +1,7 @@
 ---
 title: "Some New Characterizations of the Top Trading Cycle"
 collection: publications
+category: manuscripts
 permalink: /publication/2025-03-01-ttc-characterizations
 date: 2025-11-01
 venue: 'Journal of Mathematical Economics'
