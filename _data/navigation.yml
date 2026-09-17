@@ -11,11 +11,21 @@ main:
   - title: "CV"
     url: /cv/
 
-  - title: "中文"
-    url: /zh/
-
   # - title: "Blog Posts"
   #   url: /year-archive/
 
   # - title: "CV"
   #   url: /cv-json/
+
+zh:
+  - title: "首页"
+    url: /zh/
+
+  - title: "发表论文"
+    url: /zh/publications/
+
+  - title: "教学"
+    url: /zh/teaching/
+
+  - title: "简历"
+    url: /zh/cv/
