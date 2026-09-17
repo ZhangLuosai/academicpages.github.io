@@ -1,10 +1,11 @@
 ---
-title: "Teaching Assistant"
+title: "Advanced Topics in Microeconomics (Ph.D.)"
 collection: teaching
-type: "Game Theory and Iformational Economics"
-permalink: /teaching/2014-spring-teaching-1
-venue: "Shanghai University of Finance and Economics, School of Economics"
-date: 2018-09-01---2019-01-30
+type: "Ph.D. course, Teaching Assistant"
+permalink: /teaching/advanced-topics-microeconomics
+venue: "School of Economics, Shanghai University of Finance and Economics (SUFE)"
+date: 2018-09-01
 location: "Shanghai, China"
 ---
 
+Teaching assistant for the Ph.D.-level course "Advanced Topics in Microeconomics," School of Economics, Shanghai University of Finance and Economics, 2018–2020.
