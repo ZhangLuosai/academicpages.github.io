@@ -16,3 +16,13 @@ Name2 Name2:
   avatar      : "bio-photo.jpg"
   twitter     : "name2"
   google_plus : "Name"
+zh:
+  name             : "张罗赛"
+  avatar           : "profile.png"
+  pronouns         : "她"
+  bio              : "匹配理论 · 市场设计 · 动态匹配"
+  location         : "山东·济南"
+  employer         : "山东大学"
+  email            : "zhangluosai@126.com"
+  googlescholar    : "https://scholar.google.com/citations?user=xj1qrhgAAAAJ&hl=en"
+  github           : "Zhangluosai"
