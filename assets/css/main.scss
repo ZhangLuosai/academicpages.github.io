@@ -42,44 +42,87 @@
    侧边栏与头像调整
    ============================================================ */
 
-/* 侧边栏加宽 */
+/* 侧边栏加宽：覆盖 flex 和 width */
 .sidebar {
+  flex: 0 0 300px !important;
   width: 300px !important;
+  max-width: 300px !important;
+  min-width: 300px !important;
 }
 
-/* 头像：填满侧边栏，上限 280px */
+/* 头像容器：打破 table-cell 限制，改成块级 */
 .sidebar .author__avatar {
+  display: block !important;
   width: 100% !important;
   max-width: 100% !important;
-  margin-bottom: 3rem !important;
+  margin-bottom: 2.5rem !important;
 }
 
+/* 头像图片：填满容器，上限 280px */
 .sidebar .author__avatar img {
+  display: block !important;
   width: 100% !important;
   max-width: 280px !important;
   height: auto !important;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  margin: 0 auto !important;
 }
 
 /* 名字、简介、链接整体下移 */
 body .sidebar .author__content {
   margin-top: 1.5rem !important;
-  padding-top: 1.5rem !important;
-}
-
-body .sidebar .author__urls-wrapper {
-  margin-top: 1.5rem !important;
   padding-top: 1rem !important;
 }
 
-/* 手机端 */
+body .sidebar .author__urls-wrapper {
+  margin-top: 1rem !important;
+  padding-top: 1rem !important;
+}
+
+/* ============================================================
+   手机端：头像、介绍、链接全部垂直堆叠
+   ============================================================ */
+
 @media (max-width: 768px) {
+  /* 侧边栏恢复自适应宽度 */
   .sidebar {
+    flex: none !important;
     width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+
+  /* 头像、介绍、链接：取消并排，强制块级堆叠 */
+  .sidebar .author__avatar,
+  .sidebar .author__content,
+  .sidebar .author__urls-wrapper {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    clear: both !important;
+  }
+
+  .sidebar .author__avatar {
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
   }
 
   .sidebar .author__avatar img {
+    display: block !important;
+    margin: 0 auto !important;
     max-width: 440px !important;
+  }
+
+  .sidebar .author__content {
+    text-align: center !important;
+    margin-top: 0.5rem !important;
+    padding-top: 0 !important;
+  }
+
+  .sidebar .author__urls-wrapper {
+    margin-top: 1rem !important;
+    text-align: center !important;
   }
 }
