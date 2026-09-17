@@ -60,9 +60,16 @@ Working Papers
 
 Conference Proceedings
 ======
-1. S. Ghosh and L. Zhang, "Matching with Prudent Players," Impromptu Workshop@CCBEF, Southwestern University of Finance and Economics (SWUFE), Chengdu, Jun 12–13, 2023.
-2. S. Ghosh and L. Zhang, "Noncooperative Foundations of Dynamic Matching," 2023 Asian Meeting of the Econometric Society (AMES), Nanyang Technological University (NTU), Singapore, Jul 28–30, 2023.
-3. S. Ghosh and L. Zhang, "Noncooperative Foundations of Dynamic Matching," Seminar at Shanghai University of International Business and Economics (SUIBE), Shanghai, Nov 4, 2023.
+1. S. Ghosh and L. Zhang, "Instantaneous Stability and the Dynamic Matchmaker Game," CAU International Conference on Advances in Economic Research, Chung-Ang University, Seoul, South Korea, May 28, 2026.
+2. S. Ghosh and L. Zhang, "Instantaneous Stability and the Dynamic Matchmaker Game," 7th Symposium on Neuroeconomic Theory and the Annual Conference of the China Society for Game Theory and Experimental Economics, Shandong University (SDU), Jinan, Dec 6–7, 2025.
+3. J. Zheng and L. Zhang, "Strategic Commitment and Legal Enforcement in Dynamic Matching," PhD (Postdoctoral) and Young Scholars Forum in Theoretical and Applied Economics, Shanghai University of International Business and Economics (SUIBE), Shanghai, Nov 15, 2025.
+4. J. Zheng and L. Zhang, "Strategic Commitment and Legal Enforcement in Dynamic Matching," 23rd Forum on Law and Economics, Shandong University (SDU), Jinan, Sep 19–21, 2025.
+5. S. Ghosh and L. Zhang, "Multi-Period Matching with Externalities," 2025 Shanghai Microeconomics Workshop, Shanghai University of Finance and Economics (SUFE), Shanghai, Jun 20–21, 2025.
+6. L. Zhang, "Multi-period Matching with Endogenous Commitment," CCBEF-IES Graduate Workshop, Southwestern University of Finance and Economics (SWUFE), Chengdu, May 20, 2025.
+7. S. Ghosh and L. Zhang, "Multi-Period Matching with Externalities," 2025 CCBEF-IES Workshop on Theory and Evidence, Southwestern University of Finance and Economics (SWUFE), Chengdu, May 19, 2025.
+8. S. Ghosh and L. Zhang, "Multiperiod Matching: Non-cooperative Foundations," PhD (Postdoctoral) and Young Scholars Forum in Applied Economics, Shanghai University of International Business and Economics (SUIBE), Shanghai, Nov 4, 2023.
+9. S. Ghosh and L. Zhang, "Noncooperative Foundations of Dynamic Matching," 2023 Asian Meeting of the Econometric Society (AMES), Nanyang Technological University (NTU), Singapore, Jul 28–30, 2023.
+10. S. Ghosh and L. Zhang, "Matching with Prudent Players," Impromptu Workshop@CCBEF, Southwestern University of Finance and Economics (SWUFE), Chengdu, Jun 12–13, 2023.
 
 Talks
 ======
