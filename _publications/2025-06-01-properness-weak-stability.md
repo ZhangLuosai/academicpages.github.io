@@ -1,17 +1,13 @@
 ---
 title: "The Properness of Weak Stability Notions"
 collection: publications
-category: manuscripts
-permalink: /publication/2025-properness-weak-stability
-excerpt: 'This paper examines the properness of weak stability notions in matching markets, contributing to the theoretical understanding of stability concepts in market design.'
+permalink: /publication/2025-06-01-properness-weak-stability
 date: 2025-06-01
 venue: 'Economics Letters'
-paperurl:
+paperurl: 'https://doi.org/10.1016/j.econlet.2024.112163'
 citation: 'Zhang, L. (2025). "The Properness of Weak Stability Notions." <i>Economics Letters</i>, 247, 112163.'
 ---
 
-This paper examines the properness of weak stability notions in matching markets, contributing to the theoretical understanding of stability concepts in market design and mechanism theory.
+This paper introduces a criterion called properness to evaluate different weak stability notions, ensuring theoretical consistency across matching settings.
 
-[Download paper here](http://zhangluosai.github.io/files/properness-weak-stability.pdf)
-
-Recommended citation: Zhang, L. (2025). "The Properness of Weak Stability Notions." *Economics Letters*, 247, 112163.
+[View paper (DOI)](https://doi.org/10.1016/j.econlet.2024.112163)
