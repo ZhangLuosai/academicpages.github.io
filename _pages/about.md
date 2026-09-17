@@ -8,13 +8,13 @@ redirect_from:
   - /about.html
 ---
 
-I am a Postdoctoral Researcher at the Center for Economic Research, Shandong University. My research focuses on **matching theory and market design**, as well as **game theory and information design**. I received my Ph.D. in Economics from the School of Economics, Shanghai University of Finance and Economics (SUFE), where I received systematic training in mathematical economics and microeconomic theory. My work is grounded in formal modeling and rigorous proof-based analysis.
+I am a Postdoctoral Researcher at the Center for Economic Research, Shandong University. My research interest focuses on **matching theory and market design**, as well as **game theory and information design**. I received my Ph.D. in Economics from the School of Economics, Shanghai University of Finance and Economics (SUFE), where I received systematic training in mathematical economics and microeconomic theory. My work is grounded in formal modeling and rigorous proof-based analysis.
 
 My research agenda centers on the stability and efficiency of matching markets, extending into mechanism design and algorithmic implementation. This has developed into a coherent and continuously evolving research line.
 
-My paper in *Economics Letters* (Zhang, 2025) compares existing notions of weak stability in one-shot one-to-many matching markets, providing an analytical foundation for studying stability in dynamic matching. My paper currently under revision at *Games and Economic Behavior* (Fu, Lang, Zhang, and Zheng, 2026) examines how externalities arising from students' concern for relative rank—beyond their own match outcomes—shape preference structures and affect school choice. My work on the Top Trading Cycle (TTC) algorithm, published in the *Journal of Mathematical Economics* (Chen, Jiao, Zhang, and Zhang, 2025), further characterizes the structural properties of matching algorithms.
+My paper in *Economics Letters* (Zhang, 2025) compares existing notions of weak stability in one-shot one-to-many matching markets, providing an analytical foundation for studying stability in dynamic matching. My work on the Top Trading Cycle (TTC) algorithm, published in the *Journal of Mathematical Economics* (Chen, Jiao, Zhang, and Zhang, 2025), further characterizes the structural properties of matching algorithms.
 
-Building on this foundation, I have extended my research into dynamic matching markets. My paper on Nash implementation of dynamic matching stability (Zhang, 2026) is currently under revision at *Mathematical Social Sciences*. My paper on decentralized mechanism design in dynamic matching (Ghosh and Zhang, 2025a) has been cited by Kotowski (2024) in the *Journal of Economic Theory*.
+Building on this foundation, I have extended my research into dynamic matching markets. 
 
 Research Interests
 ======
