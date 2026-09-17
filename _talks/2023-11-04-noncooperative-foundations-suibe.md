@@ -1,11 +1,11 @@
 ---
-title: "Noncooperative Foundations of Dynamic Matching"
+title: "Multiperiod Matching: Non-cooperative Foundations"
 collection: talks
-type: "Workshop talk"
-permalink: /talks/2023-11-04-noncooperative-foundations-suibe
-venue: "Shanghai University of International Business and Economics (SUIBE)"
+type: "Forum presentation"
+permalink: /talks/2023-11-04-multiperiod-matching-noncooperative-suibe
+venue: "PhD (Postdoctoral) and Young Scholars Forum in Applied Economics, Shanghai University of International Business and Economics (SUIBE)"
 date: 2023-11-04
 location: "Shanghai, China"
 ---
 
-Presented joint work with Sambuddha Ghosh, "Noncooperative Foundations of Dynamic Matching," at Shanghai University of International Business and Economics, November 4, 2023.
+Joint work with Sambuddha Ghosh, presented at the PhD (Postdoctoral) and Young Scholars Forum in Applied Economics, Shanghai University of International Business and Economics, November 4, 2023.
