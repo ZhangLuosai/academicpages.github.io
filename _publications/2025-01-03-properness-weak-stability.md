@@ -2,7 +2,7 @@
 title: "The Properness of Weak Stability Notions"
 collection: publications
 category: manuscripts
-permalink: /publication/2025-06-01-properness-weak-stability
+permalink: /publication/2025-01-03-properness-weak-stability
 date: 2025-01-03
 venue: 'Economics Letters'
 paperurl: 'https://doi.org/10.1016/j.econlet.2024.112163'
