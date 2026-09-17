@@ -4,6 +4,7 @@ title: "关于我"
 excerpt: "关于我"
 author_profile: true
 lang: zh-Hans
+author: zh
 ---
 
 我是山东大学经济研究院的博士后研究员。2025年于上海财经大学获得经济学博士学位。
