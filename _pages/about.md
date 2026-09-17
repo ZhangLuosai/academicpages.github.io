@@ -64,3 +64,7 @@ Current Research Project
 - **Principal Investigator**, Shandong Postdoctoral Innovation Talent Program  
   *Stability–Efficiency Trade-offs in Dynamic Employment Matching: The Role of Strategic Commitment and Legal Regulation*  
   Grant No. SDZZ-SH-20201012, September 2025–September 2027.
+
+  ---
+
+[中文版](/zh/)
