@@ -478,3 +478,16 @@ $profile-avatar-width: 300px;
     display: block !important;
   }
 }
+
+/* ============================================================
+   Desktop masthead alignment
+   Center the complete navigation group without moving #main.
+   ============================================================ */
+
+@media screen and (min-width: 1025px) {
+  .masthead__menu .greedy-nav .visible-links {
+    display: table !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
