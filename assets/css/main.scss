@@ -276,10 +276,74 @@ html[data-theme="dark"] .masthead {
 }
 
 @media screen and (min-width: 1025px) {
+  /* Give the desktop navigation more room than the theme default. */
+  .masthead__inner-wrap {
+    width: 100%;
+    max-width: 92rem !important;
+    padding: 0.62rem clamp(1.25rem, 3vw, 3rem) !important;
+  }
+
+  .masthead__menu .greedy-nav {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 0 !important;
+  }
+
   .masthead__menu .greedy-nav .visible-links {
-    display: table !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.2rem, 1.65vw, 2rem);
+
     width: auto !important;
-    margin-inline: auto !important;
+    margin: 0 auto !important;
+  }
+
+  .masthead__menu .greedy-nav .visible-links > li {
+    display: flex !important;
+    align-items: center;
+    padding: 0 !important;
+  }
+
+  .masthead__menu .greedy-nav .visible-links > li > a,
+  html[lang^="zh"] .masthead__menu .greedy-nav .visible-links > li > a {
+    margin: 0 !important;
+    padding: 0.58rem 0.08rem !important;
+
+    font-size: clamp(1.03rem, 0.98rem + 0.18vw, 1.15rem) !important;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.008em;
+  }
+
+  /* Separate the site name from the page links. */
+  .masthead__menu-item--lg {
+    margin-right: clamp(1.35rem, 2.4vw, 2.8rem) !important;
+    padding-right: 0 !important;
+  }
+
+  .masthead__menu-item--lg > a,
+  html[lang^="zh"] .masthead__menu-item--lg > a {
+    font-size: clamp(1.12rem, 1.05rem + 0.22vw, 1.25rem) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.004em;
+  }
+
+  #theme-toggle {
+    margin-left: clamp(0.2rem, 0.55vw, 0.65rem) !important;
+  }
+
+  #theme-toggle > a {
+    width: 1.8rem !important;
+    justify-content: center;
+  }
+
+  /* Keep overflow-menu links comfortably readable as items collapse. */
+  .greedy-nav .hidden-links a,
+  html[lang^="zh"] .greedy-nav .hidden-links a {
+    font-size: 1rem !important;
+    line-height: 1.45;
   }
 }
 
@@ -846,6 +910,25 @@ hr {
 
 
 /* ============================================================
+   Mid-width navigation readability
+   ============================================================ */
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  .greedy-nav a,
+  .masthead__menu-item a,
+  html[lang^="zh"] .greedy-nav a,
+  html[lang^="zh"] .masthead__menu-item a {
+    font-size: 1rem !important;
+  }
+
+  .masthead__menu-item--lg a,
+  html[lang^="zh"] .masthead__menu-item--lg a {
+    font-size: 1.08rem !important;
+  }
+}
+
+
+/* ============================================================
    Tablet and mobile
    ============================================================ */
 
@@ -911,13 +994,45 @@ hr {
     max-width: 100% !important;
   }
 
+  /*
+   * Clip the avatar at the wrapper level as well as on the image.
+   * This prevents the English mobile profile from falling back to
+   * the theme's square image treatment on cached or WebKit layouts.
+   */
   .sidebar div.author__avatar {
-    margin: 0 auto 1.15rem !important;
-  }
-
-  .sidebar div.author__avatar > img {
     width: 68vw !important;
     max-width: 250px !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+
+    margin: 0 auto 1.15rem !important;
+
+    overflow: hidden !important;
+    border: 1px solid var(--global-border-color) !important;
+    border-radius: 50% !important;
+    background: var(--global-bg-color);
+    box-shadow: var(--academic-avatar-shadow);
+    isolation: isolate;
+  }
+
+  .sidebar div.author__avatar > img,
+  .sidebar img.author__avatar {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+
+    object-fit: cover !important;
+    object-position: center !important;
   }
 
   .sidebar .author__content {
