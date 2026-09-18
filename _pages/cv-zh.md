@@ -1,6 +1,6 @@
 ---
 layout: archive-zh
-title: "简历"
+title: ""
 permalink: /zh/cv/
 author_profile: true
 lang: zh-Hans
