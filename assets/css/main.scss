@@ -227,6 +227,8 @@ tt {
 
 /* ============================================================
    Masthead and navigation
+   导航栏：保持 greedy-nav 的 table 布局，只用 padding 拉开间距
+   字号整体调大
    ============================================================ */
 
 .masthead {
@@ -253,9 +255,10 @@ html[data-theme="dark"] .masthead {
   background-color: transparent !important;
 }
 
+/* 英文导航链接：字号调大 */
 .greedy-nav a,
 .masthead__menu-item a {
-  font-size: var(--type-ui);
+  font-size: clamp(1rem, 0.96rem + 0.12vw, 1.06rem);
   font-weight: 500;
   letter-spacing: 0.02em;
 }
@@ -265,14 +268,14 @@ html[data-theme="dark"] .masthead {
   letter-spacing: 0.03em;
 }
 
-/* 链接间距：保持 table 布局，只用 padding 拉开 */
+/* 链接间距：不动 display，只用 padding 拉开 */
 .greedy-nav .visible-links li {
   padding-inline: 0.3rem;
 }
 
 .greedy-nav .visible-links a {
   display: inline-block;
-  padding: 0.28rem 0.55rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 5px;
   transition: color 0.22s ease, background-color 0.22s ease;
 }
@@ -331,7 +334,7 @@ html[data-theme="dark"] .masthead__menu-item.selected a {
   }
 
   .greedy-nav .visible-links a {
-    padding: 0.26rem 0.42rem;
+    padding: 0.28rem 0.45rem;
   }
 }
 
@@ -818,10 +821,11 @@ html[lang^="zh"] .page__content h6 {
   letter-spacing: 0.008em;
 }
 
+/* 中文导航链接：字号与英文对齐并调大 */
 html[lang^="zh"] .greedy-nav a,
 html[lang^="zh"] .masthead__menu-item a {
   font-family: var(--font-zh-sans) !important;
-  font-size: var(--zh-ui) !important;
+  font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.04rem) !important;
   font-weight: 500;
   line-height: 1.42;
   letter-spacing: 0.02em;
@@ -829,7 +833,7 @@ html[lang^="zh"] .masthead__menu-item a {
 
 html[lang^="zh"] .masthead__menu-item--lg a {
   font-family: var(--font-zh-serif) !important;
-  font-size: var(--zh-body) !important;
+  font-size: clamp(1.04rem, 1rem + 0.12vw, 1.1rem) !important;
   font-weight: 600;
   letter-spacing: 0.035em;
 }
