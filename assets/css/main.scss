@@ -44,12 +44,17 @@
 
 @media (min-width: 1025px) {
 
-  /* 侧边栏加宽 */
+  /* 侧边栏加宽到 300px */
   .sidebar {
     flex: 0 0 300px !important;
     width: 300px !important;
     max-width: 300px !important;
     min-width: 300px !important;
+  }
+
+  /* 主内容区：跟着往右挪，避免和侧边栏重叠 */
+  #main {
+    margin-left: 300px !important;
   }
 
   /* 头像容器 */
@@ -98,6 +103,11 @@
     width: auto !important;
     max-width: none !important;
     min-width: 0 !important;
+  }
+
+  /* 主内容区：取消左边距 */
+  #main {
+    margin-left: 0 !important;
   }
 
   /* 头像、介绍、链接：强制块级堆叠 */
