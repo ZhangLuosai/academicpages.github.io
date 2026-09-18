@@ -1,6 +1,8 @@
 ---
 ---
 
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,600&display=swap");
+
 /*
  * Academic Pages base styles
  *
@@ -739,6 +741,397 @@ hr {
     --global-link-color-hover: #222222;
     --academic-heading-color: #222222;
     --academic-accent: #555555;
+  }
+}
+/* ============================================================
+   Golden-ratio typography system
+
+   Scale logic:
+   - Golden ratio φ = 1.61803398875
+   - Practical adjacent step = √φ = 1.27201964951
+   - Two adjacent steps therefore equal one full golden ratio
+   - Body text grows fluidly from 17px to 18px
+   ============================================================ */
+
+:root {
+  --phi: 1.61803398875;
+  --phi-half-step: 1.27201964951;
+
+  --font-academic-sans:
+    "Source Sans 3",
+    "Noto Sans SC",
+    "Source Han Sans SC",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-academic-serif:
+    "Source Serif 4",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    STSong,
+    SimSun,
+    Georgia,
+    serif;
+
+  --font-academic-mono:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  /*
+   * Fluid endpoints preserve the same golden-ratio scale:
+   * mobile base 17px; desktop base 18px.
+   */
+  --type-small: clamp(0.8353rem, 0.813rem + 0.0953vw, 0.8844rem);
+  --type-ui: clamp(0.9421rem, 0.9169rem + 0.1075vw, 0.9975rem);
+  --type-body: clamp(1.0625rem, 1.0341rem + 0.1212vw, 1.125rem);
+  --type-subhead: clamp(1.1983rem, 1.1663rem + 0.1367vw, 1.2688rem);
+  --type-step-1: clamp(1.3515rem, 1.3154rem + 0.1542vw, 1.431rem);
+  --type-step-2: clamp(1.7192rem, 1.6732rem + 0.1961vw, 1.8203rem);
+  --type-step-3: clamp(2.1868rem, 2.1283rem + 0.2495vw, 2.3154rem);
+
+  --reading-line-height: 1.61803398875;
+  --compact-line-height: 1.27201964951;
+  --reading-measure: 68ch;
+}
+
+
+/* ---------- Global typography ---------- */
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-academic-sans);
+  font-size: var(--type-ui);
+  line-height: 1.55;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  font-variant-ligatures: common-ligatures contextual;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+code,
+kbd,
+pre,
+samp,
+tt {
+  font-family: var(--font-academic-mono);
+}
+
+
+/* ---------- Main reading column ---------- */
+
+.page__content {
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin-right: auto;
+
+  font-family: var(--font-academic-serif);
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: var(--reading-line-height);
+  letter-spacing: 0.001em;
+  hanging-punctuation: first allow-end last;
+}
+
+.page__content p,
+.page__content li,
+.page__content dl,
+.page__content blockquote {
+  font-size: 1em;
+}
+
+.page__content p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+.page__content ul,
+.page__content ol {
+  margin-top: 0;
+  margin-bottom: 1.618em;
+  padding-left: 1.35em;
+}
+
+.page__content li {
+  margin-bottom: 0.618em;
+}
+
+.page__content li:last-child {
+  margin-bottom: 0;
+}
+
+.page__content strong,
+.page__content b {
+  font-weight: 600;
+}
+
+.page__content em,
+.page__content i,
+.page__content cite {
+  font-style: italic;
+}
+
+
+/* ---------- Heading hierarchy ---------- */
+
+.page__title,
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4,
+.page__content h5,
+.page__content h6,
+.archive__item-title,
+.page__related-title {
+  font-family: var(--font-academic-sans);
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+
+/* True document/page title */
+.page__title {
+  margin: 0 0 0.786em;
+  font-size: var(--type-step-3);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+/* Homepage section headings are h1 in the current Markdown. */
+.page__content h1 {
+  margin: 2.618rem 0 0.786rem;
+  padding-bottom: 0.42rem;
+  font-size: var(--type-step-2);
+  font-weight: 600;
+  line-height: var(--compact-line-height);
+  letter-spacing: -0.021em;
+}
+
+.page__content > h1:first-child {
+  margin-top: 0;
+}
+
+.page__content h2 {
+  margin: 2.058rem 0 0.786rem;
+  padding-bottom: 0.36rem;
+  font-size: var(--type-step-1);
+  font-weight: 600;
+  line-height: var(--compact-line-height);
+  letter-spacing: -0.018em;
+}
+
+.page__content h3 {
+  margin: 1.618rem 0 0.618rem;
+  font-size: var(--type-subhead);
+  font-weight: 600;
+  line-height: var(--compact-line-height);
+  letter-spacing: -0.012em;
+}
+
+.page__content h4,
+.page__content h5,
+.page__content h6 {
+  margin: 1.272rem 0 0.618rem;
+  font-size: var(--type-body);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.006em;
+}
+
+.page__lead {
+  max-width: 58ch;
+  font-family: var(--font-academic-serif);
+  font-size: var(--type-subhead);
+  line-height: 1.5;
+}
+
+
+/* ---------- Navigation ---------- */
+
+.masthead__inner-wrap,
+.greedy-nav,
+.masthead__menu,
+.masthead__menu-item {
+  font-family: var(--font-academic-sans) !important;
+}
+
+.greedy-nav a,
+.masthead__menu-item a {
+  font-size: var(--type-ui);
+  font-weight: 500;
+  line-height: var(--compact-line-height);
+  letter-spacing: 0.006em;
+}
+
+.masthead__menu-item--lg a {
+  font-size: var(--type-body);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+
+/* ---------- Author profile ---------- */
+
+.sidebar,
+.sidebar .author__content,
+.sidebar .author__urls {
+  font-family: var(--font-academic-sans);
+}
+
+.sidebar .author__name {
+  margin-bottom: 0.486rem !important;
+  font-size: var(--type-step-1);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+}
+
+.sidebar .author__pronouns {
+  font-size: var(--type-small);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.025em;
+}
+
+.sidebar .author__bio {
+  font-family: var(--font-academic-serif);
+  font-size: var(--type-ui);
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+.sidebar .author__urls,
+.sidebar .author__urls a {
+  font-size: var(--type-ui);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+
+/* ---------- Archives, publications, metadata ---------- */
+
+.archive__item-title {
+  font-size: var(--type-subhead);
+  font-weight: 600;
+  line-height: var(--compact-line-height);
+  letter-spacing: -0.012em;
+}
+
+.archive__item-excerpt {
+  max-width: var(--reading-measure);
+  font-family: var(--font-academic-serif);
+  font-size: var(--type-body);
+  line-height: var(--reading-line-height);
+}
+
+.page__meta,
+.page__taxonomy,
+.page__share-title,
+.page__related-title,
+figcaption,
+.notice,
+.btn {
+  font-family: var(--font-academic-sans);
+}
+
+.page__meta,
+figcaption,
+.page__footer,
+.page__footer-follow,
+.page__footer-copyright {
+  font-size: var(--type-small);
+  line-height: 1.55;
+}
+
+.page__related-title,
+.page__share-title {
+  font-size: var(--type-small);
+  font-weight: 600;
+  letter-spacing: 0.055em;
+}
+
+
+/* ---------- Tables and compact interface text ---------- */
+
+.page__content table {
+  font-family: var(--font-academic-sans);
+  font-size: var(--type-small);
+  line-height: 1.45;
+}
+
+.page__content code,
+.page__content kbd,
+.page__content samp {
+  font-size: 0.884em;
+}
+
+
+/* ---------- Small-screen optical corrections ---------- */
+
+@media screen and (max-width: 600px) {
+  .page__content {
+    max-width: none;
+  }
+
+  .page__title {
+    line-height: 1.16;
+  }
+
+  .page__content h1,
+  .page__content h2 {
+    line-height: 1.22;
+  }
+
+  .sidebar .author__name {
+    line-height: 1.16;
+  }
+}
+
+
+/* ---------- Print typography ---------- */
+
+@media print {
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  .page__content {
+    max-width: none;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  .page__title,
+  .page__content h1,
+  .page__content h2,
+  .page__content h3 {
+    font-family: Arial, Helvetica, sans-serif;
   }
 }
 
