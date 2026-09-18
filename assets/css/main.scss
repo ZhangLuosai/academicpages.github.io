@@ -1,77 +1,133 @@
+---
+---
+
+/*
+ * Academic Pages base styles
+ *
+ * The first two lines are required by Jekyll.
+ * Keep the imports before all custom rules.
+ */
+
+@import
+  "vendor/breakpoint/breakpoint",
+
+  "themes",
+  "theme/{{ site.site_theme | default: 'default' | append: '_light' }}",
+  "theme/{{ site.site_theme | default: 'default' | append: '_dark' }}",
+
+  "include/mixins",
+  "vendor/susy/susy",
+
+  "layout/reset",
+  "layout/base",
+
+  "include/utilities",
+  "layout/tables",
+  "layout/buttons",
+  "layout/notices",
+  "layout/masthead",
+  "layout/navigation",
+  "layout/footer",
+  "syntax",
+
+  "layout/forms",
+
+  "layout/page",
+  "layout/archive",
+  "layout/sidebar",
+  "layout/json_cv";
+
+
 /* ============================================================
-   黄金比例桌面布局
-   侧栏 : 正文 = 0.618 : 1
-   即约 38.2% : 61.8%
+   Custom profile layout
+   Desktop columns use the golden ratio:
+   profile : content = 1 : 1.618
    ============================================================ */
 
-$profile-column-gap: clamp(2.5rem, 4vw, 4rem);
-$profile-avatar-width: 320px;
+$profile-column-gap: 3rem;
+$profile-inner-width: 320px;
+$profile-avatar-width: 300px;
+
+
+/* ============================================================
+   Desktop: 1025px and wider
+   ============================================================ */
 
 @media screen and (min-width: 1025px) {
 
   /*
-   * 黄金比例双栏布局。
-   *
-   * 0.618fr + 1fr = 1.618fr
-   * 因此左栏约占 38.2%，右栏约占 61.8%。
-   *
-   * column-gap 不计入比例，比例作用于扣除间距后的可用空间。
+   * The first column receives one part and the second receives
+   * 1.618 parts. The gap is outside that ratio.
    */
   #main {
     display: grid !important;
-
     grid-template-columns:
-      minmax(280px, 0.61803398875fr)
-      minmax(0, 1fr);
-
+      minmax(280px, 1fr)
+      minmax(0, 1.61803398875fr);
     column-gap: $profile-column-gap;
+    row-gap: 0;
     align-items: start;
 
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
+  /*
+   * #main receives clearfix pseudo-elements from the theme.
+   * They must not become extra grid items.
+   */
+  #main::before,
+  #main::after {
+    display: none !important;
+    content: none !important;
+  }
 
   /*
-   * 没有侧栏的普通页面仍然占满整个宽度。
+   * A page without an author sidebar spans the full grid.
    */
   #main > .page,
   #main > .archive,
   #main > .page__related {
     grid-column: 1 / -1;
+    float: none !important;
   }
 
-
   /*
-   * 左侧个人资料栏。
+   * Profile sidebar.
    */
   #main > .sidebar {
     grid-column: 1;
     grid-row: 1;
 
     position: sticky !important;
-    top: calc(#{$masthead-height} + 1rem);
+    top: calc(#{$masthead-height} + 1.25rem);
 
     float: none !important;
 
     width: 100% !important;
     min-width: 0 !important;
     max-width: none !important;
-
     height: auto !important;
-    max-height: calc(100vh - #{$masthead-height} - 2rem);
+    max-height: none !important;
 
     margin: 0 !important;
     padding: 0 !important;
 
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: visible !important;
   }
 
+  /*
+   * Keep the visual profile block compact within the
+   * larger golden-ratio column.
+   */
+  #main > .sidebar > div[itemscope] {
+    width: 100%;
+    max-width: $profile-inner-width;
+    margin: 0 0 0 auto;
+  }
 
   /*
-   * 只有在页面确实存在侧栏时，
-   * 正文才进入右侧黄金比例栏。
+   * Main article/archive beside an existing sidebar.
    */
   #main > .sidebar + .page,
   #main > .sidebar + .archive {
@@ -89,9 +145,8 @@ $profile-avatar-width: 320px;
     padding-right: 0 !important;
   }
 
-
   /*
-   * 相关文章区域与正文保持相同宽度和位置。
+   * Related content aligns with the article column.
    */
   #main > .sidebar ~ .page__related {
     grid-column: 2;
@@ -108,9 +163,7 @@ $profile-avatar-width: 320px;
   }
 
 
-  /* -------------------------
-     头像
-     ------------------------- */
+  /* ---------- Avatar ---------- */
 
   .sidebar div.author__avatar {
     display: block !important;
@@ -118,7 +171,7 @@ $profile-avatar-width: 320px;
     width: 100% !important;
     height: auto !important;
 
-    margin: 0 0 2rem !important;
+    margin: 0 0 1.618rem !important;
     padding: 0 !important;
 
     text-align: center;
@@ -139,9 +192,7 @@ $profile-avatar-width: 320px;
   }
 
 
-  /* -------------------------
-     姓名与个人简介
-     ------------------------- */
+  /* ---------- Name and biography ---------- */
 
   .sidebar .author__content {
     display: block !important;
@@ -151,7 +202,7 @@ $profile-avatar-width: 320px;
     margin: 0 !important;
     padding: 0 !important;
 
-    line-height: 1.55;
+    line-height: 1.5;
     overflow-wrap: anywhere;
   }
 
@@ -164,15 +215,12 @@ $profile-avatar-width: 320px;
   }
 
   .sidebar .author__bio {
-    max-width: 34rem;
-    margin: 0 0 1.4rem !important;
-    line-height: 1.6;
+    margin: 0 0 1.25rem !important;
+    line-height: 1.55;
   }
 
 
-  /* -------------------------
-     联系方式
-     ------------------------- */
+  /* ---------- Profile links ---------- */
 
   .sidebar .author__urls-wrapper {
     display: block !important;
@@ -192,12 +240,7 @@ $profile-avatar-width: 320px;
 
   .sidebar .author__urls {
     display: block !important;
-    position: relative !important;
-
-    top: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    left: auto !important;
+    position: static !important;
 
     width: 100% !important;
 
@@ -218,7 +261,220 @@ $profile-avatar-width: 320px;
   }
 
   .sidebar .author__urls li {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
     white-space: normal;
+  }
+}
+
+
+/* ============================================================
+   Tablet and mobile: 1024px and narrower
+   ============================================================ */
+
+@media screen and (max-width: 1024px) {
+
+  #main {
+    display: block !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /*
+   * Return the sidebar to normal document flow.
+   */
+  #main > .sidebar {
+    position: static !important;
+    top: auto !important;
+
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+
+    margin: 0 0 2.5rem !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+  }
+
+  /*
+   * Remove the theme's desktop floats and column widths.
+   */
+  #main > .sidebar + .page,
+  #main > .sidebar + .archive,
+  #main > .sidebar ~ .page__related {
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /*
+   * Stack avatar, profile text, and links vertically.
+   */
+  .sidebar > div[itemscope] {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+  }
+
+  .sidebar div.author__avatar,
+  .sidebar .author__content,
+  .sidebar .author__urls-wrapper {
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+
+    flex: none !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+
+  /* ---------- Mobile avatar ---------- */
+
+  .sidebar div.author__avatar {
+    margin: 0 auto 1.25rem !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+  }
+
+  .sidebar div.author__avatar > img {
+    display: block !important;
+
+    width: 72vw !important;
+    max-width: 260px !important;
+    height: auto !important;
+
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+
+    margin: 0 auto !important;
+  }
+
+
+  /* ---------- Mobile profile text ---------- */
+
+  .sidebar .author__content {
+    max-width: 42rem !important;
+
+    margin: 0 auto !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  .sidebar .author__name {
+    margin: 0 0 0.55rem !important;
+  }
+
+  .sidebar .author__pronouns {
+    margin: 0 0 0.5rem !important;
+  }
+
+  .sidebar .author__bio {
+    margin: 0 !important;
+    line-height: 1.55;
+  }
+
+
+  /* ---------- Mobile profile links ---------- */
+
+  .sidebar .author__urls-wrapper {
+    max-width: 34rem !important;
+
+    margin: 1rem auto 0 !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+    cursor: default !important;
+  }
+
+  /*
+   * Show all profile links directly instead of using
+   * the compact Follow dropdown.
+   */
+  .sidebar .author__urls-wrapper > button {
+    display: none !important;
+  }
+
+  .sidebar .author__urls {
+    display: block !important;
+    position: static !important;
+
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    list-style: none !important;
+    text-align: center !important;
+
+    z-index: auto !important;
+  }
+
+  .sidebar .author__urls::before,
+  .sidebar .author__urls::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .sidebar .author__urls li {
+    display: block !important;
+
+    margin: 0.3rem 0 !important;
+
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  .sidebar .author__urls a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 !important;
+    padding: 0.2rem 0.35rem !important;
+  }
+
+  /*
+   * Show location and employer on narrow screens.
+   */
+  .sidebar .author__desktop {
+    display: block !important;
   }
 }
