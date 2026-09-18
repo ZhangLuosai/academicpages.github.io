@@ -265,24 +265,18 @@ html[data-theme="dark"] .masthead {
   letter-spacing: 0.03em;
 }
 
-/* 链接间距拉开 */
-.greedy-nav .visible-links {
-  display: flex;
-  align-items: center;
-}
-
+/* 链接间距：保持 table 布局，只用 padding 拉开 */
 .greedy-nav .visible-links li {
-  margin-inline: 0.15rem;
+  padding-inline: 0.3rem;
 }
 
 .greedy-nav .visible-links a {
   display: inline-block;
-  padding: 0.35rem 0.95rem;
-  border-radius: 6px;
+  padding: 0.28rem 0.55rem;
+  border-radius: 5px;
   transition: color 0.22s ease, background-color 0.22s ease;
 }
 
-/* 悬停：淡色背景 + 强调色文字 */
 .greedy-nav .visible-links a:hover {
   color: var(--academic-accent) !important;
   background-color: rgba(138, 88, 62, 0.08);
@@ -292,7 +286,6 @@ html[data-theme="dark"] .greedy-nav .visible-links a:hover {
   background-color: rgba(215, 162, 126, 0.12);
 }
 
-/* 当前页面：淡色背景 + 底部细线 */
 .greedy-nav .visible-links li.selected a,
 .masthead__menu-item.selected a {
   color: var(--academic-accent) !important;
@@ -312,10 +305,9 @@ html[data-theme="dark"] .masthead__menu-item.selected a {
   content: none !important;
 }
 
+/* 桌面端链接居中：保持 table 布局，只加 margin */
 @media screen and (min-width: 1025px) {
   .masthead__menu .greedy-nav .visible-links {
-    display: flex !important;
-    width: auto !important;
     margin-inline: auto !important;
   }
 }
@@ -334,12 +326,12 @@ html[data-theme="dark"] .masthead__menu-item.selected a {
 }
 
 @media screen and (max-width: 1024px) {
-  .greedy-nav .visible-links a {
-    padding: 0.35rem 0.7rem;
+  .greedy-nav .visible-links li {
+    padding-inline: 0.15rem;
   }
 
-  .greedy-nav .visible-links li {
-    margin-inline: 0.05rem;
+  .greedy-nav .visible-links a {
+    padding: 0.26rem 0.42rem;
   }
 }
 
