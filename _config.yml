@@ -22,16 +22,14 @@ author:
   name             : "Luosai Zhang"
   pronouns         : "she/her"
   bio              : "Matching Theory · Market Design · Dynamic Matching"
+    # Language page
+  chinese_page     : "/zh/"
   location         : "Jinan, Shandong, China"
   employer         : |
     Shandong University
     Center for Economic Research
   uri              :
   email            : "zhangluosai@126.com"
-
-  # Language page
-  chinese_page     : "/zh/"
-
   # Academic profiles
   academia         :
   arxiv            :
