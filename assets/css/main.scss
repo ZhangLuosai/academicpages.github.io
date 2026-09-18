@@ -228,7 +228,7 @@ tt {
 /* ============================================================
    Masthead and navigation
    导航栏：保持 greedy-nav 的 table 布局，只用 padding 拉开间距
-   字号整体调大
+   字号整体调大（使用固定 rem 值，避免 SCSS 单位冲突）
    ============================================================ */
 
 .masthead {
@@ -258,7 +258,7 @@ html[data-theme="dark"] .masthead {
 /* 英文导航链接：字号调大 */
 .greedy-nav a,
 .masthead__menu-item a {
-  font-size: clamp(1rem, 0.96rem + 0.12vw, 1.06rem);
+  font-size: 1.05rem;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
@@ -825,7 +825,7 @@ html[lang^="zh"] .page__content h6 {
 html[lang^="zh"] .greedy-nav a,
 html[lang^="zh"] .masthead__menu-item a {
   font-family: var(--font-zh-sans) !important;
-  font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.04rem) !important;
+  font-size: 1.02rem !important;
   font-weight: 500;
   line-height: 1.42;
   letter-spacing: 0.02em;
@@ -833,7 +833,7 @@ html[lang^="zh"] .masthead__menu-item a {
 
 html[lang^="zh"] .masthead__menu-item--lg a {
   font-family: var(--font-zh-serif) !important;
-  font-size: clamp(1.04rem, 1rem + 0.12vw, 1.1rem) !important;
+  font-size: 1.08rem !important;
   font-weight: 600;
   letter-spacing: 0.035em;
 }
