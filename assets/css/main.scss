@@ -1,7 +1,7 @@
 ---
 ---
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,600&display=swap");
 
 /*
  * Academic Pages base styles
@@ -1136,57 +1136,69 @@ figcaption,
 }
 
 /* ============================================================
-   Refined Simplified-Chinese typography
+   Simplified-Chinese typography
+   The Chinese page declares <html lang="zh-Hans">.
+   Source Sans/Serif do not provide the Chinese glyphs, so the
+   matching Noto Sans SC / Noto Serif SC families are loaded above.
 
-   Design choice:
-   - Chinese interface and reading text use a clean sans-serif face.
-   - English pages retain the Source Serif 4 reading style above.
-   - Major display steps follow sqrt(phi), so two steps equal phi.
+   Size scale:
+   adjacent display steps use sqrt(phi) = 1.27201964951;
+   two display steps therefore equal phi = 1.61803398875.
    ============================================================ */
 
 @media screen {
+
   html[lang^="zh"] {
     /*
-     * Mobile body: 16.8px; desktop body: 17.5px.
-     * Key display sizes are derived from sqrt(phi) and phi.
+     * Chinese body text grows from 17.5px to 18.5px.
+     * The heading scale is derived with sqrt(phi).
      */
     --zh-type-small:
-      clamp(0.825rem, 0.805rem + 0.085vw, 0.860rem);
+      clamp(0.8594rem, 0.8367rem + 0.0970vw, 0.9088rem);
     --zh-type-ui:
-      clamp(0.955rem, 0.936rem + 0.080vw, 0.984rem);
+      clamp(0.9700rem, 0.9447rem + 0.1079vw, 1.0250rem);
     --zh-type-body:
-      clamp(1.050rem, 1.020rem + 0.125vw, 1.09375rem);
+      clamp(1.09375rem, 1.0653rem + 0.1212vw, 1.15625rem);
+    --zh-type-subhead:
+      clamp(1.2338rem, 1.2017rem + 0.1367vw, 1.3044rem);
     --zh-type-step-1:
-      clamp(1.336rem, 1.297rem + 0.163vw, 1.391rem);
+      clamp(1.3914rem, 1.3553rem + 0.1542vw, 1.4708rem);
     --zh-type-step-2:
-      clamp(1.699rem, 1.650rem + 0.204vw, 1.770rem);
+      clamp(1.7699rem, 1.7240rem + 0.1961vw, 1.8707rem);
     --zh-type-step-3:
-      clamp(2.161rem, 2.099rem + 0.258vw, 2.251rem);
+      clamp(2.2513rem, 2.1929rem + 0.2495vw, 2.3795rem);
 
-    --font-zh-clean:
+    --font-zh-sans:
       "Source Sans 3",
       "Noto Sans SC",
+      "Source Han Sans SC",
       "PingFang SC",
       "Hiragino Sans GB",
-      "Microsoft YaHei UI",
       "Microsoft YaHei",
-      "Source Han Sans SC",
-      "Noto Sans CJK SC",
       system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
       sans-serif;
+
+    --font-zh-serif:
+      "Source Serif 4",
+      "Noto Serif SC",
+      "Source Han Serif SC",
+      "Songti SC",
+      STSong,
+      SimSun,
+      Georgia,
+      serif;
   }
 
 
-  /* ---------- Page-wide Chinese type ---------- */
+  /* ---------- Page-wide Chinese UI text ---------- */
 
-  html[lang^="zh"] body,
-  html[lang^="zh"] button,
-  html[lang^="zh"] input,
-  html[lang^="zh"] select,
-  html[lang^="zh"] textarea,
+  html[lang^="zh"] body {
+    font-family: var(--font-zh-sans);
+    font-size: var(--zh-type-ui);
+    line-height: 1.6;
+    font-synthesis: none;
+  }
+
   html[lang^="zh"] .masthead__inner-wrap,
   html[lang^="zh"] .greedy-nav,
   html[lang^="zh"] .masthead__menu,
@@ -1194,59 +1206,35 @@ figcaption,
   html[lang^="zh"] .sidebar,
   html[lang^="zh"] .page__meta,
   html[lang^="zh"] .page__footer {
-    font-family: var(--font-zh-clean) !important;
-    font-synthesis: none;
-  }
-
-  html[lang^="zh"] body {
-    font-size: var(--zh-type-ui);
-    line-height: 1.62;
+    font-family: var(--font-zh-sans) !important;
   }
 
 
   /* ---------- Main Chinese reading column ---------- */
 
   html[lang^="zh"] .page__content {
-    width: 100%;
-    max-width: 40em;
-    margin-right: auto;
+    max-width: 38em;
 
-    font-family: var(--font-zh-clean) !important;
+    font-family: var(--font-zh-serif) !important;
     font-size: var(--zh-type-body) !important;
     font-weight: 400;
-    line-height: 1.78;
-    letter-spacing: 0;
+    line-height: 1.72;
+    letter-spacing: 0.012em;
 
     line-break: strict;
     word-break: normal;
     overflow-wrap: break-word;
-    text-rendering: optimizeLegibility;
+    text-spacing-trim: trim-start;
+    text-autospace: normal;
   }
 
   html[lang^="zh"] .page__content p {
-    margin: 0 0 1.08em;
-    text-wrap: pretty;
+    margin-bottom: 1.05em;
   }
 
   html[lang^="zh"] .page__content strong,
   html[lang^="zh"] .page__content b {
     font-weight: 600;
-  }
-
-  html[lang^="zh"] .page__content ul,
-  html[lang^="zh"] .page__content ol {
-    margin-top: 0.25em;
-    margin-bottom: 1.55em;
-    padding-left: 1.38em;
-  }
-
-  html[lang^="zh"] .page__content li {
-    margin-bottom: 0.56em;
-    line-height: 1.72;
-  }
-
-  html[lang^="zh"] .page__content li:last-child {
-    margin-bottom: 0;
   }
 
 
@@ -1258,28 +1246,25 @@ figcaption,
   html[lang^="zh"] .page__content h3,
   html[lang^="zh"] .page__content h4,
   html[lang^="zh"] .page__content h5,
-  html[lang^="zh"] .page__content h6,
-  html[lang^="zh"] .archive__item-title,
-  html[lang^="zh"] .page__related-title {
-    font-family: var(--font-zh-clean) !important;
+  html[lang^="zh"] .page__content h6 {
+    font-family: var(--font-zh-sans) !important;
     font-weight: 600;
-    letter-spacing: 0.018em;
     text-wrap: balance;
   }
 
   html[lang^="zh"] .page__title {
-    margin-bottom: 0.72em;
     font-size: var(--zh-type-step-3) !important;
     line-height: 1.22;
-    letter-spacing: 0.022em;
+    letter-spacing: 0.035em;
   }
 
   html[lang^="zh"] .page__content h1 {
-    margin: 2.35rem 0 0.78rem;
-    padding-bottom: 0.42rem;
+    margin-top: 2.45rem;
+    margin-bottom: 0.82rem;
+
     font-size: var(--zh-type-step-2) !important;
-    line-height: 1.30;
-    letter-spacing: 0.025em;
+    line-height: 1.28;
+    letter-spacing: 0.045em;
   }
 
   html[lang^="zh"] .page__content > h1:first-child {
@@ -1287,107 +1272,409 @@ figcaption,
   }
 
   html[lang^="zh"] .page__content h2 {
-    margin: 1.95rem 0 0.72rem;
     font-size: var(--zh-type-step-1) !important;
-    line-height: 1.34;
-    letter-spacing: 0.020em;
+    line-height: 1.32;
+    letter-spacing: 0.035em;
   }
 
   html[lang^="zh"] .page__content h3 {
-    margin: 1.55rem 0 0.60rem;
-    font-size: var(--zh-type-body) !important;
-    line-height: 1.42;
-    letter-spacing: 0.015em;
+    font-size: var(--zh-type-subhead) !important;
+    line-height: 1.36;
+    letter-spacing: 0.025em;
   }
 
   html[lang^="zh"] .page__content h4,
   html[lang^="zh"] .page__content h5,
   html[lang^="zh"] .page__content h6 {
     font-size: var(--zh-type-body) !important;
-    line-height: 1.48;
-    letter-spacing: 0.012em;
+    line-height: 1.45;
+    letter-spacing: 0.018em;
   }
 
 
-  /* ---------- Navigation and author profile ---------- */
+  /* ---------- Chinese navigation and author profile ---------- */
 
   html[lang^="zh"] .greedy-nav a,
   html[lang^="zh"] .masthead__menu-item a {
-    font-family: var(--font-zh-clean) !important;
     font-size: var(--zh-type-ui) !important;
     font-weight: 500;
-    line-height: 1.42;
-    letter-spacing: 0.035em;
+    line-height: 1.4;
+    letter-spacing: 0.055em;
   }
 
   html[lang^="zh"] .masthead__menu-item--lg a {
     font-size: var(--zh-type-body) !important;
     font-weight: 600;
-    letter-spacing: 0.045em;
+    letter-spacing: 0.08em;
   }
 
   html[lang^="zh"] .sidebar .author__name {
-    font-family: var(--font-zh-clean) !important;
+    font-family: var(--font-zh-sans) !important;
     font-size: var(--zh-type-step-1) !important;
     font-weight: 600;
-    line-height: 1.24;
-    letter-spacing: 0.035em;
+    line-height: 1.22;
+    letter-spacing: 0.075em;
   }
 
   html[lang^="zh"] .sidebar .author__pronouns {
-    font-family: var(--font-zh-clean) !important;
     font-size: var(--zh-type-small) !important;
-    line-height: 1.45;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.06em;
   }
 
   html[lang^="zh"] .sidebar .author__bio {
-    font-family: var(--font-zh-clean) !important;
+    font-family: var(--font-zh-serif) !important;
     font-size: var(--zh-type-ui) !important;
-    font-weight: 400;
-    line-height: 1.70;
-    letter-spacing: 0.012em;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: 0.025em;
   }
 
   html[lang^="zh"] .sidebar .author__urls,
   html[lang^="zh"] .sidebar .author__urls a {
-    font-family: var(--font-zh-clean) !important;
+    font-family: var(--font-zh-sans) !important;
     font-size: var(--zh-type-ui) !important;
-    font-weight: 400;
-    line-height: 1.58;
-    letter-spacing: 0.008em;
+    line-height: 1.55;
+    letter-spacing: 0.015em;
   }
 
 
-  /* ---------- Mixed Chinese/English text ---------- */
+  /* ---------- Chinese lists and mixed-script publication text ---------- */
+
+  html[lang^="zh"] .page__content ul,
+  html[lang^="zh"] .page__content ol {
+    margin-bottom: 1.5em;
+  }
+
+  html[lang^="zh"] .page__content li {
+    margin-bottom: 0.55em;
+  }
 
   html[lang^="zh"] .page__content em,
-  html[lang^="zh"] .page__content i,
   html[lang^="zh"] .page__content cite {
     font-family:
       "Source Serif 4",
-      "Noto Sans SC",
-      "PingFang SC",
-      "Microsoft YaHei",
-      sans-serif;
+      "Noto Serif SC",
+      "Source Han Serif SC",
+      "Songti SC",
+      serif;
   }
 
 
-  /* ---------- Narrow screens ---------- */
+  /* ---------- Small-screen Chinese corrections ---------- */
 
   @media screen and (max-width: 600px) {
     html[lang^="zh"] .page__content {
       max-width: none;
-      line-height: 1.72;
+      line-height: 1.68;
+      letter-spacing: 0.01em;
     }
 
     html[lang^="zh"] .page__content h1 {
-      margin-top: 2.05rem;
+      margin-top: 2.1rem;
+    }
+  }
+}
+
+/* ============================================================
+   Chinese typography v2
+   Screen-first academic style:
+   - Chinese body and interface: Noto Sans SC
+   - Chinese display headings: Noto Serif SC
+   - Latin glyphs: matching Source Sans / Source Serif
+   - Body-to-section-heading ratio remains approximately φ
+   ============================================================ */
+
+@media screen {
+
+  html[lang^="zh"] {
+    /*
+     * Optical Chinese scale
+     *
+     * Body:       16.5px -> 17px
+     * H1 section: 26.7px -> 27.5px
+     *
+     * 17 × φ ≈ 27.5, so the principal body-to-heading
+     * relationship retains the golden ratio without making
+     * every intermediate level excessively large.
+     */
+    --zh-v2-small:
+      clamp(0.84375rem, 0.8295rem + 0.0606vw, 0.875rem);
+
+    --zh-v2-ui:
+      clamp(0.9375rem, 0.9233rem + 0.0606vw, 0.96875rem);
+
+    --zh-v2-body:
+      clamp(1.03125rem, 1.017rem + 0.0606vw, 1.0625rem);
+
+    --zh-v2-subhead:
+      clamp(1.1719rem, 1.1548rem + 0.0727vw, 1.2094rem);
+
+    --zh-v2-step-1:
+      clamp(1.3125rem, 1.2897rem + 0.0970vw, 1.3625rem);
+
+    --zh-v2-step-2:
+      clamp(1.668rem, 1.6447rem + 0.0991vw, 1.71875rem);
+
+    --zh-v2-step-3:
+      clamp(2.121rem, 2.0875rem + 0.1424vw, 2.194rem);
+
+    /*
+     * Source fonts handle Latin glyphs; Noto SC handles Chinese.
+     * Keeping the matching pair in each stack prevents the mixed
+     * Chinese-English text from looking like unrelated typefaces.
+     */
+    --font-zh-v2-text:
+      "Source Sans 3",
+      "Noto Sans SC",
+      "Source Han Sans SC",
+      "PingFang SC",
+      "Hiragino Sans GB",
+      "Microsoft YaHei",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+
+    --font-zh-v2-display:
+      "Source Serif 4",
+      "Noto Serif SC",
+      "Source Han Serif SC",
+      "Songti SC",
+      STSong,
+      SimSun,
+      Georgia,
+      serif;
+  }
+
+
+  /* ---------- Page-wide Chinese text ---------- */
+
+  html[lang^="zh"] body {
+    font-family: var(--font-zh-v2-text) !important;
+    font-size: var(--zh-v2-ui);
+    line-height: 1.58;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  html[lang^="zh"] .masthead__inner-wrap,
+  html[lang^="zh"] .greedy-nav,
+  html[lang^="zh"] .masthead__menu,
+  html[lang^="zh"] .masthead__menu-item,
+  html[lang^="zh"] .sidebar,
+  html[lang^="zh"] .page__meta,
+  html[lang^="zh"] .page__footer {
+    font-family: var(--font-zh-v2-text) !important;
+  }
+
+
+  /* ---------- Main reading column ---------- */
+
+  html[lang^="zh"] .page__content {
+    max-width: 39em;
+
+    font-family: var(--font-zh-v2-text) !important;
+    font-size: var(--zh-v2-body) !important;
+    font-weight: 400;
+    line-height: 1.74;
+    letter-spacing: 0.006em;
+
+    line-break: strict;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  html[lang^="zh"] .page__content p {
+    margin-bottom: 1em;
+  }
+
+  html[lang^="zh"] .page__content strong,
+  html[lang^="zh"] .page__content b {
+    font-weight: 600;
+  }
+
+
+  /* ---------- Display headings ---------- */
+
+  html[lang^="zh"] .page__title,
+  html[lang^="zh"] .page__content h1,
+  html[lang^="zh"] .page__content h2,
+  html[lang^="zh"] .page__content h3,
+  html[lang^="zh"] .page__content h4,
+  html[lang^="zh"] .page__content h5,
+  html[lang^="zh"] .page__content h6 {
+    font-family: var(--font-zh-v2-display) !important;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  html[lang^="zh"] .page__title {
+    font-size: var(--zh-v2-step-3) !important;
+    line-height: 1.24;
+    letter-spacing: 0.012em;
+  }
+
+  html[lang^="zh"] .page__content h1 {
+    margin-top: 2.35rem;
+    margin-bottom: 0.9rem;
+
+    padding: 0 0 0 0.72rem;
+    border-bottom: 0;
+
+    font-size: var(--zh-v2-step-2) !important;
+    line-height: 1.32;
+    letter-spacing: 0.014em;
+  }
+
+  html[lang^="zh"] .page__content > h1:first-child {
+    margin-top: 0;
+  }
+
+  html[lang^="zh"] .page__content h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+
+    padding: 0 0 0 0.65rem;
+    border-bottom: 0;
+
+    font-size: var(--zh-v2-step-1) !important;
+    line-height: 1.36;
+    letter-spacing: 0.012em;
+  }
+
+  html[lang^="zh"] .page__content h3 {
+    font-size: var(--zh-v2-subhead) !important;
+    line-height: 1.42;
+    letter-spacing: 0.008em;
+  }
+
+  html[lang^="zh"] .page__content h4,
+  html[lang^="zh"] .page__content h5,
+  html[lang^="zh"] .page__content h6 {
+    font-size: var(--zh-v2-body) !important;
+    line-height: 1.48;
+    letter-spacing: 0.006em;
+  }
+
+  /*
+   * Replace the blog-like full-width underline with a restrained
+   * vertical accent suitable for the short Chinese section titles.
+   */
+  html[lang^="zh"] .page__content h1::after,
+  html[lang^="zh"] .page__content h2::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  html[lang^="zh"] .page__content h1::before,
+  html[lang^="zh"] .page__content h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.19em;
+    bottom: 0.19em;
+
+    width: 3px;
+
+    border-radius: 999px;
+    background: var(--academic-accent);
+  }
+
+
+  /* ---------- Navigation ---------- */
+
+  html[lang^="zh"] .greedy-nav a,
+  html[lang^="zh"] .masthead__menu-item a {
+    font-family: var(--font-zh-v2-text) !important;
+    font-size: var(--zh-v2-ui) !important;
+    font-weight: 500;
+    line-height: 1.42;
+    letter-spacing: 0.018em;
+  }
+
+  html[lang^="zh"] .masthead__menu-item--lg a {
+    font-family: var(--font-zh-v2-display) !important;
+    font-size: var(--zh-v2-body) !important;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+
+
+  /* ---------- Author profile ---------- */
+
+  html[lang^="zh"] .sidebar .author__name {
+    font-family: var(--font-zh-v2-display) !important;
+    font-size: var(--zh-v2-step-1) !important;
+    font-weight: 600;
+    line-height: 1.28;
+    letter-spacing: 0.035em;
+  }
+
+  html[lang^="zh"] .sidebar .author__pronouns {
+    font-family: var(--font-zh-v2-text) !important;
+    font-size: var(--zh-v2-small) !important;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.025em;
+  }
+
+  html[lang^="zh"] .sidebar .author__bio {
+    font-family: var(--font-zh-v2-text) !important;
+    font-size: var(--zh-v2-ui) !important;
+    font-weight: 400;
+    line-height: 1.68;
+    letter-spacing: 0.008em;
+  }
+
+  html[lang^="zh"] .sidebar .author__urls,
+  html[lang^="zh"] .sidebar .author__urls a {
+    font-family: var(--font-zh-v2-text) !important;
+    font-size: var(--zh-v2-ui) !important;
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: 0.004em;
+  }
+
+
+  /* ---------- Lists and mixed-script titles ---------- */
+
+  html[lang^="zh"] .page__content ul,
+  html[lang^="zh"] .page__content ol {
+    margin-bottom: 1.42em;
+  }
+
+  html[lang^="zh"] .page__content li {
+    margin-bottom: 0.46em;
+  }
+
+  /*
+   * Paper and journal titles marked with em/cite retain a serif
+   * face, while the surrounding Chinese prose remains screen-clear.
+   */
+  html[lang^="zh"] .page__content em,
+  html[lang^="zh"] .page__content cite {
+    font-family: var(--font-zh-v2-display);
+  }
+
+
+  /* ---------- Small screens ---------- */
+
+  @media screen and (max-width: 600px) {
+    html[lang^="zh"] .page__content {
+      max-width: none;
+      line-height: 1.70;
+      letter-spacing: 0.004em;
     }
 
-    html[lang^="zh"] .greedy-nav a,
-    html[lang^="zh"] .masthead__menu-item a {
-      letter-spacing: 0.025em;
+    html[lang^="zh"] .page__content h1 {
+      margin-top: 2rem;
+    }
+
+    html[lang^="zh"] .page__content h1,
+    html[lang^="zh"] .page__content h2 {
+      padding-left: 0.62rem;
     }
   }
 }
