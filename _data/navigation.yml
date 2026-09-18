@@ -2,7 +2,7 @@ main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Talks"
+  - title: "Talks & Presentations"
     url: /talks/
 
   - title: "Teaching"
@@ -27,5 +27,5 @@ zh:
   - title: "教学经验"
     url: /zh/teaching/
 
-  - title: "简历"
+  - title: "个人简历"
     url: /zh/cv/
