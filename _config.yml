@@ -29,6 +29,9 @@ author:
   uri              :
   email            : "zhangluosai@126.com"
 
+  # Language page
+  chinese_page     : "/zh/"
+
   # Academic profiles
   academia         :
   arxiv            :
@@ -62,7 +65,7 @@ author:
   instagram        :
   keybase          :
   lastfm           :
-  linkedin         :
+  linkedin         : "luosai-zhang"
   mastodon         :
   medium           :
   pinterest        :
@@ -136,6 +139,7 @@ social:
   links:
     - "https://scholar.google.com/citations?user=xj1qrhgAAAAJ&hl=en"
     - "https://github.com/Zhangluosai"
+    - "https://www.linkedin.com/in/luosai-zhang/"
 
 
 # ============================================================
