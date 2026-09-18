@@ -491,3 +491,254 @@ $profile-avatar-width: 300px;
     margin-right: auto !important;
   }
 }
+
+/* ============================================================
+   Warm academic colour system
+   Warm paper + ink blue + muted copper
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* Core theme variables used throughout Academic Pages */
+  --global-base-color: #355c78;
+  --global-bg-color: #faf8f4;
+  --global-footer-bg-color: #f0ebe4;
+  --global-border-color: #e4ded5;
+  --global-dark-border-color: #c9beb1;
+
+  --global-code-background-color: #f4f0ea;
+  --global-code-text-color: #34383c;
+  --global-fig-caption-color: #6f6a64;
+
+  --global-link-color: #355c78;
+  --global-link-color-hover: #243e52;
+  --global-link-color-visited: #355c78;
+
+  --global-masthead-link-color: #34383c;
+  --global-masthead-link-color-hover: #8b5638;
+
+  --global-text-color: #34383c;
+  --global-text-color-light: #6f6a64;
+  --global-thead-color: #f1ece5;
+
+  /* Additional site-specific colours */
+  --academic-heading-color: #2d3236;
+  --academic-accent: #8b5638;
+  --academic-surface: #f4f0ea;
+  --academic-link-underline: rgba(53, 92, 120, 0.34);
+  --academic-selection-bg: rgba(139, 86, 56, 0.20);
+  --academic-image-shadow: 0 14px 34px rgba(67, 55, 44, 0.11);
+  --academic-masthead-bg: rgba(250, 248, 244, 0.95);
+}
+
+
+/* Coordinated dark mode */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --global-base-color: #a9c8d9;
+  --global-bg-color: #202326;
+  --global-footer-bg-color: #191c1f;
+  --global-border-color: #3a3f43;
+  --global-dark-border-color: #535a5e;
+
+  --global-code-background-color: #292e31;
+  --global-code-text-color: #eeeae4;
+  --global-fig-caption-color: #c5c0b9;
+
+  --global-link-color: #a9c8d9;
+  --global-link-color-hover: #d2e3ec;
+  --global-link-color-visited: #a9c8d9;
+
+  --global-masthead-link-color: #eeeae4;
+  --global-masthead-link-color-hover: #d6a27d;
+
+  --global-text-color: #eeeae4;
+  --global-text-color-light: #c5c0b9;
+  --global-thead-color: #292e31;
+
+  --academic-heading-color: #f3efe9;
+  --academic-accent: #d6a27d;
+  --academic-surface: #282c2f;
+  --academic-link-underline: rgba(169, 200, 217, 0.42);
+  --academic-selection-bg: rgba(214, 162, 125, 0.26);
+  --academic-image-shadow: 0 16px 38px rgba(0, 0, 0, 0.32);
+  --academic-masthead-bg: rgba(32, 35, 38, 0.94);
+}
+
+
+/* ---------- Global tone ---------- */
+
+html,
+body {
+  background-color: var(--global-bg-color);
+}
+
+::selection {
+  color: var(--global-text-color);
+  background: var(--academic-selection-bg);
+}
+
+
+/* ---------- Masthead and navigation ---------- */
+
+.masthead {
+  background: var(--academic-masthead-bg) !important;
+  box-shadow: 0 5px 22px rgba(58, 49, 41, 0.045);
+  -webkit-backdrop-filter: saturate(120%) blur(12px);
+  backdrop-filter: saturate(120%) blur(12px);
+}
+
+html[data-theme="dark"] .masthead {
+  box-shadow: 0 5px 24px rgba(0, 0, 0, 0.20);
+}
+
+.masthead__menu-item,
+.greedy-nav,
+.greedy-nav button {
+  background-color: transparent !important;
+}
+
+.greedy-nav .visible-links a::before {
+  height: 2px !important;
+  background: var(--academic-accent) !important;
+}
+
+.masthead__menu-item.selected a,
+.masthead__menu-item.selected a:hover {
+  color: var(--global-text-color) !important;
+  border-bottom-color: var(--academic-accent) !important;
+}
+
+
+/* ---------- Headings and section rhythm ---------- */
+
+.page__title,
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4,
+.archive__item-title {
+  color: var(--academic-heading-color);
+  letter-spacing: -0.012em;
+}
+
+.page__content h1,
+.page__content h2 {
+  position: relative;
+  padding-bottom: 0.42rem;
+  border-bottom: 1px solid var(--global-border-color);
+}
+
+.page__content h1::after,
+.page__content h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  width: 3rem;
+  height: 2px;
+
+  background: var(--academic-accent);
+  border-radius: 999px;
+}
+
+
+/* ---------- Body links ---------- */
+
+.page__content a:not(.btn),
+.archive a:not(.btn) {
+  color: var(--global-link-color);
+  text-decoration-color: var(--academic-link-underline);
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.17em;
+}
+
+.page__content a:not(.btn):hover,
+.archive a:not(.btn):hover {
+  color: var(--global-link-color-hover);
+  text-decoration-color: currentColor;
+}
+
+.page__content li::marker {
+  color: var(--academic-accent);
+}
+
+
+/* ---------- Author profile ---------- */
+
+.sidebar div.author__avatar > img {
+  background: var(--global-bg-color);
+  border-color: var(--global-border-color) !important;
+  box-shadow: var(--academic-image-shadow);
+}
+
+.sidebar .author__name {
+  color: var(--academic-heading-color);
+  font-weight: 700;
+  letter-spacing: -0.012em;
+}
+
+.sidebar .author__pronouns,
+.sidebar .author__bio {
+  color: var(--global-text-color-light);
+}
+
+.sidebar .author__urls a {
+  color: var(--global-text-color-light) !important;
+  text-decoration: none !important;
+}
+
+.sidebar .author__urls a:hover {
+  color: var(--global-link-color-hover) !important;
+}
+
+.sidebar .author__urls .fas,
+.sidebar .author__urls .far,
+.sidebar .author__urls .fab,
+.sidebar .author__urls .ai,
+.sidebar .author__urls .svg-inline--fa {
+  color: var(--academic-accent);
+  opacity: 0.90;
+}
+
+
+/* ---------- Buttons, rules, tables, and footer ---------- */
+
+.btn {
+  background-color: var(--global-base-color);
+}
+
+.btn:hover {
+  background-color: var(--global-link-color-hover);
+}
+
+hr {
+  border-top-color: var(--global-border-color);
+}
+
+.page__footer {
+  border-top-color: var(--global-border-color);
+}
+
+.page__footer a:hover {
+  color: var(--global-link-color-hover);
+}
+
+
+/* Keep print output clean and neutral */
+@media print {
+  :root,
+  html[data-theme="dark"] {
+    --global-bg-color: #ffffff;
+    --global-text-color: #222222;
+    --global-text-color-light: #555555;
+    --global-link-color: #222222;
+    --global-link-color-hover: #222222;
+    --academic-heading-color: #222222;
+    --academic-accent: #555555;
+  }
+}
+
