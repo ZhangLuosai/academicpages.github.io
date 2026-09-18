@@ -1,36 +1,56 @@
 {% include base_path %}
 
+{% comment %}
+Select the author profile:
+
+1. If the page specifies an author and that author exists in
+   _data/authors.yml, use that author.
+2. Otherwise, use site.author from _config.yml.
+{% endcomment %}
+
 {% if page.author and site.data.authors[page.author] %}
   {% assign author = site.data.authors[page.author] %}
 {% else %}
   {% assign author = site.author %}
 {% endif %}
 
+
 <div itemscope itemtype="https://schema.org/Person">
 
-  <!-- Author avatar -->
-  <div class="author__avatar">
-    {% if author.avatar contains "://" %}
-      <img
-        src="{{ author.avatar }}"
-        alt="{{ author.name }}"
-        fetchpriority="high"
-      />
-    {% else %}
-      <img
-        src="{{ author.avatar | prepend: '/images/' | prepend: base_path }}"
-        class="author__avatar"
-        alt="{{ author.name }}"
-        fetchpriority="high"
-      />
-    {% endif %}
-  </div>
+  <!-- ======================================================
+       Author avatar
+  ======================================================= -->
 
-  <!-- Author name, pronouns, and biography -->
+  {% if author.avatar %}
+    <div class="author__avatar">
+      {% if author.avatar contains "://" %}
+        <img
+          src="{{ author.avatar }}"
+          alt="{{ author.name | escape }}"
+          fetchpriority="high"
+        />
+      {% else %}
+        <img
+          src="{{ author.avatar | prepend: '/images/' | prepend: base_path }}"
+          alt="{{ author.name | escape }}"
+          fetchpriority="high"
+        />
+      {% endif %}
+    </div>
+  {% endif %}
+
+
+  <!-- ======================================================
+       Author name, pronouns, and biography
+  ======================================================= -->
+
   <div class="author__content">
-    <h3 class="author__name" itemprop="name">
-      {{ author.name }}
-    </h3>
+
+    {% if author.name %}
+      <h3 class="author__name" itemprop="name">
+        {{ author.name }}
+      </h3>
+    {% endif %}
 
     {% if author.pronouns %}
       <p class="author__pronouns">
@@ -43,15 +63,26 @@
         {{ author.bio }}
       </p>
     {% endif %}
+
   </div>
 
-  <!-- Author information and external links -->
+
+  <!-- ======================================================
+       Author information and profile links
+  ======================================================= -->
+
   <div class="author__urls-wrapper">
+
     <button class="btn btn--inverse" type="button">
-      Follow
+      {% if page.author == "zh" %}
+        联系方式
+      {% else %}
+        Follow
+      {% endif %}
     </button>
 
     <ul class="author__urls social-icons">
+
 
       <!-- ==================================================
            Biographical information
@@ -69,6 +100,7 @@
         </li>
       {% endif %}
 
+
       {% if author.employer %}
         <li class="author__desktop">
           <i
@@ -81,9 +113,10 @@
         </li>
       {% endif %}
 
+
       {% if author.uri %}
         <li>
-          <a href="{{ author.uri | relative_url }}" itemprop="url">
+          <a href="{{ author.uri }}" itemprop="url">
             <i
               class="fas fa-fw fa-link icon-pad-right"
               aria-hidden="true"
@@ -93,33 +126,40 @@
         </li>
       {% endif %}
 
+
       <!-- ==================================================
            Language switch
+
+           English author:
+             chinese_page: "/zh/"
+
+           Chinese author:
+             english_page: "/"
       =================================================== -->
 
-      {% if author.chinese_page %}
-        {% if page.url == author.chinese_page %}
-          <li>
-            <a href="{{ '/' | relative_url }}">
-              <i
-                class="fas fa-fw fa-language icon-pad-right"
-                aria-hidden="true"
-              ></i>
-              English Version
-            </a>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ author.chinese_page | relative_url }}">
-              <i
-                class="fas fa-fw fa-language icon-pad-right"
-                aria-hidden="true"
-              ></i>
-              中文版
-            </a>
-          </li>
-        {% endif %}
+      {% if author.english_page %}
+        <li>
+          <a href="{{ author.english_page | relative_url }}">
+            <i
+              class="fas fa-fw fa-language icon-pad-right"
+              aria-hidden="true"
+            ></i>
+            English Version
+          </a>
+        </li>
+
+      {% elsif author.chinese_page %}
+        <li>
+          <a href="{{ author.chinese_page | relative_url }}">
+            <i
+              class="fas fa-fw fa-language icon-pad-right"
+              aria-hidden="true"
+            ></i>
+            中文版
+          </a>
+        </li>
       {% endif %}
+
 
       {% if author.email %}
         <li>
@@ -150,6 +190,7 @@
         </li>
       {% endif %}
 
+
       {% if author.arxiv %}
         <li>
           <a href="{{ author.arxiv }}">
@@ -161,6 +202,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.googlescholar %}
         <li>
@@ -174,6 +216,7 @@
         </li>
       {% endif %}
 
+
       {% if author.inspire-hep %}
         <li>
           <a href="{{ author.inspire-hep }}">
@@ -185,6 +228,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.impactstory %}
         <li>
@@ -198,6 +242,7 @@
         </li>
       {% endif %}
 
+
       {% if author.orcid %}
         <li>
           <a href="{{ author.orcid }}">
@@ -209,6 +254,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.pubmed %}
         <li>
@@ -222,6 +268,7 @@
         </li>
       {% endif %}
 
+
       {% if author.researchgate %}
         <li>
           <a href="{{ author.researchgate }}">
@@ -233,6 +280,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.scopus %}
         <li>
@@ -246,6 +294,7 @@
         </li>
       {% endif %}
 
+
       {% if author.semantic %}
         <li>
           <a href="{{ author.semantic }}">
@@ -258,6 +307,7 @@
         </li>
       {% endif %}
 
+
       {% if author.ssrn %}
         <li>
           <a href="{{ author.ssrn }}">
@@ -269,6 +319,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.zotero %}
         <li>
@@ -284,7 +335,7 @@
 
 
       <!-- ==================================================
-           Code repositories
+           Repositories and software development
       =================================================== -->
 
       {% if author.bitbucket %}
@@ -299,6 +350,7 @@
         </li>
       {% endif %}
 
+
       {% if author.codepen %}
         <li>
           <a href="https://codepen.io/{{ author.codepen }}">
@@ -310,6 +362,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.dribbble %}
         <li>
@@ -323,6 +376,7 @@
         </li>
       {% endif %}
 
+
       {% if author.github %}
         <li>
           <a href="https://github.com/{{ author.github }}">
@@ -335,6 +389,7 @@
         </li>
       {% endif %}
 
+
       {% if author.kaggle %}
         <li>
           <a href="https://www.kaggle.com/{{ author.kaggle }}">
@@ -346,6 +401,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.stackoverflow %}
         <li>
@@ -376,6 +432,7 @@
         </li>
       {% endif %}
 
+
       {% if author.bluesky %}
         <li>
           <a href="https://bsky.app/profile/{{ author.bluesky }}">
@@ -387,6 +444,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.facebook %}
         <li>
@@ -400,6 +458,7 @@
         </li>
       {% endif %}
 
+
       {% if author.flickr %}
         <li>
           <a href="https://www.flickr.com/{{ author.flickr }}">
@@ -411,6 +470,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.foursquare %}
         <li>
@@ -424,6 +484,7 @@
         </li>
       {% endif %}
 
+
       {% if author.goodreads %}
         <li>
           <a href="https://www.goodreads.com/{{ author.goodreads }}">
@@ -435,6 +496,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.google_plus %}
         <li>
@@ -448,6 +510,7 @@
         </li>
       {% endif %}
 
+
       {% if author.instagram %}
         <li>
           <a href="https://www.instagram.com/{{ author.instagram }}">
@@ -459,6 +522,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.keybase %}
         <li>
@@ -472,6 +536,7 @@
         </li>
       {% endif %}
 
+
       {% if author.lastfm %}
         <li>
           <a href="https://www.last.fm/user/{{ author.lastfm }}">
@@ -483,6 +548,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.linkedin %}
         <li>
@@ -496,6 +562,7 @@
         </li>
       {% endif %}
 
+
       {% if author.mastodon %}
         <li>
           <a href="{{ author.mastodon }}">
@@ -507,6 +574,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.medium %}
         <li>
@@ -520,6 +588,7 @@
         </li>
       {% endif %}
 
+
       {% if author.pinterest %}
         <li>
           <a href="https://www.pinterest.com/{{ author.pinterest }}">
@@ -531,6 +600,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.soundcloud %}
         <li>
@@ -544,6 +614,7 @@
         </li>
       {% endif %}
 
+
       {% if author.steam %}
         <li>
           <a href="https://steamcommunity.com/id/{{ author.steam }}">
@@ -555,6 +626,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.telegram %}
         <li>
@@ -568,6 +640,7 @@
         </li>
       {% endif %}
 
+
       {% if author.tumblr %}
         <li>
           <a href="https://{{ author.tumblr }}.tumblr.com">
@@ -579,6 +652,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.twitter %}
         <li>
@@ -592,6 +666,7 @@
         </li>
       {% endif %}
 
+
       {% if author.vine %}
         <li>
           <a href="https://vine.co/u/{{ author.vine }}">
@@ -603,6 +678,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.weibo %}
         <li>
@@ -616,6 +692,7 @@
         </li>
       {% endif %}
 
+
       {% if author.wikipedia %}
         <li>
           <a href="https://en.wikipedia.org/wiki/User:{{ author.wikipedia }}">
@@ -627,6 +704,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.xing %}
         <li>
@@ -640,6 +718,7 @@
         </li>
       {% endif %}
 
+
       {% if author.youtube %}
         <li>
           <a href="https://www.youtube.com/@{{ author.youtube }}">
@@ -651,6 +730,7 @@
           </a>
         </li>
       {% endif %}
+
 
       {% if author.zhihu %}
         <li>
@@ -666,4 +746,5 @@
 
     </ul>
   </div>
+
 </div>
