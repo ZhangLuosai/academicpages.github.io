@@ -21,6 +21,8 @@ zh:
   avatar           : "学术头像AA.png"
   pronouns         : "她"
   bio              : "匹配理论 · 市场设计 · 动态匹配"
+  # English homepage
+  english_page     : "/"
   location         : "山东·济南"
   employer         : "山东大学 · 经济研究院"
   email            : "zhangluosai@126.com"
