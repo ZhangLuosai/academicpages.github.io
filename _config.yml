@@ -22,25 +22,24 @@ author:
   name             : "Luosai Zhang"
   pronouns         : "she/her"
   bio              : "Matching Theory · Market Design · Dynamic Matching"
-    # Language page
-  chinese_page     : "/zh/"
   location         : "Jinan, Shandong, China"
   employer         : |
     Shandong University
     Center for Economic Research
   uri              : "https://faculty.sdu.edu.cn/zhangluosai/en/index.htm"
   email            : "zhangluosai@126.com"
+
   # Academic profiles
   academia         :
-  arxiv            :
+  arxiv            : "https://arxiv.org/a/zhang_l_25"
   googlescholar    : "https://scholar.google.com/citations?user=xj1qrhgAAAAJ&hl=en"
   inspire-hep      :
   impactstory      :
-  orcid            :
+  orcid            : "https://orcid.org/0009-0006-3318-3108"
   semantic         :
-  ssrn             :
+  ssrn             : "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3766545"
   pubmed           :
-  researchgate     :
+  researchgate     : "https://www.researchgate.net/profile/Luosai-Zhang"
   scopus           :
   zotero           :
 
@@ -71,6 +70,7 @@ author:
   steam            :
   telegram         :
   tumblr           :
+  # 填入你的 Twitter/X 用户名（不带 @），没有则留空
   twitter          :
   vine             :
   weibo            :
@@ -138,6 +138,9 @@ social:
     - "https://scholar.google.com/citations?user=xj1qrhgAAAAJ&hl=en"
     - "https://github.com/Zhangluosai"
     - "https://www.linkedin.com/in/luosai-zhang/"
+    - "https://orcid.org/0009-0006-3318-3108"
+    - "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=3766545"
+    - "https://arxiv.org/a/zhang_l_25"
 
 
 # ============================================================
