@@ -1014,3 +1014,161 @@ hr {
     line-height: 1.5;
   }
 }
+
+/* ============================================================
+   Final navigation alignment
+   Site title on the left; navigation links on the right.
+   ============================================================ */
+
+@media screen and (min-width: 769px) {
+  .masthead__inner-wrap {
+    width: 100% !important;
+    max-width: 100rem !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    padding: 0.56rem 2rem !important;
+  }
+
+  .masthead__menu,
+  .masthead__menu .greedy-nav {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .masthead__menu .greedy-nav {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /*
+   * Let the navigation occupy all available horizontal space.
+   */
+  .masthead__menu .greedy-nav .visible-links {
+    display: flex !important;
+    flex: 1 1 auto !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    gap: 0 !important;
+  }
+
+  /*
+   * Remove all conflicting margins from earlier rules.
+   */
+  .masthead__menu .greedy-nav .visible-links > li,
+  html[lang^="zh"]
+    .masthead__menu
+    .greedy-nav
+    .visible-links
+    > li {
+    flex: 0 0 auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    white-space: nowrap !important;
+  }
+
+  /*
+   * Push every ordinary navigation item to the right.
+   */
+  .masthead__menu .greedy-nav .visible-links >
+    .masthead__menu-item--lg {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  /*
+   * Create consistent spacing between right-side menu items.
+   */
+  .masthead__menu .greedy-nav .visible-links >
+    li:not(.masthead__menu-item--lg) {
+    margin-left: 1.8rem !important;
+  }
+
+  /*
+   * Avoid using link padding as fake spacing.
+   */
+  .masthead__menu .greedy-nav .visible-links > li > a {
+    margin: 0 !important;
+    padding: 0.62rem 0 !important;
+
+    font-size: 0.96rem !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+
+    white-space: nowrap !important;
+  }
+
+  /*
+   * Site title.
+   */
+  .masthead__menu .greedy-nav .visible-links >
+    .masthead__menu-item--lg
+    > a {
+    padding-left: 0 !important;
+    padding-right: 1rem !important;
+
+    font-size: 1.06rem !important;
+    font-weight: 600 !important;
+  }
+
+  /*
+   * Chinese typography.
+   */
+  html[lang^="zh"]
+    .masthead__menu
+    .greedy-nav
+    .visible-links
+    > li
+    > a {
+    font-family: var(--font-zh-sans) !important;
+    font-size: 0.94rem !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  html[lang^="zh"]
+    .masthead__menu
+    .greedy-nav
+    .visible-links
+    > .masthead__menu-item--lg
+    > a {
+    font-family: var(--font-zh-serif) !important;
+    font-size: 1.02rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  /*
+   * Overflow button stays on the far right when needed.
+   */
+  .greedy-nav > button {
+    flex: 0 0 auto !important;
+    margin-left: 1.25rem !important;
+  }
+}
+
+
+/* Slightly reduce menu spacing on smaller laptop/tablet widths. */
+
+@media screen and (min-width: 769px) and (max-width: 1100px) {
+  .masthead__inner-wrap {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
+  .masthead__menu .greedy-nav .visible-links >
+    li:not(.masthead__menu-item--lg) {
+    margin-left: 1.45rem !important;
+  }
+}
