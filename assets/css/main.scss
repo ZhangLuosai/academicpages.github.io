@@ -1,153 +1,224 @@
----
----
-
-/*
- * This file controls what is imported from /_sass
- *
- * Note that the files are processed in the order they are imported, so they are partly
-   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
- */
-
-@import
-    "vendor/breakpoint/breakpoint",
-
-    "themes",
-    "theme/{{ site.site_theme | default: 'default' | append: '_light' }}",
-    "theme/{{ site.site_theme | default: 'default' | append: '_dark' }}",
-
-    "include/mixins",
-    "vendor/susy/susy",
-
-    "layout/reset",
-    "layout/base",
-
-    "include/utilities",
-    "layout/tables",
-    "layout/buttons",
-    "layout/notices",
-    "layout/masthead",
-    "layout/navigation",
-    "layout/footer",
-    "syntax",
-
-    "layout/forms",
-
-    "layout/page",
-    "layout/archive",
-    "layout/sidebar",
-    "layout/json_cv"
-;
-
 /* ============================================================
-   桌面端（宽度 ≥ 1025px）
+   黄金比例桌面布局
+   侧栏 : 正文 = 0.618 : 1
+   即约 38.2% : 61.8%
    ============================================================ */
 
-@media (min-width: 1025px) {
+$profile-column-gap: clamp(2.5rem, 4vw, 4rem);
+$profile-avatar-width: 320px;
 
-  /* 侧边栏加宽到 300px */
-  .sidebar {
-    flex: 0 0 300px !important;
-    width: 300px !important;
-    max-width: 300px !important;
-    min-width: 300px !important;
-  }
+@media screen and (min-width: 1025px) {
 
-  /* 主内容区：跟着往右挪，避免和侧边栏重叠 */
+  /*
+   * 黄金比例双栏布局。
+   *
+   * 0.618fr + 1fr = 1.618fr
+   * 因此左栏约占 38.2%，右栏约占 61.8%。
+   *
+   * column-gap 不计入比例，比例作用于扣除间距后的可用空间。
+   */
   #main {
-    margin-left: 300px !important;
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(280px, 0.61803398875fr)
+      minmax(0, 1fr);
+
+    column-gap: $profile-column-gap;
+    align-items: start;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
-  /* 头像容器 */
-  .sidebar .author__avatar {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-bottom: 2.5rem !important;
+
+  /*
+   * 没有侧栏的普通页面仍然占满整个宽度。
+   */
+  #main > .page,
+  #main > .archive,
+  #main > .page__related {
+    grid-column: 1 / -1;
   }
 
-  /* 头像图片 */
-  .sidebar .author__avatar img {
-    display: block !important;
+
+  /*
+   * 左侧个人资料栏。
+   */
+  #main > .sidebar {
+    grid-column: 1;
+    grid-row: 1;
+
+    position: sticky !important;
+    top: calc(#{$masthead-height} + 1rem);
+
+    float: none !important;
+
     width: 100% !important;
-    max-width: 280px !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
     height: auto !important;
+    max-height: calc(100vh - #{$masthead-height} - 2rem);
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+
+  /*
+   * 只有在页面确实存在侧栏时，
+   * 正文才进入右侧黄金比例栏。
+   */
+  #main > .sidebar + .page,
+  #main > .sidebar + .archive {
+    grid-column: 2;
+    grid-row: 1;
+
+    float: none !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+
+  /*
+   * 相关文章区域与正文保持相同宽度和位置。
+   */
+  #main > .sidebar ~ .page__related {
+    grid-column: 2;
+
+    float: none !important;
+    clear: none !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 2rem 0 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+
+  /* -------------------------
+     头像
+     ------------------------- */
+
+  .sidebar div.author__avatar {
+    display: block !important;
+
+    width: 100% !important;
+    height: auto !important;
+
+    margin: 0 0 2rem !important;
+    padding: 0 !important;
+
+    text-align: center;
+  }
+
+  .sidebar div.author__avatar > img {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: $profile-avatar-width !important;
+    height: auto !important;
+
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    object-position: center;
+
     margin: 0 auto !important;
   }
 
-  /* 名字、简介下移 */
-  body .sidebar .author__content {
-    margin-top: 1.5rem !important;
-    padding-top: 1rem !important;
-  }
 
-  /* 链接列表下移 */
-  body .sidebar .author__urls-wrapper {
-    margin-top: 1rem !important;
-    padding-top: 1rem !important;
-  }
-}
+  /* -------------------------
+     姓名与个人简介
+     ------------------------- */
 
-/* ============================================================
-   移动端与窄屏（宽度 ≤ 1024px）
-   头像、介绍、链接全部垂直堆叠并居中
-   ============================================================ */
-
-@media (max-width: 1024px) {
-
-  /* 侧边栏容器：取消横向布局 */
-  .sidebar {
-    display: block !important;
-    flex: none !important;
-    width: auto !important;
-    max-width: none !important;
-    min-width: 0 !important;
-  }
-
-  /* 主内容区：取消左边距 */
-  #main {
-    margin-left: 0 !important;
-  }
-
-  /* 头像、介绍、链接：强制块级堆叠 */
-  .sidebar .author__avatar,
-  .sidebar .author__content,
-  .sidebar .author__urls-wrapper {
-    display: block !important;
-    float: none !important;
-    flex: 0 0 100% !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    clear: both !important;
-  }
-
-  /* 头像居中、下方留白 */
-  .sidebar .author__avatar {
-    margin: 0 auto 1.5rem auto !important;
-    text-align: center !important;
-  }
-
-  .sidebar .author__avatar img {
-    display: block !important;
-    margin: 0 auto !important;
-    max-width: 440px !important;
-  }
-
-  /* 名字和简介居中 */
   .sidebar .author__content {
-    text-align: center !important;
-    margin-top: 0.5rem !important;
-    padding-top: 0 !important;
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    line-height: 1.55;
+    overflow-wrap: anywhere;
   }
 
-  /* 链接列表居中 */
+  .sidebar .author__name {
+    margin: 0 0 0.55rem !important;
+  }
+
+  .sidebar .author__pronouns {
+    margin: 0 0 0.5rem !important;
+  }
+
+  .sidebar .author__bio {
+    max-width: 34rem;
+    margin: 0 0 1.4rem !important;
+    line-height: 1.6;
+  }
+
+
+  /* -------------------------
+     联系方式
+     ------------------------- */
+
   .sidebar .author__urls-wrapper {
-    text-align: center !important;
-    margin-top: 1rem !important;
+    display: block !important;
+    position: relative !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    cursor: default !important;
+  }
+
+  .sidebar .author__urls-wrapper > button {
+    display: none !important;
   }
 
   .sidebar .author__urls {
-    text-align: center !important;
+    display: block !important;
+    position: relative !important;
+
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    z-index: auto !important;
+  }
+
+  .sidebar .author__urls::before,
+  .sidebar .author__urls::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .sidebar .author__urls li {
+    margin-bottom: 0.4rem;
+    white-space: normal;
   }
 }
