@@ -2,21 +2,13 @@
 ---
 
 /*
- * Visual system for Zhang Luosai's Academic Pages.
+ * Complete visual system for Zhang Luosai's Academic Pages site.
  *
- * Required fonts in _includes/head/custom.html:
- * - Source Sans 3
- * - Source Serif 4
- * - Noto Sans SC
- * - Noto Serif SC
+ * Fonts are loaded in _includes/head/custom.html:
+ *   Source Sans 3, Source Serif 4, Noto Sans SC, Noto Serif SC.
  *
- * Keep the two Jekyll front-matter lines above.
+ * The first two lines above are required by Jekyll.
  */
-
-
-/* ============================================================
-   Theme imports
-   ============================================================ */
 
 @import
   "vendor/breakpoint/breakpoint",
@@ -49,22 +41,21 @@
 
 
 /* ============================================================
-   Sass layout settings
+   Design tokens
    ============================================================ */
 
 $profile-column-gap: clamp(2.25rem, 4vw, 3.5rem);
 $profile-inner-width: 300px;
 $profile-avatar-width: 288px;
 
-
-/* ============================================================
-   Design tokens
-   ============================================================ */
-
 :root {
   color-scheme: light;
 
-  /* English typefaces */
+  /* Golden-ratio rhythm */
+  --phi: 1.61803398875;
+  --phi-half: 1.27201964951;
+
+  /* Typefaces */
   --font-sans:
     "Source Sans 3",
     system-ui,
@@ -79,7 +70,6 @@ $profile-avatar-width: 288px;
     "Times New Roman",
     serif;
 
-  /* Simplified Chinese typefaces */
   --font-zh-sans:
     "Source Sans 3",
     "Noto Sans SC",
@@ -107,46 +97,22 @@ $profile-avatar-width: 288px;
     Menlo,
     monospace;
 
-  /* English typography */
-  --type-caption:
-    clamp(0.82rem, calc(0.80rem + 0.06vw), 0.86rem);
+  /* English scale */
+  --type-caption: clamp(0.82rem, 0.80rem + 0.06vw, 0.86rem);
+  --type-ui: clamp(0.94rem, 0.92rem + 0.08vw, 1rem);
+  --type-body: clamp(1.04rem, 1.01rem + 0.12vw, 1.11rem);
+  --type-subhead: clamp(1.17rem, 1.13rem + 0.14vw, 1.25rem);
+  --type-heading-2: clamp(1.32rem, 1.27rem + 0.20vw, 1.43rem);
+  --type-heading-1: clamp(1.68rem, 1.59rem + 0.34vw, 1.88rem);
+  --type-title: clamp(2.12rem, 1.98rem + 0.55vw, 2.44rem);
 
-  --type-ui:
-    clamp(0.94rem, calc(0.92rem + 0.08vw), 1rem);
-
-  --type-body:
-    clamp(1.04rem, calc(1.01rem + 0.12vw), 1.11rem);
-
-  --type-subhead:
-    clamp(1.17rem, calc(1.13rem + 0.14vw), 1.25rem);
-
-  --type-heading-2:
-    clamp(1.32rem, calc(1.27rem + 0.20vw), 1.43rem);
-
-  --type-heading-1:
-    clamp(1.68rem, calc(1.59rem + 0.34vw), 1.88rem);
-
-  --type-title:
-    clamp(2.12rem, calc(1.98rem + 0.55vw), 2.44rem);
-
-  /* Chinese typography */
-  --zh-caption:
-    clamp(0.82rem, calc(0.80rem + 0.05vw), 0.85rem);
-
-  --zh-ui:
-    clamp(0.92rem, calc(0.90rem + 0.07vw), 0.97rem);
-
-  --zh-body:
-    clamp(1rem, calc(0.98rem + 0.08vw), 1.06rem);
-
-  --zh-subhead:
-    clamp(1.12rem, calc(1.09rem + 0.11vw), 1.19rem);
-
-  --zh-section:
-    clamp(1.28rem, calc(1.23rem + 0.18vw), 1.40rem);
-
-  --zh-title:
-    clamp(1.72rem, calc(1.62rem + 0.38vw), 1.96rem);
+  /* Chinese scale: section heading ≈ body × sqrt(phi) */
+  --zh-caption: clamp(0.82rem, 0.80rem + 0.05vw, 0.85rem);
+  --zh-ui: clamp(0.92rem, 0.90rem + 0.07vw, 0.97rem);
+  --zh-body: clamp(1rem, 0.98rem + 0.08vw, 1.06rem);
+  --zh-subhead: clamp(1.12rem, 1.09rem + 0.11vw, 1.19rem);
+  --zh-section: clamp(1.28rem, 1.23rem + 0.18vw, 1.40rem);
+  --zh-title: clamp(1.72rem, 1.62rem + 0.38vw, 1.96rem);
 
   /* Warm academic palette */
   --global-base-color: #365f78;
@@ -173,17 +139,11 @@ $profile-avatar-width: 288px;
   --academic-heading-color: #2d3236;
   --academic-accent: #8a583e;
   --academic-surface: #f5f1eb;
-
   --academic-link-line: rgba(54, 95, 120, 0.34);
   --academic-selection: rgba(138, 88, 62, 0.19);
   --academic-masthead-bg: rgba(251, 249, 246, 0.95);
   --academic-avatar-shadow: 0 14px 34px rgba(61, 51, 43, 0.11);
 }
-
-
-/* ============================================================
-   Dark mode
-   ============================================================ */
 
 html[data-theme="dark"] {
   color-scheme: dark;
@@ -212,7 +172,6 @@ html[data-theme="dark"] {
   --academic-heading-color: #f2eee8;
   --academic-accent: #d7a27e;
   --academic-surface: #292e32;
-
   --academic-link-line: rgba(169, 199, 216, 0.42);
   --academic-selection: rgba(215, 162, 126, 0.25);
   --academic-masthead-bg: rgba(32, 36, 39, 0.94);
@@ -226,21 +185,20 @@ html[data-theme="dark"] {
 
 html {
   font-size: 100%;
-  background-color: var(--global-bg-color);
-
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
+html,
+body {
+  background: var(--global-bg-color);
+}
+
 body {
   color: var(--global-text-color);
-  background-color: var(--global-bg-color);
-
   font-family: var(--font-sans);
   font-size: var(--type-ui);
-  font-weight: 400;
   line-height: 1.56;
-
   font-kerning: normal;
   font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
@@ -268,13 +226,12 @@ tt {
 
 
 /* ============================================================
-   Masthead foundation
+   Masthead and navigation
    ============================================================ */
 
 .masthead {
   background: var(--academic-masthead-bg) !important;
   box-shadow: 0 5px 22px rgba(58, 49, 41, 0.045);
-
   -webkit-backdrop-filter: saturate(120%) blur(12px);
   backdrop-filter: saturate(120%) blur(12px);
 }
@@ -284,9 +241,9 @@ html[data-theme="dark"] .masthead {
 }
 
 .masthead__inner-wrap,
+.greedy-nav,
 .masthead__menu,
-.masthead__menu-item,
-.greedy-nav {
+.masthead__menu-item {
   font-family: var(--font-sans);
 }
 
@@ -300,9 +257,7 @@ html[data-theme="dark"] .masthead {
 .masthead__menu-item a {
   font-size: var(--type-ui);
   font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: 0.008em;
-  white-space: nowrap;
+  letter-spacing: 0.01em;
 }
 
 .masthead__menu-item--lg a {
@@ -320,381 +275,41 @@ html[data-theme="dark"] .masthead {
   border-bottom-color: var(--academic-accent) !important;
 }
 
-
-/* ============================================================
-   Desktop navigation
-   ============================================================ */
-
 @media screen and (min-width: 1025px) {
-  .masthead__inner-wrap {
-    width: 100%;
-    max-width: 100rem !important;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-
-    padding:
-      0.56rem
-      clamp(1rem, 2.2vw, 2.5rem) !important;
-  }
-
-  .masthead__menu {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .masthead__menu .greedy-nav {
-    display: flex !important;
-    align-items: center;
-
-    width: 100%;
-    min-width: 0 !important;
-
-    background: transparent !important;
-  }
-
   .masthead__menu .greedy-nav .visible-links {
-    display: flex !important;
-    flex: 0 1 auto;
-    align-items: center;
-
-    gap: 0 !important;
-
+    display: table !important;
     width: auto !important;
-    min-width: 0;
-
-    margin: 0 auto !important;
-    padding: 0 !important;
-  }
-
-  .masthead__menu .greedy-nav .visible-links > li {
-    display: flex !important;
-    flex: 0 0 auto;
-    align-items: center;
-
-    margin:
-      0
-      clamp(0.42rem, 0.65vw, 0.72rem) !important;
-
-    padding: 0 !important;
-
-    white-space: nowrap;
-  }
-
-  .masthead__menu .greedy-nav .visible-links > li:first-child {
-    margin-left: 0 !important;
-  }
-
-  .masthead__menu .greedy-nav .visible-links > li:last-child {
-    margin-right: 0 !important;
-  }
-
-  .masthead__menu .greedy-nav .visible-links > li > a {
-    display: inline-flex !important;
-    align-items: center;
-
-    margin: 0 !important;
-    padding: 0.62rem 0.06rem !important;
-
-    font-size:
-      clamp(
-        0.96rem,
-        calc(0.93rem + 0.10vw),
-        1.03rem
-      ) !important;
-
-    font-weight: 500;
-    line-height: 1.25;
-    letter-spacing: 0.006em;
-
-    white-space: nowrap;
-  }
-
-  .masthead__menu .greedy-nav .visible-links >
-    .masthead__menu-item--lg {
-    margin-right:
-      clamp(0.85rem, 1.3vw, 1.45rem) !important;
-  }
-
-  .masthead__menu-item--lg > a {
-    font-size:
-      clamp(
-        1.02rem,
-        calc(0.98rem + 0.13vw),
-        1.10rem
-      ) !important;
-
-    font-weight: 600 !important;
-    letter-spacing: 0.002em;
-  }
-
-  .greedy-nav > button {
-    flex: 0 0 auto;
-
-    margin-left:
-      clamp(0.35rem, 0.65vw, 0.75rem) !important;
-  }
-
-  #theme-toggle {
-    margin-left:
-      clamp(0.20rem, 0.4vw, 0.50rem) !important;
-  }
-
-  #theme-toggle > a {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-
-    width: 1.65rem !important;
-
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  .greedy-nav .hidden-links {
-    min-width: 11rem;
-  }
-
-  .greedy-nav .hidden-links li {
-    margin: 0 !important;
-  }
-
-  .greedy-nav .hidden-links a {
-    display: block;
-
-    padding: 0.65rem 1rem !important;
-
-    font-size: 0.96rem !important;
-    line-height: 1.40;
-
-    white-space: nowrap;
+    margin-inline: auto !important;
   }
 }
 
 
 /* ============================================================
-   Chinese desktop navigation
-   ============================================================ */
-
-@media screen and (min-width: 1025px) {
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li {
-    margin:
-      0
-      clamp(0.68rem, 1vw, 1.05rem) !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li:first-child {
-    margin-left: 0 !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li:last-child {
-    margin-right: 0 !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li
-    > a {
-    display: inline-flex !important;
-    align-items: center;
-
-    margin: 0 !important;
-    padding: 0.64rem 0.04rem !important;
-
-    font-family: var(--font-zh-sans) !important;
-    font-size: var(--zh-ui) !important;
-    font-weight: 500;
-    line-height: 1.38;
-    letter-spacing: 0.025em;
-
-    white-space: nowrap;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > .masthead__menu-item--lg {
-    margin-right:
-      clamp(1rem, 1.5vw, 1.65rem) !important;
-  }
-
-  html[lang^="zh"] .masthead__menu-item--lg > a {
-    font-family: var(--font-zh-serif) !important;
-    font-size: var(--zh-body) !important;
-    font-weight: 600 !important;
-    line-height: 1.34;
-    letter-spacing: 0.04em;
-  }
-
-  html[lang^="zh"] #theme-toggle {
-    margin-left:
-      clamp(0.3rem, 0.55vw, 0.65rem) !important;
-  }
-
-  html[lang^="zh"] .greedy-nav .hidden-links {
-    min-width: 9rem;
-  }
-
-  html[lang^="zh"] .greedy-nav .hidden-links li {
-    margin: 0 !important;
-  }
-
-  html[lang^="zh"] .greedy-nav .hidden-links a {
-    display: block;
-
-    padding: 0.70rem 1rem !important;
-
-    font-family: var(--font-zh-sans) !important;
-    font-size: var(--zh-ui) !important;
-    font-weight: 500;
-    line-height: 1.45;
-    letter-spacing: 0.02em;
-
-    white-space: nowrap;
-  }
-}
-
-
-/* ============================================================
-   Compact desktop navigation
-   ============================================================ */
-
-@media screen and (min-width: 1025px) and (max-width: 1279px) {
-  .masthead__inner-wrap {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-
-  .masthead__menu .greedy-nav .visible-links > li {
-    margin-left:
-      clamp(0.28rem, 0.45vw, 0.42rem) !important;
-
-    margin-right:
-      clamp(0.28rem, 0.45vw, 0.42rem) !important;
-  }
-
-  .masthead__menu .greedy-nav .visible-links >
-    .masthead__menu-item--lg {
-    margin-left: 0 !important;
-    margin-right: 0.65rem !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li {
-    margin-left:
-      clamp(0.45rem, 0.65vw, 0.62rem) !important;
-
-    margin-right:
-      clamp(0.45rem, 0.65vw, 0.62rem) !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li:first-child {
-    margin-left: 0 !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > .masthead__menu-item--lg {
-    margin-right: 0.85rem !important;
-  }
-}
-
-
-/* ============================================================
-   Wide desktop navigation
-   ============================================================ */
-
-@media screen and (min-width: 1280px) {
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li {
-    margin-left:
-      clamp(0.75rem, 1vw, 1.05rem) !important;
-
-    margin-right:
-      clamp(0.75rem, 1vw, 1.05rem) !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li:first-child {
-    margin-left: 0 !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li:last-child {
-    margin-right: 0 !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > .masthead__menu-item--lg {
-    margin-right:
-      clamp(1.1rem, 1.5vw, 1.65rem) !important;
-  }
-}
-
-
-/* ============================================================
-   Desktop page layout
+   Golden-ratio desktop layout
    Profile : content = 0.618 : 1
    ============================================================ */
 
 @media screen and (min-width: 1025px) {
   #main {
     display: grid !important;
-
     grid-template-columns:
       minmax(280px, 0.61803398875fr)
       minmax(0, 1fr);
-
     column-gap: $profile-column-gap;
     row-gap: 0;
     align-items: start;
 
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-inline: auto !important;
   }
 
+  /* Theme clearfix pseudo-elements must not become grid cells. */
   #main::before,
   #main::after {
     display: none !important;
     content: none !important;
   }
 
+  /* Pages without a profile sidebar remain full width. */
   #main > .page,
   #main > .archive,
   #main > .page__related {
@@ -710,26 +325,21 @@ html[data-theme="dark"] .masthead {
     top: calc(#{$masthead-height} + 1.25rem);
 
     float: none !important;
-
     width: 100% !important;
     min-width: 0 !important;
     max-width: none !important;
-
     height: auto !important;
     max-height: none !important;
 
     margin: 0 !important;
     padding: 0 !important;
-
     overflow: visible !important;
   }
 
   #main > .sidebar > div[itemscope] {
     width: 100%;
     max-width: $profile-inner-width;
-
     margin-left: auto;
-    margin-right: 0;
   }
 
   #main > .sidebar + .page,
@@ -738,7 +348,6 @@ html[data-theme="dark"] .masthead {
     grid-row: 1;
 
     float: none !important;
-
     width: 100% !important;
     min-width: 0 !important;
     max-width: none !important;
@@ -752,7 +361,6 @@ html[data-theme="dark"] .masthead {
 
     float: none !important;
     clear: none !important;
-
     width: 100% !important;
     max-width: none !important;
 
@@ -768,54 +376,42 @@ html[data-theme="dark"] .masthead {
 
 .sidebar div.author__avatar {
   display: block !important;
-
   width: 100% !important;
   height: auto !important;
-
   margin: 0 0 1.5rem !important;
   padding: 0 !important;
-
   text-align: center;
 }
 
 .sidebar div.author__avatar > img {
   display: block !important;
-
   width: 100% !important;
   max-width: $profile-avatar-width !important;
   height: auto !important;
-
   aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
 
   margin: 0 auto !important;
   padding: 0 !important;
 
-  object-fit: cover;
-  object-position: center;
-
   border: 1px solid var(--global-border-color) !important;
   border-radius: 50% !important;
-
   background: var(--global-bg-color);
   box-shadow: var(--academic-avatar-shadow);
 }
 
 .sidebar .author__content {
   display: block !important;
-
   width: 100% !important;
-
   margin: 0 !important;
   padding: 0 !important;
-
   overflow-wrap: anywhere;
 }
 
 .sidebar .author__name {
   margin: 0 0 0.42rem !important;
-
   color: var(--academic-heading-color);
-
   font-family: var(--font-sans) !important;
   font-size: var(--type-heading-2) !important;
   font-weight: 600;
@@ -825,18 +421,14 @@ html[data-theme="dark"] .masthead {
 
 .sidebar .author__pronouns {
   margin: 0 0 0.45rem !important;
-
   color: var(--global-text-color-light);
-
   font-size: var(--type-caption) !important;
   line-height: 1.45;
 }
 
 .sidebar .author__bio {
   margin: 0 0 1.1rem !important;
-
   color: var(--global-text-color-light);
-
   font-family: var(--font-serif) !important;
   font-size: var(--type-ui) !important;
   font-weight: 400;
@@ -846,12 +438,9 @@ html[data-theme="dark"] .masthead {
 .sidebar .author__urls-wrapper {
   display: block !important;
   position: relative !important;
-
   width: 100% !important;
-
   margin: 0 !important;
   padding: 0 !important;
-
   cursor: default !important;
 }
 
@@ -862,16 +451,13 @@ html[data-theme="dark"] .masthead {
 .sidebar .author__urls {
   display: block !important;
   position: static !important;
-
   width: 100% !important;
-
   margin: 0 !important;
   padding: 0 !important;
 
   border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
-
   z-index: auto !important;
 }
 
@@ -888,11 +474,9 @@ html[data-theme="dark"] .masthead {
 
 .sidebar .author__urls a {
   color: var(--global-text-color-light) !important;
-
   font-family: var(--font-sans) !important;
   font-size: var(--type-ui) !important;
   line-height: 1.48;
-
   text-decoration: none !important;
 }
 
@@ -917,7 +501,6 @@ html[data-theme="dark"] .masthead {
 .page__content {
   width: 100%;
   max-width: 68ch;
-
   margin-right: auto;
 
   font-family: var(--font-serif);
@@ -928,22 +511,16 @@ html[data-theme="dark"] .masthead {
 }
 
 .page__content p {
-  margin-top: 0;
   margin-bottom: 1.04em;
 }
 
 .page__content ul,
 .page__content ol {
-  margin-top: 0;
   margin-bottom: 1.25em;
 }
 
 .page__content li {
   margin-bottom: 0.38em;
-}
-
-.page__content li:last-child {
-  margin-bottom: 0;
 }
 
 .page__title,
@@ -955,14 +532,12 @@ html[data-theme="dark"] .masthead {
 .page__content h6,
 .archive__item-title {
   color: var(--academic-heading-color);
-
   font-family: var(--font-sans);
   font-weight: 600;
+  text-wrap: balance;
 }
 
 .page__title {
-  margin-top: 0;
-
   font-size: var(--type-title);
   line-height: 1.12;
   letter-spacing: -0.025em;
@@ -971,7 +546,6 @@ html[data-theme="dark"] .masthead {
 .page__content h1 {
   margin-top: 2.35rem;
   margin-bottom: 0.84rem;
-
   font-size: var(--type-heading-1);
   line-height: 1.20;
   letter-spacing: -0.018em;
@@ -984,7 +558,6 @@ html[data-theme="dark"] .masthead {
 .page__content h2 {
   margin-top: 2rem;
   margin-bottom: 0.72rem;
-
   font-size: var(--type-heading-2);
   line-height: 1.28;
   letter-spacing: -0.012em;
@@ -993,7 +566,6 @@ html[data-theme="dark"] .masthead {
 .page__content h3 {
   margin-top: 1.6rem;
   margin-bottom: 0.55rem;
-
   font-size: var(--type-subhead);
   line-height: 1.34;
   letter-spacing: -0.006em;
@@ -1004,7 +576,6 @@ html[data-theme="dark"] .masthead {
 .page__content h6 {
   margin-top: 1.35rem;
   margin-bottom: 0.45rem;
-
   font-size: var(--type-body);
   line-height: 1.42;
   letter-spacing: 0;
@@ -1013,23 +584,18 @@ html[data-theme="dark"] .masthead {
 .page__content h1,
 .page__content h2 {
   position: relative;
-
   padding-bottom: 0.38rem;
-
   border-bottom: 1px solid var(--global-border-color);
 }
 
 .page__content h1::after,
 .page__content h2::after {
   content: "";
-
   position: absolute;
   left: 0;
   bottom: -1px;
-
   width: 2.7rem;
   height: 2px;
-
   border-radius: 999px;
   background: var(--academic-accent);
 }
@@ -1037,7 +603,6 @@ html[data-theme="dark"] .masthead {
 .page__content a:not(.btn),
 .archive a:not(.btn) {
   color: var(--global-link-color);
-
   text-decoration-color: var(--academic-link-line);
   text-decoration-thickness: 0.06em;
   text-underline-offset: 0.17em;
@@ -1067,21 +632,18 @@ html[data-theme="dark"] .masthead {
 
 
 /* ============================================================
-   Chinese typography foundation
+   Chinese typography
+   The homepage section headings such as “研究方向” and
+   “教育背景” are intentionally restrained: about 20.5–22.4px.
    ============================================================ */
 
 html[lang^="zh"] body {
   font-family: var(--font-zh-sans) !important;
   font-size: var(--zh-ui);
   line-height: 1.60;
-
   font-synthesis: none;
 }
 
-html[lang^="zh"] button,
-html[lang^="zh"] input,
-html[lang^="zh"] select,
-html[lang^="zh"] textarea,
 html[lang^="zh"] .masthead__inner-wrap,
 html[lang^="zh"] .greedy-nav,
 html[lang^="zh"] .masthead__menu,
@@ -1093,16 +655,8 @@ html[lang^="zh"] .archive {
   font-family: var(--font-zh-sans) !important;
 }
 
-
-/* ============================================================
-   Chinese reading column
-   ============================================================ */
-
 html[lang^="zh"] .page__content {
-  width: 100%;
   max-width: 40em;
-
-  margin-right: auto;
 
   font-family: var(--font-zh-sans) !important;
   font-size: var(--zh-body) !important;
@@ -1116,28 +670,17 @@ html[lang^="zh"] .page__content {
 }
 
 html[lang^="zh"] .page__content p {
-  margin-top: 0;
   margin-bottom: 0.96em;
 }
 
 html[lang^="zh"] .page__content ul,
 html[lang^="zh"] .page__content ol {
-  margin-top: 0;
   margin-bottom: 1.18em;
 }
 
 html[lang^="zh"] .page__content li {
   margin-bottom: 0.34em;
 }
-
-html[lang^="zh"] .page__content li:last-child {
-  margin-bottom: 0;
-}
-
-
-/* ============================================================
-   Chinese headings
-   ============================================================ */
 
 html[lang^="zh"] .page__title,
 html[lang^="zh"] .page__content h1,
@@ -1157,12 +700,12 @@ html[lang^="zh"] .page__title {
   letter-spacing: 0.025em;
 }
 
+/* 研究方向、教育背景、代表性发表、工作论文等 */
 html[lang^="zh"] .page__content h1 {
   position: relative;
 
   margin-top: 2.05rem;
   margin-bottom: 0.72rem;
-
   padding: 0 0 0 0.68rem;
   border: 0;
 
@@ -1182,14 +725,11 @@ html[lang^="zh"] .page__content h1::after {
 
 html[lang^="zh"] .page__content h1::before {
   content: "";
-
   position: absolute;
   left: 0;
   top: 0.22em;
   bottom: 0.22em;
-
   width: 2px;
-
   border-radius: 999px;
   background: var(--academic-accent);
 }
@@ -1197,7 +737,6 @@ html[lang^="zh"] .page__content h1::before {
 html[lang^="zh"] .page__content h2 {
   margin-top: 1.72rem;
   margin-bottom: 0.62rem;
-
   padding: 0;
   border: 0;
 
@@ -1213,8 +752,7 @@ html[lang^="zh"] .page__content h2::after {
 
 html[lang^="zh"] .page__content h3 {
   margin-top: 1.45rem;
-  margin-bottom: 0.50rem;
-
+  margin-bottom: 0.5rem;
   font-size: var(--zh-body) !important;
   line-height: 1.50;
   letter-spacing: 0.012em;
@@ -1228,11 +766,6 @@ html[lang^="zh"] .page__content h6 {
   letter-spacing: 0.008em;
 }
 
-
-/* ============================================================
-   Chinese navigation and author profile
-   ============================================================ */
-
 html[lang^="zh"] .greedy-nav a,
 html[lang^="zh"] .masthead__menu-item a {
   font-family: var(--font-zh-sans) !important;
@@ -1242,11 +775,11 @@ html[lang^="zh"] .masthead__menu-item a {
   letter-spacing: 0.02em;
 }
 
-html[lang^="zh"] .masthead__menu-item--lg > a {
+html[lang^="zh"] .masthead__menu-item--lg a {
   font-family: var(--font-zh-serif) !important;
   font-size: var(--zh-body) !important;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.035em;
 }
 
 html[lang^="zh"] .sidebar .author__name {
@@ -1279,6 +812,7 @@ html[lang^="zh"] .sidebar .author__urls a {
   letter-spacing: 0.004em;
 }
 
+/* Preserve a bookish face only where it adds meaning. */
 html[lang^="zh"] .page__content em,
 html[lang^="zh"] .page__content cite {
   font-family: var(--font-zh-serif);
@@ -1298,10 +832,6 @@ html[lang^="zh"] .page__content cite {
   background-color: var(--global-link-color-hover);
 }
 
-html[lang^="zh"] .btn {
-  font-family: var(--font-zh-sans);
-}
-
 hr {
   border-top-color: var(--global-border-color);
 }
@@ -1314,81 +844,15 @@ hr {
   color: var(--global-link-color-hover);
 }
 
-.page__content table {
-  font-family: var(--font-sans);
-}
-
-html[lang^="zh"] .page__content table {
-  font-family: var(--font-zh-sans);
-}
-
 
 /* ============================================================
-   Tablet navigation
-   ============================================================ */
-
-@media screen and (min-width: 601px) and (max-width: 1024px) {
-  .masthead__inner-wrap {
-    padding-left:
-      clamp(0.85rem, 2vw, 1.40rem) !important;
-
-    padding-right:
-      clamp(0.85rem, 2vw, 1.40rem) !important;
-  }
-
-  .greedy-nav .visible-links > li {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .greedy-nav .visible-links > li > a,
-  .masthead__menu-item a {
-    padding-left: 0.58rem !important;
-    padding-right: 0.58rem !important;
-
-    font-size: 0.94rem !important;
-    letter-spacing: 0.004em;
-  }
-
-  .masthead__menu-item--lg > a {
-    font-size: 1rem !important;
-    font-weight: 600 !important;
-  }
-
-  html[lang^="zh"] .greedy-nav .visible-links > li > a,
-  html[lang^="zh"] .masthead__menu-item a {
-    padding-left: 0.68rem !important;
-    padding-right: 0.68rem !important;
-
-    font-size: var(--zh-ui) !important;
-    letter-spacing: 0.014em;
-  }
-
-  html[lang^="zh"] .masthead__menu-item--lg > a {
-    font-size: var(--zh-body) !important;
-  }
-
-  .greedy-nav .hidden-links li {
-    margin: 0 !important;
-  }
-
-  .greedy-nav .hidden-links a {
-    padding: 0.62rem 0.90rem !important;
-    line-height: 1.42;
-  }
-}
-
-
-/* ============================================================
-   Tablet and mobile layout
+   Tablet and mobile
    ============================================================ */
 
 @media screen and (max-width: 1024px) {
   #main {
     display: block !important;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-inline: auto !important;
   }
 
   #main > .sidebar {
@@ -1402,13 +866,11 @@ html[lang^="zh"] .page__content table {
     width: 100% !important;
     min-width: 0 !important;
     max-width: none !important;
-
     height: auto !important;
     max-height: none !important;
 
     margin: 0 0 2.4rem !important;
     padding: 0 !important;
-
     overflow: visible !important;
   }
 
@@ -1423,11 +885,8 @@ html[lang^="zh"] .page__content table {
     min-width: 0 !important;
     max-width: none !important;
 
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    margin-inline: 0 !important;
+    padding-inline: 0 !important;
   }
 
   .sidebar > div[itemscope] {
@@ -1437,9 +896,7 @@ html[lang^="zh"] .page__content table {
 
     width: 100%;
     max-width: none;
-
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
   }
 
   .sidebar div.author__avatar,
@@ -1448,7 +905,6 @@ html[lang^="zh"] .page__content table {
     display: block !important;
     float: none !important;
     clear: both !important;
-
     flex: none !important;
 
     width: 100% !important;
@@ -1466,18 +922,13 @@ html[lang^="zh"] .page__content table {
 
   .sidebar .author__content {
     max-width: 40rem !important;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-
+    margin-inline: auto !important;
     text-align: center !important;
   }
 
   .sidebar .author__urls-wrapper {
     max-width: 34rem !important;
-
     margin: 0.9rem auto 0 !important;
-
     text-align: center !important;
   }
 
@@ -1487,9 +938,7 @@ html[lang^="zh"] .page__content table {
 
   .sidebar .author__urls li {
     display: block !important;
-
     margin: 0.25rem 0 !important;
-
     text-align: center !important;
   }
 
@@ -1497,8 +946,7 @@ html[lang^="zh"] .page__content table {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-
-    padding: 0.14rem 0.30rem !important;
+    padding: 0.14rem 0.3rem !important;
   }
 
   .sidebar .author__desktop {
@@ -1510,11 +958,6 @@ html[lang^="zh"] .page__content table {
     max-width: none;
   }
 }
-
-
-/* ============================================================
-   Small-screen corrections
-   ============================================================ */
 
 @media screen and (max-width: 600px) {
   #main {
@@ -1539,21 +982,6 @@ html[lang^="zh"] .page__content table {
     top: 0.25em;
     bottom: 0.25em;
   }
-
-  .greedy-nav .visible-links > li {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .greedy-nav .hidden-links li {
-    margin: 0 !important;
-  }
-
-  html[lang^="zh"] .greedy-nav .hidden-links a {
-    font-size: var(--zh-ui) !important;
-    line-height: 1.45;
-    letter-spacing: 0.015em;
-  }
 }
 
 
@@ -1573,11 +1001,6 @@ html[lang^="zh"] .page__content table {
     --academic-accent: #666666;
   }
 
-  body {
-    color: #222222;
-    background: #ffffff;
-  }
-
   .masthead,
   .sidebar,
   .page__footer {
@@ -1587,197 +1010,7 @@ html[lang^="zh"] .page__content table {
   .page__content,
   html[lang^="zh"] .page__content {
     max-width: none;
-
     font-size: 11pt !important;
     line-height: 1.5;
-  }
-}
-/* ============================================================
-   Final desktop navigation distribution fix
-   Keep this block at the very end of main.scss.
-   ============================================================ */
-
-@media screen and (min-width: 1025px) {
-  /*
-   * Allow the navigation container to use the full masthead width.
-   */
-  .masthead__inner-wrap {
-    width: 100% !important;
-    max-width: 100rem !important;
-
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-  }
-
-  .masthead__menu,
-  .masthead__menu .greedy-nav {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  /*
-   * The important fix:
-   * fill the available width and distribute remaining space
-   * between the visible navigation items.
-   */
-  .masthead__menu .greedy-nav .visible-links {
-    display: flex !important;
-    flex: 1 1 auto !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-
-    width: 100% !important;
-    min-width: 0 !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    gap: 0 !important;
-  }
-
-  /*
-   * Remove the old margins that kept all links clustered.
-   */
-  .masthead__menu .greedy-nav .visible-links > li,
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li {
-    flex: 0 0 auto !important;
-
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  /*
-   * Give each link a comfortable clickable area.
-   */
-  .masthead__menu .greedy-nav .visible-links > li > a {
-    padding: 0.62rem 0.65rem !important;
-
-    font-size: 0.98rem !important;
-    line-height: 1.3 !important;
-
-    white-space: nowrap !important;
-  }
-
-  /*
-   * Keep the site title visually distinct.
-   */
-  .masthead__menu .greedy-nav .visible-links >
-    .masthead__menu-item--lg {
-    margin-right: 1.25rem !important;
-  }
-
-  .masthead__menu .greedy-nav .visible-links >
-    .masthead__menu-item--lg
-    > a {
-    padding-left: 0 !important;
-    padding-right: 0.75rem !important;
-
-    font-size: 1.08rem !important;
-    font-weight: 600 !important;
-  }
-
-  /*
-   * Chinese navigation:
-   * slightly wider clickable areas and clearer character spacing.
-   */
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li
-    > a {
-    padding-left: 0.78rem !important;
-    padding-right: 0.78rem !important;
-
-    font-family: var(--font-zh-sans) !important;
-    font-size: 0.96rem !important;
-    font-weight: 500 !important;
-    line-height: 1.4 !important;
-    letter-spacing: 0.035em !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > .masthead__menu-item--lg {
-    margin-right: 1.5rem !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > .masthead__menu-item--lg
-    > a {
-    padding-left: 0 !important;
-    padding-right: 0.85rem !important;
-
-    font-family: var(--font-zh-serif) !important;
-    font-size: 1.04rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.045em !important;
-  }
-
-  /*
-   * Keep the overflow and theme buttons separate from the links.
-   */
-  .greedy-nav > button {
-    flex: 0 0 auto !important;
-    margin-left: 0.8rem !important;
-  }
-
-  #theme-toggle {
-    flex: 0 0 auto !important;
-    margin-left: 0.65rem !important;
-  }
-}
-
-
-/* Medium desktop: use less padding before links begin to overflow. */
-
-@media screen and (min-width: 1025px) and (max-width: 1279px) {
-  .masthead__inner-wrap {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-
-  .masthead__menu .greedy-nav .visible-links > li > a {
-    padding-left: 0.42rem !important;
-    padding-right: 0.42rem !important;
-
-    font-size: 0.94rem !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > li
-    > a {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-
-    font-size: 0.92rem !important;
-  }
-
-  .masthead__menu .greedy-nav .visible-links >
-    .masthead__menu-item--lg {
-    margin-right: 0.7rem !important;
-  }
-
-  html[lang^="zh"]
-    .masthead__menu
-    .greedy-nav
-    .visible-links
-    > .masthead__menu-item--lg {
-    margin-right: 0.85rem !important;
   }
 }
