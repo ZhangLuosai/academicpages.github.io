@@ -2,10 +2,12 @@
 ---
 
 /*
- * Academic Pages base styles
+ * Complete visual system for Zhang Luosai's Academic Pages site.
  *
- * The first two lines are required by Jekyll.
- * Keep the imports before all custom rules.
+ * Fonts are loaded in _includes/head/custom.html:
+ *   Source Sans 3, Source Serif 4, Noto Sans SC, Noto Serif SC.
+ *
+ * The first two lines above are required by Jekyll.
  */
 
 @import
@@ -39,549 +41,193 @@
 
 
 /* ============================================================
-   Custom profile layout
-   Desktop columns use the golden ratio:
-   profile : content = 1 : 1.618
+   Design tokens
    ============================================================ */
 
-$profile-column-gap: 3rem;
-$profile-inner-width: 320px;
-$profile-avatar-width: 300px;
-
-
-/* ============================================================
-   Desktop: 1025px and wider
-   ============================================================ */
-
-@media screen and (min-width: 1025px) {
-
-  /*
-   * The first column receives one part and the second receives
-   * 1.618 parts. The gap is outside that ratio.
-   */
-  #main {
-    display: grid !important;
-    grid-template-columns:
-      minmax(280px, 1fr)
-      minmax(0, 1.61803398875fr);
-    column-gap: $profile-column-gap;
-    row-gap: 0;
-    align-items: start;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  /*
-   * #main receives clearfix pseudo-elements from the theme.
-   * They must not become extra grid items.
-   */
-  #main::before,
-  #main::after {
-    display: none !important;
-    content: none !important;
-  }
-
-  /*
-   * A page without an author sidebar spans the full grid.
-   */
-  #main > .page,
-  #main > .archive,
-  #main > .page__related {
-    grid-column: 1 / -1;
-    float: none !important;
-  }
-
-  /*
-   * Profile sidebar.
-   */
-  #main > .sidebar {
-    grid-column: 1;
-    grid-row: 1;
-
-    position: sticky !important;
-    top: calc(#{$masthead-height} + 1.25rem);
-
-    float: none !important;
-
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    height: auto !important;
-    max-height: none !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    overflow: visible !important;
-  }
-
-  /*
-   * Keep the visual profile block compact within the
-   * larger golden-ratio column.
-   */
-  #main > .sidebar > div[itemscope] {
-    width: 100%;
-    max-width: $profile-inner-width;
-    margin: 0 0 0 auto;
-  }
-
-  /*
-   * Main article/archive beside an existing sidebar.
-   */
-  #main > .sidebar + .page,
-  #main > .sidebar + .archive {
-    grid-column: 2;
-    grid-row: 1;
-
-    float: none !important;
-
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: none !important;
-
-    margin: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  /*
-   * Related content aligns with the article column.
-   */
-  #main > .sidebar ~ .page__related {
-    grid-column: 2;
-
-    float: none !important;
-    clear: none !important;
-
-    width: 100% !important;
-    max-width: none !important;
-
-    margin: 2rem 0 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-
-  /* ---------- Avatar ---------- */
-
-  .sidebar div.author__avatar {
-    display: block !important;
-
-    width: 100% !important;
-    height: auto !important;
-
-    margin: 0 0 1.618rem !important;
-    padding: 0 !important;
-
-    text-align: center;
-  }
-
-  .sidebar div.author__avatar > img {
-    display: block !important;
-
-    width: 100% !important;
-    max-width: $profile-avatar-width !important;
-    height: auto !important;
-
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: center;
-
-    margin: 0 auto !important;
-  }
-
-
-  /* ---------- Name and biography ---------- */
-
-  .sidebar .author__content {
-    display: block !important;
-
-    width: 100% !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-  }
-
-  .sidebar .author__name {
-    margin: 0 0 0.55rem !important;
-  }
-
-  .sidebar .author__pronouns {
-    margin: 0 0 0.5rem !important;
-  }
-
-  .sidebar .author__bio {
-    margin: 0 0 1.25rem !important;
-    line-height: 1.55;
-  }
-
-
-  /* ---------- Profile links ---------- */
-
-  .sidebar .author__urls-wrapper {
-    display: block !important;
-    position: relative !important;
-
-    width: 100% !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    cursor: default !important;
-  }
-
-  .sidebar .author__urls-wrapper > button {
-    display: none !important;
-  }
-
-  .sidebar .author__urls {
-    display: block !important;
-    position: static !important;
-
-    width: 100% !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    border: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-
-    z-index: auto !important;
-  }
-
-  .sidebar .author__urls::before,
-  .sidebar .author__urls::after {
-    display: none !important;
-    content: none !important;
-  }
-
-  .sidebar .author__urls li {
-    margin-bottom: 0.35rem;
-    white-space: normal;
-  }
-}
-
-
-/* ============================================================
-   Tablet and mobile: 1024px and narrower
-   ============================================================ */
-
-@media screen and (max-width: 1024px) {
-
-  #main {
-    display: block !important;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  /*
-   * Return the sidebar to normal document flow.
-   */
-  #main > .sidebar {
-    position: static !important;
-    top: auto !important;
-
-    display: block !important;
-    float: none !important;
-    clear: both !important;
-
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    height: auto !important;
-    max-height: none !important;
-
-    margin: 0 0 2.5rem !important;
-    padding: 0 !important;
-
-    overflow: visible !important;
-  }
-
-  /*
-   * Remove the theme's desktop floats and column widths.
-   */
-  #main > .sidebar + .page,
-  #main > .sidebar + .archive,
-  #main > .sidebar ~ .page__related {
-    display: block !important;
-    float: none !important;
-    clear: both !important;
-
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: none !important;
-
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  /*
-   * Stack avatar, profile text, and links vertically.
-   */
-  .sidebar > div[itemscope] {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-
-    width: 100%;
-    max-width: none;
-    margin: 0 auto;
-  }
-
-  .sidebar div.author__avatar,
-  .sidebar .author__content,
-  .sidebar .author__urls-wrapper {
-    display: block !important;
-    float: none !important;
-    clear: both !important;
-
-    flex: none !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-
-  /* ---------- Mobile avatar ---------- */
-
-  .sidebar div.author__avatar {
-    margin: 0 auto 1.25rem !important;
-    padding: 0 !important;
-
-    text-align: center !important;
-  }
-
-  .sidebar div.author__avatar > img {
-    display: block !important;
-
-    width: 72vw !important;
-    max-width: 260px !important;
-    height: auto !important;
-
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: center;
-
-    margin: 0 auto !important;
-  }
-
-
-  /* ---------- Mobile profile text ---------- */
-
-  .sidebar .author__content {
-    max-width: 42rem !important;
-
-    margin: 0 auto !important;
-    padding: 0 !important;
-
-    text-align: center !important;
-    line-height: 1.55;
-    overflow-wrap: anywhere;
-  }
-
-  .sidebar .author__name {
-    margin: 0 0 0.55rem !important;
-  }
-
-  .sidebar .author__pronouns {
-    margin: 0 0 0.5rem !important;
-  }
-
-  .sidebar .author__bio {
-    margin: 0 !important;
-    line-height: 1.55;
-  }
-
-
-  /* ---------- Mobile profile links ---------- */
-
-  .sidebar .author__urls-wrapper {
-    max-width: 34rem !important;
-
-    margin: 1rem auto 0 !important;
-    padding: 0 !important;
-
-    text-align: center !important;
-    cursor: default !important;
-  }
-
-  /*
-   * Show all profile links directly instead of using
-   * the compact Follow dropdown.
-   */
-  .sidebar .author__urls-wrapper > button {
-    display: none !important;
-  }
-
-  .sidebar .author__urls {
-    display: block !important;
-    position: static !important;
-
-    top: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    left: auto !important;
-
-    width: 100% !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    border: 0 !important;
-    border-radius: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-
-    list-style: none !important;
-    text-align: center !important;
-
-    z-index: auto !important;
-  }
-
-  .sidebar .author__urls::before,
-  .sidebar .author__urls::after {
-    display: none !important;
-    content: none !important;
-  }
-
-  .sidebar .author__urls li {
-    display: block !important;
-
-    margin: 0.3rem 0 !important;
-
-    white-space: normal !important;
-    text-align: center !important;
-  }
-
-  .sidebar .author__urls a {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-
-    margin: 0 !important;
-    padding: 0.2rem 0.35rem !important;
-  }
-
-  /*
-   * Show location and employer on narrow screens.
-   */
-  .sidebar .author__desktop {
-    display: block !important;
-  }
-}
-
-/* ============================================================
-   Desktop masthead alignment
-   Center the complete navigation group without moving #main.
-   ============================================================ */
-
-@media screen and (min-width: 1025px) {
-  .masthead__menu .greedy-nav .visible-links {
-    display: table !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-}
-
-/* ============================================================
-   Warm academic colour system
-   Warm paper + ink blue + muted copper
-   ============================================================ */
+$profile-column-gap: clamp(2.25rem, 4vw, 3.5rem);
+$profile-inner-width: 300px;
+$profile-avatar-width: 288px;
 
 :root {
   color-scheme: light;
 
-  /* Core theme variables used throughout Academic Pages */
-  --global-base-color: #355c78;
-  --global-bg-color: #faf8f4;
-  --global-footer-bg-color: #f0ebe4;
-  --global-border-color: #e4ded5;
-  --global-dark-border-color: #c9beb1;
+  /* Golden-ratio rhythm */
+  --phi: 1.61803398875;
+  --phi-half: 1.27201964951;
 
-  --global-code-background-color: #f4f0ea;
-  --global-code-text-color: #34383c;
-  --global-fig-caption-color: #6f6a64;
+  /* Typefaces */
+  --font-sans:
+    "Source Sans 3",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 
-  --global-link-color: #355c78;
-  --global-link-color-hover: #243e52;
-  --global-link-color-visited: #355c78;
+  --font-serif:
+    "Source Serif 4",
+    Georgia,
+    "Times New Roman",
+    serif;
 
-  --global-masthead-link-color: #34383c;
-  --global-masthead-link-color-hover: #8b5638;
+  --font-zh-sans:
+    "Source Sans 3",
+    "Noto Sans SC",
+    "Source Han Sans SC",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    system-ui,
+    sans-serif;
 
-  --global-text-color: #34383c;
-  --global-text-color-light: #6f6a64;
-  --global-thead-color: #f1ece5;
+  --font-zh-serif:
+    "Source Serif 4",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    STSong,
+    SimSun,
+    Georgia,
+    serif;
 
-  /* Additional site-specific colours */
+  --font-mono:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  /* English scale */
+  --type-caption: clamp(0.82rem, 0.80rem + 0.06vw, 0.86rem);
+  --type-ui: clamp(0.94rem, 0.92rem + 0.08vw, 1rem);
+  --type-body: clamp(1.04rem, 1.01rem + 0.12vw, 1.11rem);
+  --type-subhead: clamp(1.17rem, 1.13rem + 0.14vw, 1.25rem);
+  --type-heading-2: clamp(1.32rem, 1.27rem + 0.20vw, 1.43rem);
+  --type-heading-1: clamp(1.68rem, 1.59rem + 0.34vw, 1.88rem);
+  --type-title: clamp(2.12rem, 1.98rem + 0.55vw, 2.44rem);
+
+  /* Chinese scale: section heading ≈ body × sqrt(phi) */
+  --zh-caption: clamp(0.82rem, 0.80rem + 0.05vw, 0.85rem);
+  --zh-ui: clamp(0.92rem, 0.90rem + 0.07vw, 0.97rem);
+  --zh-body: clamp(1rem, 0.98rem + 0.08vw, 1.06rem);
+  --zh-subhead: clamp(1.12rem, 1.09rem + 0.11vw, 1.19rem);
+  --zh-section: clamp(1.28rem, 1.23rem + 0.18vw, 1.40rem);
+  --zh-title: clamp(1.72rem, 1.62rem + 0.38vw, 1.96rem);
+
+  /* Warm academic palette */
+  --global-base-color: #365f78;
+  --global-bg-color: #fbf9f6;
+  --global-footer-bg-color: #f1ece5;
+  --global-border-color: #e5ded5;
+  --global-dark-border-color: #c9bfb3;
+
+  --global-code-background-color: #f4efe8;
+  --global-code-text-color: #33383c;
+  --global-fig-caption-color: #736d66;
+
+  --global-link-color: #365f78;
+  --global-link-color-hover: #24465c;
+  --global-link-color-visited: #365f78;
+
+  --global-masthead-link-color: #32373b;
+  --global-masthead-link-color-hover: #8a583e;
+
+  --global-text-color: #32373b;
+  --global-text-color-light: #716b64;
+  --global-thead-color: #f2eee8;
+
   --academic-heading-color: #2d3236;
-  --academic-accent: #8b5638;
-  --academic-surface: #f4f0ea;
-  --academic-link-underline: rgba(53, 92, 120, 0.34);
-  --academic-selection-bg: rgba(139, 86, 56, 0.20);
-  --academic-image-shadow: 0 14px 34px rgba(67, 55, 44, 0.11);
-  --academic-masthead-bg: rgba(250, 248, 244, 0.95);
+  --academic-accent: #8a583e;
+  --academic-surface: #f5f1eb;
+  --academic-link-line: rgba(54, 95, 120, 0.34);
+  --academic-selection: rgba(138, 88, 62, 0.19);
+  --academic-masthead-bg: rgba(251, 249, 246, 0.95);
+  --academic-avatar-shadow: 0 14px 34px rgba(61, 51, 43, 0.11);
 }
 
-
-/* Coordinated dark mode */
 html[data-theme="dark"] {
   color-scheme: dark;
 
-  --global-base-color: #a9c8d9;
-  --global-bg-color: #202326;
+  --global-base-color: #a9c7d8;
+  --global-bg-color: #202427;
   --global-footer-bg-color: #191c1f;
-  --global-border-color: #3a3f43;
-  --global-dark-border-color: #535a5e;
+  --global-border-color: #3b4044;
+  --global-dark-border-color: #555c61;
 
-  --global-code-background-color: #292e31;
+  --global-code-background-color: #292e32;
   --global-code-text-color: #eeeae4;
-  --global-fig-caption-color: #c5c0b9;
+  --global-fig-caption-color: #c5bfb7;
 
-  --global-link-color: #a9c8d9;
-  --global-link-color-hover: #d2e3ec;
-  --global-link-color-visited: #a9c8d9;
+  --global-link-color: #a9c7d8;
+  --global-link-color-hover: #d3e4ed;
+  --global-link-color-visited: #a9c7d8;
 
   --global-masthead-link-color: #eeeae4;
-  --global-masthead-link-color-hover: #d6a27d;
+  --global-masthead-link-color-hover: #d7a27e;
 
   --global-text-color: #eeeae4;
-  --global-text-color-light: #c5c0b9;
-  --global-thead-color: #292e31;
+  --global-text-color-light: #c5bfb7;
+  --global-thead-color: #292e32;
 
-  --academic-heading-color: #f3efe9;
-  --academic-accent: #d6a27d;
-  --academic-surface: #282c2f;
-  --academic-link-underline: rgba(169, 200, 217, 0.42);
-  --academic-selection-bg: rgba(214, 162, 125, 0.26);
-  --academic-image-shadow: 0 16px 38px rgba(0, 0, 0, 0.32);
-  --academic-masthead-bg: rgba(32, 35, 38, 0.94);
+  --academic-heading-color: #f2eee8;
+  --academic-accent: #d7a27e;
+  --academic-surface: #292e32;
+  --academic-link-line: rgba(169, 199, 216, 0.42);
+  --academic-selection: rgba(215, 162, 126, 0.25);
+  --academic-masthead-bg: rgba(32, 36, 39, 0.94);
+  --academic-avatar-shadow: 0 16px 38px rgba(0, 0, 0, 0.32);
 }
 
 
-/* ---------- Global tone ---------- */
+/* ============================================================
+   Global foundation
+   ============================================================ */
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
 html,
 body {
-  background-color: var(--global-bg-color);
+  background: var(--global-bg-color);
+}
+
+body {
+  color: var(--global-text-color);
+  font-family: var(--font-sans);
+  font-size: var(--type-ui);
+  line-height: 1.56;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+code,
+kbd,
+pre,
+samp,
+tt {
+  font-family: var(--font-mono);
 }
 
 ::selection {
   color: var(--global-text-color);
-  background: var(--academic-selection-bg);
+  background: var(--academic-selection);
 }
 
 
-/* ---------- Masthead and navigation ---------- */
+/* ============================================================
+   Masthead and navigation
+   ============================================================ */
 
 .masthead {
   background: var(--academic-masthead-bg) !important;
@@ -594,10 +240,28 @@ html[data-theme="dark"] .masthead {
   box-shadow: 0 5px 24px rgba(0, 0, 0, 0.20);
 }
 
+.masthead__inner-wrap,
+.greedy-nav,
+.masthead__menu,
+.masthead__menu-item {
+  font-family: var(--font-sans);
+}
+
 .masthead__menu-item,
 .greedy-nav,
 .greedy-nav button {
   background-color: transparent !important;
+}
+
+.greedy-nav a,
+.masthead__menu-item a {
+  font-size: var(--type-ui);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.masthead__menu-item--lg a {
+  font-weight: 600;
 }
 
 .greedy-nav .visible-links a::before {
@@ -611,23 +275,316 @@ html[data-theme="dark"] .masthead {
   border-bottom-color: var(--academic-accent) !important;
 }
 
+@media screen and (min-width: 1025px) {
+  .masthead__menu .greedy-nav .visible-links {
+    display: table !important;
+    width: auto !important;
+    margin-inline: auto !important;
+  }
+}
 
-/* ---------- Headings and section rhythm ---------- */
+
+/* ============================================================
+   Golden-ratio desktop layout
+   Profile : content = 0.618 : 1
+   ============================================================ */
+
+@media screen and (min-width: 1025px) {
+  #main {
+    display: grid !important;
+    grid-template-columns:
+      minmax(280px, 0.61803398875fr)
+      minmax(0, 1fr);
+    column-gap: $profile-column-gap;
+    row-gap: 0;
+    align-items: start;
+
+    margin-inline: auto !important;
+  }
+
+  /* Theme clearfix pseudo-elements must not become grid cells. */
+  #main::before,
+  #main::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* Pages without a profile sidebar remain full width. */
+  #main > .page,
+  #main > .archive,
+  #main > .page__related {
+    grid-column: 1 / -1;
+    float: none !important;
+  }
+
+  #main > .sidebar {
+    grid-column: 1;
+    grid-row: 1;
+
+    position: sticky !important;
+    top: calc(#{$masthead-height} + 1.25rem);
+
+    float: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  #main > .sidebar > div[itemscope] {
+    width: 100%;
+    max-width: $profile-inner-width;
+    margin-left: auto;
+  }
+
+  #main > .sidebar + .page,
+  #main > .sidebar + .archive {
+    grid-column: 2;
+    grid-row: 1;
+
+    float: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #main > .sidebar ~ .page__related {
+    grid-column: 2;
+
+    float: none !important;
+    clear: none !important;
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 2rem 0 0 !important;
+    padding: 0 !important;
+  }
+}
+
+
+/* ============================================================
+   Author profile
+   ============================================================ */
+
+.sidebar div.author__avatar {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 0 1.5rem !important;
+  padding: 0 !important;
+  text-align: center;
+}
+
+.sidebar div.author__avatar > img {
+  display: block !important;
+  width: 100% !important;
+  max-width: $profile-avatar-width !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  border: 1px solid var(--global-border-color) !important;
+  border-radius: 12px !important;
+  background: var(--global-bg-color);
+  box-shadow: var(--academic-avatar-shadow);
+}
+
+.sidebar .author__content {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-wrap: anywhere;
+}
+
+.sidebar .author__name {
+  margin: 0 0 0.42rem !important;
+  color: var(--academic-heading-color);
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-heading-2) !important;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+}
+
+.sidebar .author__pronouns {
+  margin: 0 0 0.45rem !important;
+  color: var(--global-text-color-light);
+  font-size: var(--type-caption) !important;
+  line-height: 1.45;
+}
+
+.sidebar .author__bio {
+  margin: 0 0 1.1rem !important;
+  color: var(--global-text-color-light);
+  font-family: var(--font-serif) !important;
+  font-size: var(--type-ui) !important;
+  font-weight: 400;
+  line-height: 1.58;
+}
+
+.sidebar .author__urls-wrapper {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: default !important;
+}
+
+.sidebar .author__urls-wrapper > button {
+  display: none !important;
+}
+
+.sidebar .author__urls {
+  display: block !important;
+  position: static !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  z-index: auto !important;
+}
+
+.sidebar .author__urls::before,
+.sidebar .author__urls::after {
+  display: none !important;
+  content: none !important;
+}
+
+.sidebar .author__urls li {
+  margin: 0 0 0.28rem;
+  white-space: normal;
+}
+
+.sidebar .author__urls a {
+  color: var(--global-text-color-light) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-ui) !important;
+  line-height: 1.48;
+  text-decoration: none !important;
+}
+
+.sidebar .author__urls a:hover {
+  color: var(--global-link-color-hover) !important;
+}
+
+.sidebar .author__urls .fas,
+.sidebar .author__urls .far,
+.sidebar .author__urls .fab,
+.sidebar .author__urls .ai,
+.sidebar .author__urls .svg-inline--fa {
+  color: var(--academic-accent);
+  opacity: 0.88;
+}
+
+
+/* ============================================================
+   English reading typography
+   ============================================================ */
+
+.page__content {
+  width: 100%;
+  max-width: 68ch;
+  margin-right: auto;
+
+  font-family: var(--font-serif);
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: 1.64;
+  letter-spacing: 0.001em;
+}
+
+.page__content p {
+  margin-bottom: 1.04em;
+}
+
+.page__content ul,
+.page__content ol {
+  margin-bottom: 1.25em;
+}
+
+.page__content li {
+  margin-bottom: 0.38em;
+}
 
 .page__title,
 .page__content h1,
 .page__content h2,
 .page__content h3,
 .page__content h4,
+.page__content h5,
+.page__content h6,
 .archive__item-title {
   color: var(--academic-heading-color);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.page__title {
+  font-size: var(--type-title);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.page__content h1 {
+  margin-top: 2.35rem;
+  margin-bottom: 0.84rem;
+  font-size: var(--type-heading-1);
+  line-height: 1.20;
+  letter-spacing: -0.018em;
+}
+
+.page__content > h1:first-child {
+  margin-top: 0;
+}
+
+.page__content h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.72rem;
+  font-size: var(--type-heading-2);
+  line-height: 1.28;
   letter-spacing: -0.012em;
+}
+
+.page__content h3 {
+  margin-top: 1.6rem;
+  margin-bottom: 0.55rem;
+  font-size: var(--type-subhead);
+  line-height: 1.34;
+  letter-spacing: -0.006em;
+}
+
+.page__content h4,
+.page__content h5,
+.page__content h6 {
+  margin-top: 1.35rem;
+  margin-bottom: 0.45rem;
+  font-size: var(--type-body);
+  line-height: 1.42;
+  letter-spacing: 0;
 }
 
 .page__content h1,
 .page__content h2 {
   position: relative;
-  padding-bottom: 0.42rem;
+  padding-bottom: 0.38rem;
   border-bottom: 1px solid var(--global-border-color);
 }
 
@@ -637,21 +594,16 @@ html[data-theme="dark"] .masthead {
   position: absolute;
   left: 0;
   bottom: -1px;
-
-  width: 3rem;
+  width: 2.7rem;
   height: 2px;
-
-  background: var(--academic-accent);
   border-radius: 999px;
+  background: var(--academic-accent);
 }
-
-
-/* ---------- Body links ---------- */
 
 .page__content a:not(.btn),
 .archive a:not(.btn) {
   color: var(--global-link-color);
-  text-decoration-color: var(--academic-link-underline);
+  text-decoration-color: var(--academic-link-line);
   text-decoration-thickness: 0.06em;
   text-underline-offset: 0.17em;
 }
@@ -666,49 +618,214 @@ html[data-theme="dark"] .masthead {
   color: var(--academic-accent);
 }
 
-
-/* ---------- Author profile ---------- */
-
-.sidebar div.author__avatar > img {
-  background: var(--global-bg-color);
-  border-color: var(--global-border-color) !important;
-  box-shadow: var(--academic-image-shadow);
+.page__content strong,
+.page__content b {
+  font-weight: 600;
 }
 
-.sidebar .author__name {
-  color: var(--academic-heading-color);
-  font-weight: 700;
-  letter-spacing: -0.012em;
-}
-
-.sidebar .author__pronouns,
-.sidebar .author__bio {
-  color: var(--global-text-color-light);
-}
-
-.sidebar .author__urls a {
-  color: var(--global-text-color-light) !important;
-  text-decoration: none !important;
-}
-
-.sidebar .author__urls a:hover {
-  color: var(--global-link-color-hover) !important;
-}
-
-.sidebar .author__urls .fas,
-.sidebar .author__urls .far,
-.sidebar .author__urls .fab,
-.sidebar .author__urls .ai,
-.sidebar .author__urls .svg-inline--fa {
-  color: var(--academic-accent);
-  opacity: 0.90;
+.page__meta,
+.page__footer,
+.archive,
+.archive__item-excerpt {
+  font-family: var(--font-sans);
 }
 
 
-/* ---------- Buttons, rules, tables, and footer ---------- */
+/* ============================================================
+   Chinese typography
+   The homepage section headings such as “研究方向” and
+   “教育背景” are intentionally restrained: about 20.5–22.4px.
+   ============================================================ */
+
+html[lang^="zh"] body {
+  font-family: var(--font-zh-sans) !important;
+  font-size: var(--zh-ui);
+  line-height: 1.60;
+  font-synthesis: none;
+}
+
+html[lang^="zh"] .masthead__inner-wrap,
+html[lang^="zh"] .greedy-nav,
+html[lang^="zh"] .masthead__menu,
+html[lang^="zh"] .masthead__menu-item,
+html[lang^="zh"] .sidebar,
+html[lang^="zh"] .page__meta,
+html[lang^="zh"] .page__footer,
+html[lang^="zh"] .archive {
+  font-family: var(--font-zh-sans) !important;
+}
+
+html[lang^="zh"] .page__content {
+  max-width: 40em;
+
+  font-family: var(--font-zh-sans) !important;
+  font-size: var(--zh-body) !important;
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: 0.006em;
+
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+html[lang^="zh"] .page__content p {
+  margin-bottom: 0.96em;
+}
+
+html[lang^="zh"] .page__content ul,
+html[lang^="zh"] .page__content ol {
+  margin-bottom: 1.18em;
+}
+
+html[lang^="zh"] .page__content li {
+  margin-bottom: 0.34em;
+}
+
+html[lang^="zh"] .page__title,
+html[lang^="zh"] .page__content h1,
+html[lang^="zh"] .page__content h2,
+html[lang^="zh"] .page__content h3,
+html[lang^="zh"] .page__content h4,
+html[lang^="zh"] .page__content h5,
+html[lang^="zh"] .page__content h6 {
+  font-family: var(--font-zh-serif) !important;
+  font-weight: 600;
+  letter-spacing: 0.018em;
+}
+
+html[lang^="zh"] .page__title {
+  font-size: var(--zh-title) !important;
+  line-height: 1.25;
+  letter-spacing: 0.025em;
+}
+
+/* 研究方向、教育背景、代表性发表、工作论文等 */
+html[lang^="zh"] .page__content h1 {
+  position: relative;
+
+  margin-top: 2.05rem;
+  margin-bottom: 0.72rem;
+  padding: 0 0 0 0.68rem;
+  border: 0;
+
+  font-size: var(--zh-section) !important;
+  line-height: 1.38;
+  letter-spacing: 0.025em;
+}
+
+html[lang^="zh"] .page__content > h1:first-child {
+  margin-top: 0;
+}
+
+html[lang^="zh"] .page__content h1::after {
+  display: none !important;
+  content: none !important;
+}
+
+html[lang^="zh"] .page__content h1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.22em;
+  bottom: 0.22em;
+  width: 2px;
+  border-radius: 999px;
+  background: var(--academic-accent);
+}
+
+html[lang^="zh"] .page__content h2 {
+  margin-top: 1.72rem;
+  margin-bottom: 0.62rem;
+  padding: 0;
+  border: 0;
+
+  font-size: var(--zh-subhead) !important;
+  line-height: 1.42;
+  letter-spacing: 0.018em;
+}
+
+html[lang^="zh"] .page__content h2::after {
+  display: none !important;
+  content: none !important;
+}
+
+html[lang^="zh"] .page__content h3 {
+  margin-top: 1.45rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--zh-body) !important;
+  line-height: 1.50;
+  letter-spacing: 0.012em;
+}
+
+html[lang^="zh"] .page__content h4,
+html[lang^="zh"] .page__content h5,
+html[lang^="zh"] .page__content h6 {
+  font-size: var(--zh-body) !important;
+  line-height: 1.52;
+  letter-spacing: 0.008em;
+}
+
+html[lang^="zh"] .greedy-nav a,
+html[lang^="zh"] .masthead__menu-item a {
+  font-family: var(--font-zh-sans) !important;
+  font-size: var(--zh-ui) !important;
+  font-weight: 500;
+  line-height: 1.42;
+  letter-spacing: 0.02em;
+}
+
+html[lang^="zh"] .masthead__menu-item--lg a {
+  font-family: var(--font-zh-serif) !important;
+  font-size: var(--zh-body) !important;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+}
+
+html[lang^="zh"] .sidebar .author__name {
+  font-family: var(--font-zh-serif) !important;
+  font-size: var(--zh-section) !important;
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: 0.035em;
+}
+
+html[lang^="zh"] .sidebar .author__pronouns {
+  font-family: var(--font-zh-sans) !important;
+  font-size: var(--zh-caption) !important;
+  letter-spacing: 0.025em;
+}
+
+html[lang^="zh"] .sidebar .author__bio {
+  font-family: var(--font-zh-sans) !important;
+  font-size: var(--zh-ui) !important;
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.006em;
+}
+
+html[lang^="zh"] .sidebar .author__urls,
+html[lang^="zh"] .sidebar .author__urls a {
+  font-family: var(--font-zh-sans) !important;
+  font-size: var(--zh-ui) !important;
+  line-height: 1.52;
+  letter-spacing: 0.004em;
+}
+
+/* Preserve a bookish face only where it adds meaning. */
+html[lang^="zh"] .page__content em,
+html[lang^="zh"] .page__content cite {
+  font-family: var(--font-zh-serif);
+}
+
+
+/* ============================================================
+   Components
+   ============================================================ */
 
 .btn {
   background-color: var(--global-base-color);
+  font-family: var(--font-sans);
 }
 
 .btn:hover {
@@ -728,7 +845,150 @@ hr {
 }
 
 
-/* Keep print output clean and neutral */
+/* ============================================================
+   Tablet and mobile
+   ============================================================ */
+
+@media screen and (max-width: 1024px) {
+  #main {
+    display: block !important;
+    margin-inline: auto !important;
+  }
+
+  #main > .sidebar {
+    position: static !important;
+    top: auto !important;
+
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+
+    margin: 0 0 2.4rem !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  #main > .sidebar + .page,
+  #main > .sidebar + .archive,
+  #main > .sidebar ~ .page__related {
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    margin-inline: 0 !important;
+    padding-inline: 0 !important;
+  }
+
+  .sidebar > div[itemscope] {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .sidebar div.author__avatar,
+  .sidebar .author__content,
+  .sidebar .author__urls-wrapper {
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+    flex: none !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .sidebar div.author__avatar {
+    margin: 0 auto 1.15rem !important;
+  }
+
+  .sidebar div.author__avatar > img {
+    width: 68vw !important;
+    max-width: 250px !important;
+  }
+
+  .sidebar .author__content {
+    max-width: 40rem !important;
+    margin-inline: auto !important;
+    text-align: center !important;
+  }
+
+  .sidebar .author__urls-wrapper {
+    max-width: 34rem !important;
+    margin: 0.9rem auto 0 !important;
+    text-align: center !important;
+  }
+
+  .sidebar .author__urls {
+    text-align: center !important;
+  }
+
+  .sidebar .author__urls li {
+    display: block !important;
+    margin: 0.25rem 0 !important;
+    text-align: center !important;
+  }
+
+  .sidebar .author__urls a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0.14rem 0.3rem !important;
+  }
+
+  .sidebar .author__desktop {
+    display: block !important;
+  }
+
+  .page__content,
+  html[lang^="zh"] .page__content {
+    max-width: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #main {
+    margin-top: 1.45rem;
+  }
+
+  .page__content {
+    line-height: 1.60;
+  }
+
+  html[lang^="zh"] .page__content {
+    line-height: 1.68;
+    letter-spacing: 0.004em;
+  }
+
+  html[lang^="zh"] .page__content h1 {
+    margin-top: 1.8rem;
+    padding-left: 0.58rem;
+  }
+
+  html[lang^="zh"] .page__content h1::before {
+    top: 0.25em;
+    bottom: 0.25em;
+  }
+}
+
+
+/* ============================================================
+   Print
+   ============================================================ */
+
 @media print {
   :root,
   html[data-theme="dark"] {
@@ -738,942 +998,19 @@ hr {
     --global-link-color: #222222;
     --global-link-color-hover: #222222;
     --academic-heading-color: #222222;
-    --academic-accent: #555555;
-  }
-}
-/* ============================================================
-   Golden-ratio typography system
-
-   Scale logic:
-   - Golden ratio φ = 1.61803398875
-   - Practical adjacent step = √φ = 1.27201964951
-   - Two adjacent steps therefore equal one full golden ratio
-   - Body text grows fluidly from 17px to 18px
-   ============================================================ */
-
-:root {
-  --phi: 1.61803398875;
-  --phi-half-step: 1.27201964951;
-
-  --font-academic-sans:
-    "Source Sans 3",
-    "Noto Sans SC",
-    "Source Han Sans SC",
-    "PingFang SC",
-    "Hiragino Sans GB",
-    "Microsoft YaHei",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
-  --font-academic-serif:
-    "Source Serif 4",
-    "Noto Serif SC",
-    "Source Han Serif SC",
-    "Songti SC",
-    STSong,
-    SimSun,
-    Georgia,
-    serif;
-
-  --font-academic-mono:
-    "SFMono-Regular",
-    Consolas,
-    "Liberation Mono",
-    Menlo,
-    monospace;
-
-  /*
-   * Fluid endpoints preserve the same golden-ratio scale:
-   * mobile base 17px; desktop base 18px.
-   */
-  --type-small: clamp(0.8353rem, 0.813rem + 0.0953vw, 0.8844rem);
-  --type-ui: clamp(0.9421rem, 0.9169rem + 0.1075vw, 0.9975rem);
-  --type-body: clamp(1.0625rem, 1.0341rem + 0.1212vw, 1.125rem);
-  --type-subhead: clamp(1.1983rem, 1.1663rem + 0.1367vw, 1.2688rem);
-  --type-step-1: clamp(1.3515rem, 1.3154rem + 0.1542vw, 1.431rem);
-  --type-step-2: clamp(1.7192rem, 1.6732rem + 0.1961vw, 1.8203rem);
-  --type-step-3: clamp(2.1868rem, 2.1283rem + 0.2495vw, 2.3154rem);
-
-  --reading-line-height: 1.61803398875;
-  --compact-line-height: 1.27201964951;
-  --reading-measure: 68ch;
-}
-
-
-/* ---------- Global typography ---------- */
-
-html {
-  font-size: 100%;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
-body {
-  font-family: var(--font-academic-sans);
-  font-size: var(--type-ui);
-  line-height: 1.55;
-  font-kerning: normal;
-  font-optical-sizing: auto;
-  font-variant-ligatures: common-ligatures contextual;
-  text-rendering: optimizeLegibility;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-code,
-kbd,
-pre,
-samp,
-tt {
-  font-family: var(--font-academic-mono);
-}
-
-
-/* ---------- Main reading column ---------- */
-
-.page__content {
-  width: 100%;
-  max-width: var(--reading-measure);
-  margin-right: auto;
-
-  font-family: var(--font-academic-serif);
-  font-size: var(--type-body);
-  font-weight: 400;
-  line-height: var(--reading-line-height);
-  letter-spacing: 0.001em;
-  hanging-punctuation: first allow-end last;
-}
-
-.page__content p,
-.page__content li,
-.page__content dl,
-.page__content blockquote {
-  font-size: 1em;
-}
-
-.page__content p {
-  margin: 0 0 1em;
-  text-wrap: pretty;
-}
-
-.page__content ul,
-.page__content ol {
-  margin-top: 0;
-  margin-bottom: 1.618em;
-  padding-left: 1.35em;
-}
-
-.page__content li {
-  margin-bottom: 0.618em;
-}
-
-.page__content li:last-child {
-  margin-bottom: 0;
-}
-
-.page__content strong,
-.page__content b {
-  font-weight: 600;
-}
-
-.page__content em,
-.page__content i,
-.page__content cite {
-  font-style: italic;
-}
-
-
-/* ---------- Heading hierarchy ---------- */
-
-.page__title,
-.page__content h1,
-.page__content h2,
-.page__content h3,
-.page__content h4,
-.page__content h5,
-.page__content h6,
-.archive__item-title,
-.page__related-title {
-  font-family: var(--font-academic-sans);
-  font-optical-sizing: auto;
-  text-wrap: balance;
-}
-
-/* True document/page title */
-.page__title {
-  margin: 0 0 0.786em;
-  font-size: var(--type-step-3);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-}
-
-/* Homepage section headings are h1 in the current Markdown. */
-.page__content h1 {
-  margin: 2.618rem 0 0.786rem;
-  padding-bottom: 0.42rem;
-  font-size: var(--type-step-2);
-  font-weight: 600;
-  line-height: var(--compact-line-height);
-  letter-spacing: -0.021em;
-}
-
-.page__content > h1:first-child {
-  margin-top: 0;
-}
-
-.page__content h2 {
-  margin: 2.058rem 0 0.786rem;
-  padding-bottom: 0.36rem;
-  font-size: var(--type-step-1);
-  font-weight: 600;
-  line-height: var(--compact-line-height);
-  letter-spacing: -0.018em;
-}
-
-.page__content h3 {
-  margin: 1.618rem 0 0.618rem;
-  font-size: var(--type-subhead);
-  font-weight: 600;
-  line-height: var(--compact-line-height);
-  letter-spacing: -0.012em;
-}
-
-.page__content h4,
-.page__content h5,
-.page__content h6 {
-  margin: 1.272rem 0 0.618rem;
-  font-size: var(--type-body);
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.006em;
-}
-
-.page__lead {
-  max-width: 58ch;
-  font-family: var(--font-academic-serif);
-  font-size: var(--type-subhead);
-  line-height: 1.5;
-}
-
-
-/* ---------- Navigation ---------- */
-
-.masthead__inner-wrap,
-.greedy-nav,
-.masthead__menu,
-.masthead__menu-item {
-  font-family: var(--font-academic-sans) !important;
-}
-
-.greedy-nav a,
-.masthead__menu-item a {
-  font-size: var(--type-ui);
-  font-weight: 500;
-  line-height: var(--compact-line-height);
-  letter-spacing: 0.006em;
-}
-
-.masthead__menu-item--lg a {
-  font-size: var(--type-body);
-  font-weight: 600;
-  letter-spacing: -0.012em;
-}
-
-
-/* ---------- Author profile ---------- */
-
-.sidebar,
-.sidebar .author__content,
-.sidebar .author__urls {
-  font-family: var(--font-academic-sans);
-}
-
-.sidebar .author__name {
-  margin-bottom: 0.486rem !important;
-  font-size: var(--type-step-1);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.022em;
-}
-
-.sidebar .author__pronouns {
-  font-size: var(--type-small);
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: 0.025em;
-}
-
-.sidebar .author__bio {
-  font-family: var(--font-academic-serif);
-  font-size: var(--type-ui);
-  font-weight: 500;
-  line-height: 1.55;
-  letter-spacing: 0;
-}
-
-.sidebar .author__urls,
-.sidebar .author__urls a {
-  font-size: var(--type-ui);
-  font-weight: 400;
-  line-height: 1.45;
-  letter-spacing: 0;
-}
-
-
-/* ---------- Archives, publications, metadata ---------- */
-
-.archive__item-title {
-  font-size: var(--type-subhead);
-  font-weight: 600;
-  line-height: var(--compact-line-height);
-  letter-spacing: -0.012em;
-}
-
-.archive__item-excerpt {
-  max-width: var(--reading-measure);
-  font-family: var(--font-academic-serif);
-  font-size: var(--type-body);
-  line-height: var(--reading-line-height);
-}
-
-.page__meta,
-.page__taxonomy,
-.page__share-title,
-.page__related-title,
-figcaption,
-.notice,
-.btn {
-  font-family: var(--font-academic-sans);
-}
-
-.page__meta,
-figcaption,
-.page__footer,
-.page__footer-follow,
-.page__footer-copyright {
-  font-size: var(--type-small);
-  line-height: 1.55;
-}
-
-.page__related-title,
-.page__share-title {
-  font-size: var(--type-small);
-  font-weight: 600;
-  letter-spacing: 0.055em;
-}
-
-
-/* ---------- Tables and compact interface text ---------- */
-
-.page__content table {
-  font-family: var(--font-academic-sans);
-  font-size: var(--type-small);
-  line-height: 1.45;
-}
-
-.page__content code,
-.page__content kbd,
-.page__content samp {
-  font-size: 0.884em;
-}
-
-
-/* ---------- Small-screen optical corrections ---------- */
-
-@media screen and (max-width: 600px) {
-  .page__content {
-    max-width: none;
+    --academic-accent: #666666;
   }
 
-  .page__title {
-    line-height: 1.16;
+  .masthead,
+  .sidebar,
+  .page__footer {
+    box-shadow: none !important;
   }
 
-  .page__content h1,
-  .page__content h2 {
-    line-height: 1.22;
-  }
-
-  .sidebar .author__name {
-    line-height: 1.16;
-  }
-}
-
-
-/* ---------- Print typography ---------- */
-
-@media print {
-  body {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 11pt;
-    line-height: 1.45;
-  }
-
-  .page__content {
-    max-width: none;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 11pt;
-    line-height: 1.45;
-  }
-
-  .page__title,
-  .page__content h1,
-  .page__content h2,
-  .page__content h3 {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-}
-
-/* ============================================================
-   Simplified-Chinese typography
-   The Chinese page declares <html lang="zh-Hans">.
-   Source Sans/Serif do not provide the Chinese glyphs, so the
-   matching Noto Sans SC / Noto Serif SC families are loaded above.
-
-   Size scale:
-   adjacent display steps use sqrt(phi) = 1.27201964951;
-   two display steps therefore equal phi = 1.61803398875.
-   ============================================================ */
-
-@media screen {
-
-  html[lang^="zh"] {
-    /*
-     * Chinese body text grows from 17.5px to 18.5px.
-     * The heading scale is derived with sqrt(phi).
-     */
-    --zh-type-small:
-      clamp(0.8594rem, 0.8367rem + 0.0970vw, 0.9088rem);
-    --zh-type-ui:
-      clamp(0.9700rem, 0.9447rem + 0.1079vw, 1.0250rem);
-    --zh-type-body:
-      clamp(1.09375rem, 1.0653rem + 0.1212vw, 1.15625rem);
-    --zh-type-subhead:
-      clamp(1.2338rem, 1.2017rem + 0.1367vw, 1.3044rem);
-    --zh-type-step-1:
-      clamp(1.3914rem, 1.3553rem + 0.1542vw, 1.4708rem);
-    --zh-type-step-2:
-      clamp(1.7699rem, 1.7240rem + 0.1961vw, 1.8707rem);
-    --zh-type-step-3:
-      clamp(2.2513rem, 2.1929rem + 0.2495vw, 2.3795rem);
-
-    --font-zh-sans:
-      "Source Sans 3",
-      "Noto Sans SC",
-      "Source Han Sans SC",
-      "PingFang SC",
-      "Hiragino Sans GB",
-      "Microsoft YaHei",
-      system-ui,
-      sans-serif;
-
-    --font-zh-serif:
-      "Source Serif 4",
-      "Noto Serif SC",
-      "Source Han Serif SC",
-      "Songti SC",
-      STSong,
-      SimSun,
-      Georgia,
-      serif;
-  }
-
-
-  /* ---------- Page-wide Chinese UI text ---------- */
-
-  html[lang^="zh"] body {
-    font-family: var(--font-zh-sans);
-    font-size: var(--zh-type-ui);
-    line-height: 1.6;
-    font-synthesis: none;
-  }
-
-  html[lang^="zh"] .masthead__inner-wrap,
-  html[lang^="zh"] .greedy-nav,
-  html[lang^="zh"] .masthead__menu,
-  html[lang^="zh"] .masthead__menu-item,
-  html[lang^="zh"] .sidebar,
-  html[lang^="zh"] .page__meta,
-  html[lang^="zh"] .page__footer {
-    font-family: var(--font-zh-sans) !important;
-  }
-
-
-  /* ---------- Main Chinese reading column ---------- */
-
+  .page__content,
   html[lang^="zh"] .page__content {
-    max-width: 38em;
-
-    font-family: var(--font-zh-serif) !important;
-    font-size: var(--zh-type-body) !important;
-    font-weight: 400;
-    line-height: 1.72;
-    letter-spacing: 0.012em;
-
-    line-break: strict;
-    word-break: normal;
-    overflow-wrap: break-word;
-    text-spacing-trim: trim-start;
-    text-autospace: normal;
-  }
-
-  html[lang^="zh"] .page__content p {
-    margin-bottom: 1.05em;
-  }
-
-  html[lang^="zh"] .page__content strong,
-  html[lang^="zh"] .page__content b {
-    font-weight: 600;
-  }
-
-
-  /* ---------- Chinese heading hierarchy ---------- */
-
-  html[lang^="zh"] .page__title,
-  html[lang^="zh"] .page__content h1,
-  html[lang^="zh"] .page__content h2,
-  html[lang^="zh"] .page__content h3,
-  html[lang^="zh"] .page__content h4,
-  html[lang^="zh"] .page__content h5,
-  html[lang^="zh"] .page__content h6 {
-    font-family: var(--font-zh-sans) !important;
-    font-weight: 600;
-    text-wrap: balance;
-  }
-
-  html[lang^="zh"] .page__title {
-    font-size: var(--zh-type-step-3) !important;
-    line-height: 1.22;
-    letter-spacing: 0.035em;
-  }
-
-  html[lang^="zh"] .page__content h1 {
-    margin-top: 2.45rem;
-    margin-bottom: 0.82rem;
-
-    font-size: var(--zh-type-step-2) !important;
-    line-height: 1.28;
-    letter-spacing: 0.045em;
-  }
-
-  html[lang^="zh"] .page__content > h1:first-child {
-    margin-top: 0;
-  }
-
-  html[lang^="zh"] .page__content h2 {
-    font-size: var(--zh-type-step-1) !important;
-    line-height: 1.32;
-    letter-spacing: 0.035em;
-  }
-
-  html[lang^="zh"] .page__content h3 {
-    font-size: var(--zh-type-subhead) !important;
-    line-height: 1.36;
-    letter-spacing: 0.025em;
-  }
-
-  html[lang^="zh"] .page__content h4,
-  html[lang^="zh"] .page__content h5,
-  html[lang^="zh"] .page__content h6 {
-    font-size: var(--zh-type-body) !important;
-    line-height: 1.45;
-    letter-spacing: 0.018em;
-  }
-
-
-  /* ---------- Chinese navigation and author profile ---------- */
-
-  html[lang^="zh"] .greedy-nav a,
-  html[lang^="zh"] .masthead__menu-item a {
-    font-size: var(--zh-type-ui) !important;
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: 0.055em;
-  }
-
-  html[lang^="zh"] .masthead__menu-item--lg a {
-    font-size: var(--zh-type-body) !important;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-  }
-
-  html[lang^="zh"] .sidebar .author__name {
-    font-family: var(--font-zh-sans) !important;
-    font-size: var(--zh-type-step-1) !important;
-    font-weight: 600;
-    line-height: 1.22;
-    letter-spacing: 0.075em;
-  }
-
-  html[lang^="zh"] .sidebar .author__pronouns {
-    font-size: var(--zh-type-small) !important;
-    letter-spacing: 0.06em;
-  }
-
-  html[lang^="zh"] .sidebar .author__bio {
-    font-family: var(--font-zh-serif) !important;
-    font-size: var(--zh-type-ui) !important;
-    font-weight: 500;
-    line-height: 1.7;
-    letter-spacing: 0.025em;
-  }
-
-  html[lang^="zh"] .sidebar .author__urls,
-  html[lang^="zh"] .sidebar .author__urls a {
-    font-family: var(--font-zh-sans) !important;
-    font-size: var(--zh-type-ui) !important;
-    line-height: 1.55;
-    letter-spacing: 0.015em;
-  }
-
-
-  /* ---------- Chinese lists and mixed-script publication text ---------- */
-
-  html[lang^="zh"] .page__content ul,
-  html[lang^="zh"] .page__content ol {
-    margin-bottom: 1.5em;
-  }
-
-  html[lang^="zh"] .page__content li {
-    margin-bottom: 0.55em;
-  }
-
-  html[lang^="zh"] .page__content em,
-  html[lang^="zh"] .page__content cite {
-    font-family:
-      "Source Serif 4",
-      "Noto Serif SC",
-      "Source Han Serif SC",
-      "Songti SC",
-      serif;
-  }
-
-
-  /* ---------- Small-screen Chinese corrections ---------- */
-
-  @media screen and (max-width: 600px) {
-    html[lang^="zh"] .page__content {
-      max-width: none;
-      line-height: 1.68;
-      letter-spacing: 0.01em;
-    }
-
-    html[lang^="zh"] .page__content h1 {
-      margin-top: 2.1rem;
-    }
-  }
-}
-
-/* ============================================================
-   Chinese typography v2
-   Screen-first academic style:
-   - Chinese body and interface: Noto Sans SC
-   - Chinese display headings: Noto Serif SC
-   - Latin glyphs: matching Source Sans / Source Serif
-   - Body-to-section-heading ratio remains approximately φ
-   ============================================================ */
-
-@media screen {
-
-  html[lang^="zh"] {
-    /*
-     * Optical Chinese scale
-     *
-     * Body:       16.5px -> 17px
-     * H1 section: 26.7px -> 27.5px
-     *
-     * 17 × φ ≈ 27.5, so the principal body-to-heading
-     * relationship retains the golden ratio without making
-     * every intermediate level excessively large.
-     */
-    --zh-v2-small:
-      clamp(0.84375rem, 0.8295rem + 0.0606vw, 0.875rem);
-
-    --zh-v2-ui:
-      clamp(0.9375rem, 0.9233rem + 0.0606vw, 0.96875rem);
-
-    --zh-v2-body:
-      clamp(1.03125rem, 1.017rem + 0.0606vw, 1.0625rem);
-
-    --zh-v2-subhead:
-      clamp(1.1719rem, 1.1548rem + 0.0727vw, 1.2094rem);
-
-    --zh-v2-step-1:
-      clamp(1.3125rem, 1.2897rem + 0.0970vw, 1.3625rem);
-
-    --zh-v2-step-2:
-      clamp(1.668rem, 1.6447rem + 0.0991vw, 1.71875rem);
-
-    --zh-v2-step-3:
-      clamp(2.121rem, 2.0875rem + 0.1424vw, 2.194rem);
-
-    /*
-     * Source fonts handle Latin glyphs; Noto SC handles Chinese.
-     * Keeping the matching pair in each stack prevents the mixed
-     * Chinese-English text from looking like unrelated typefaces.
-     */
-    --font-zh-v2-text:
-      "Source Sans 3",
-      "Noto Sans SC",
-      "Source Han Sans SC",
-      "PingFang SC",
-      "Hiragino Sans GB",
-      "Microsoft YaHei",
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      sans-serif;
-
-    --font-zh-v2-display:
-      "Source Serif 4",
-      "Noto Serif SC",
-      "Source Han Serif SC",
-      "Songti SC",
-      STSong,
-      SimSun,
-      Georgia,
-      serif;
-  }
-
-
-  /* ---------- Page-wide Chinese text ---------- */
-
-  html[lang^="zh"] body {
-    font-family: var(--font-zh-v2-text) !important;
-    font-size: var(--zh-v2-ui);
-    line-height: 1.58;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-  }
-
-  html[lang^="zh"] .masthead__inner-wrap,
-  html[lang^="zh"] .greedy-nav,
-  html[lang^="zh"] .masthead__menu,
-  html[lang^="zh"] .masthead__menu-item,
-  html[lang^="zh"] .sidebar,
-  html[lang^="zh"] .page__meta,
-  html[lang^="zh"] .page__footer {
-    font-family: var(--font-zh-v2-text) !important;
-  }
-
-
-  /* ---------- Main reading column ---------- */
-
-  html[lang^="zh"] .page__content {
-    max-width: 39em;
-
-    font-family: var(--font-zh-v2-text) !important;
-    font-size: var(--zh-v2-body) !important;
-    font-weight: 400;
-    line-height: 1.74;
-    letter-spacing: 0.006em;
-
-    line-break: strict;
-    word-break: normal;
-    overflow-wrap: break-word;
-  }
-
-  html[lang^="zh"] .page__content p {
-    margin-bottom: 1em;
-  }
-
-  html[lang^="zh"] .page__content strong,
-  html[lang^="zh"] .page__content b {
-    font-weight: 600;
-  }
-
-
-  /* ---------- Display headings ---------- */
-
-  html[lang^="zh"] .page__title,
-  html[lang^="zh"] .page__content h1,
-  html[lang^="zh"] .page__content h2,
-  html[lang^="zh"] .page__content h3,
-  html[lang^="zh"] .page__content h4,
-  html[lang^="zh"] .page__content h5,
-  html[lang^="zh"] .page__content h6 {
-    font-family: var(--font-zh-v2-display) !important;
-    font-weight: 600;
-    text-wrap: balance;
-  }
-
-  html[lang^="zh"] .page__title {
-    font-size: var(--zh-v2-step-3) !important;
-    line-height: 1.24;
-    letter-spacing: 0.012em;
-  }
-
-  html[lang^="zh"] .page__content h1 {
-    margin-top: 2.35rem;
-    margin-bottom: 0.9rem;
-
-    padding: 0 0 0 0.72rem;
-    border-bottom: 0;
-
-    font-size: var(--zh-v2-step-2) !important;
-    line-height: 1.32;
-    letter-spacing: 0.014em;
-  }
-
-  html[lang^="zh"] .page__content > h1:first-child {
-    margin-top: 0;
-  }
-
-  html[lang^="zh"] .page__content h2 {
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-
-    padding: 0 0 0 0.65rem;
-    border-bottom: 0;
-
-    font-size: var(--zh-v2-step-1) !important;
-    line-height: 1.36;
-    letter-spacing: 0.012em;
-  }
-
-  html[lang^="zh"] .page__content h3 {
-    font-size: var(--zh-v2-subhead) !important;
-    line-height: 1.42;
-    letter-spacing: 0.008em;
-  }
-
-  html[lang^="zh"] .page__content h4,
-  html[lang^="zh"] .page__content h5,
-  html[lang^="zh"] .page__content h6 {
-    font-size: var(--zh-v2-body) !important;
-    line-height: 1.48;
-    letter-spacing: 0.006em;
-  }
-
-  /*
-   * Replace the blog-like full-width underline with a restrained
-   * vertical accent suitable for the short Chinese section titles.
-   */
-  html[lang^="zh"] .page__content h1::after,
-  html[lang^="zh"] .page__content h2::after {
-    display: none !important;
-    content: none !important;
-  }
-
-  html[lang^="zh"] .page__content h1::before,
-  html[lang^="zh"] .page__content h2::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.19em;
-    bottom: 0.19em;
-
-    width: 3px;
-
-    border-radius: 999px;
-    background: var(--academic-accent);
-  }
-
-
-  /* ---------- Navigation ---------- */
-
-  html[lang^="zh"] .greedy-nav a,
-  html[lang^="zh"] .masthead__menu-item a {
-    font-family: var(--font-zh-v2-text) !important;
-    font-size: var(--zh-v2-ui) !important;
-    font-weight: 500;
-    line-height: 1.42;
-    letter-spacing: 0.018em;
-  }
-
-  html[lang^="zh"] .masthead__menu-item--lg a {
-    font-family: var(--font-zh-v2-display) !important;
-    font-size: var(--zh-v2-body) !important;
-    font-weight: 600;
-    letter-spacing: 0.025em;
-  }
-
-
-  /* ---------- Author profile ---------- */
-
-  html[lang^="zh"] .sidebar .author__name {
-    font-family: var(--font-zh-v2-display) !important;
-    font-size: var(--zh-v2-step-1) !important;
-    font-weight: 600;
-    line-height: 1.28;
-    letter-spacing: 0.035em;
-  }
-
-  html[lang^="zh"] .sidebar .author__pronouns {
-    font-family: var(--font-zh-v2-text) !important;
-    font-size: var(--zh-v2-small) !important;
-    font-weight: 400;
+    max-width: none;
+    font-size: 11pt !important;
     line-height: 1.5;
-    letter-spacing: 0.025em;
-  }
-
-  html[lang^="zh"] .sidebar .author__bio {
-    font-family: var(--font-zh-v2-text) !important;
-    font-size: var(--zh-v2-ui) !important;
-    font-weight: 400;
-    line-height: 1.68;
-    letter-spacing: 0.008em;
-  }
-
-  html[lang^="zh"] .sidebar .author__urls,
-  html[lang^="zh"] .sidebar .author__urls a {
-    font-family: var(--font-zh-v2-text) !important;
-    font-size: var(--zh-v2-ui) !important;
-    font-weight: 400;
-    line-height: 1.55;
-    letter-spacing: 0.004em;
-  }
-
-
-  /* ---------- Lists and mixed-script titles ---------- */
-
-  html[lang^="zh"] .page__content ul,
-  html[lang^="zh"] .page__content ol {
-    margin-bottom: 1.42em;
-  }
-
-  html[lang^="zh"] .page__content li {
-    margin-bottom: 0.46em;
-  }
-
-  /*
-   * Paper and journal titles marked with em/cite retain a serif
-   * face, while the surrounding Chinese prose remains screen-clear.
-   */
-  html[lang^="zh"] .page__content em,
-  html[lang^="zh"] .page__content cite {
-    font-family: var(--font-zh-v2-display);
-  }
-
-
-  /* ---------- Small screens ---------- */
-
-  @media screen and (max-width: 600px) {
-    html[lang^="zh"] .page__content {
-      max-width: none;
-      line-height: 1.70;
-      letter-spacing: 0.004em;
-    }
-
-    html[lang^="zh"] .page__content h1 {
-      margin-top: 2rem;
-    }
-
-    html[lang^="zh"] .page__content h1,
-    html[lang^="zh"] .page__content h2 {
-      padding-left: 0.62rem;
-    }
   }
 }
-
