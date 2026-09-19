@@ -60,7 +60,7 @@ Working Papers
 5. "Strategic Commitment and Legal Enforcement in Dynamic Matching," with J. Zheng, 2026.
 6. "Dynamic Matching with Commitments," with M. Zhang and J. Zheng, 2026.
 
-Conference Proceedings
+Conference Presentations
 ======
   <ul>{% for post in site.talks reversed %}
     {% include archive-single-talk-cv.html  %}
