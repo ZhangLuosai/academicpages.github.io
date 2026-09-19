@@ -54,7 +54,7 @@ Publications
 Working Papers
 ======
 1. "Nash Implementation of Dynamic Matching Rules," 2026. *Revise and resubmit at Mathematical Social Sciences.*
-2. "School Choice with Positional Preferences," with G. Fu, X. Lang, and J. Zheng, 2026. *Revise and resubmit at Games and Economic Behavior.*
+2. "School choice with positional preferences," with G. Fu, X. Lang, and J. Zheng, 2026. *Revise and resubmit at Games and Economic Behavior.*
 3. "Multi-period Matching with Externalities," with S. Ghosh, 2025.
 4. "Instantaneous Stability and the Dynamic Matchmaker Game," with S. Ghosh, 2023.
 5. "Strategic Commitment and Legal Enforcement in Dynamic Matching," with J. Zheng, 2026.
