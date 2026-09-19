@@ -1070,3 +1070,25 @@ hr {
     line-height: 1.5;
   }
 }
+
+/* 统一侧边栏链接字号 */
+.sidebar .author__urls,
+.sidebar .author__urls a,
+.sidebar .author__urls li,
+.sidebar .author__urls li a,
+.sidebar .author__urls .fas,
+.sidebar .author__urls .fab,
+.sidebar .author__urls .ai,
+.sidebar .author__urls .svg-inline--fa {
+  font-size: var(--type-ui) !important;
+  line-height: 1.48 !important;
+}
+
+/* 中文侧边栏统一字号 */
+html[lang^="zh"] .sidebar .author__urls,
+html[lang^="zh"] .sidebar .author__urls a,
+html[lang^="zh"] .sidebar .author__urls li,
+html[lang^="zh"] .sidebar .author__urls li a {
+  font-size: var(--zh-ui) !important;
+  line-height: 1.52 !important;
+}
