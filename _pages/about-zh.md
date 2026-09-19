@@ -14,7 +14,7 @@ layout: single-zh
 
 我的研究成果已发表于 *Economics Letters* 和 *Journal of Mathematical Economics*。目前的研究工作考察动态匹配规则的实施与非合作基础、动态匹配市场中承诺与法律执行的作用，以及学校选择中的位置偏好。
 
-研究方向
+研究兴趣
 ======
 
 - 匹配理论与市场设计
