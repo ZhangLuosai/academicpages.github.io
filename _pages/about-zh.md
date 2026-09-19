@@ -43,7 +43,7 @@ layout: single-zh
 - **Nash Implementation of Dynamic Matching Rules.**  
   大修（Revise and resubmit），*Mathematical Social Sciences*。
 
-- **School Choice with Positional Preferences.**  
+- **School choice with positional preferences.**  
   合作者：G. Fu, X. Lang, and J. Zheng。大修（Revise and resubmit），*Games and Economic Behavior*。
 
 - **Multi-Period Matching with Externalities.**  
