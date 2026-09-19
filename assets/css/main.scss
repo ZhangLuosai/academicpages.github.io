@@ -312,7 +312,7 @@ html[data-theme="dark"] .masthead__menu-item.selected a {
    保留 greedy-nav 的 table 布局，避免破坏折叠菜单逻辑。 */
 @media screen and (min-width: 1025px) {
   .masthead__menu .greedy-nav .visible-links {
-    width: 100%;
+    width: calc(100% - 3rem);
     margin: 0 !important;
   }
 
