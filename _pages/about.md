@@ -12,7 +12,7 @@ I am a Postdoctoral Researcher at the Center for Economic Research, Shandong Uni
 
 My research interests include **matching theory**, **market design**, **game theory**, and **mechanism design**, with a particular focus on dynamic and multi-period matching. I study how stability, commitment, strategic behavior, and institutional constraints shape matching outcomes over time.
 
-My research has been published in *Economics Letters* and the *Journal of Mathematical Economics*. My current work examines the implementation and non-cooperative foundations of dynamic matching rules, the role of commitment and legal enforcement in dynamic matching markets, and rank-dependent preferences in school choice.
+My research has been published in *Economics Letters* and the *Journal of Mathematical Economics*. My current work examines the implementation and non-cooperative foundations of dynamic matching rules, the role of commitment and legal enforcement in dynamic matching markets, and positional preferences in school choice.
 
 Research Interests
 ======
@@ -43,7 +43,7 @@ Working Papers and Papers Under Review
 - **Nash Implementation of Dynamic Matching Rules.**  
   Revise and resubmit, *Mathematical Social Sciences*.
 
-- **Rank-Dependent Preferences in School Choice.**  
+- **School Choice with Positional Preferences.**  
   With G. Fu, X. Lang, and J. Zheng. Revise and resubmit, *Games and Economic Behavior*.
 
 - **Multi-Period Matching with Externalities.**  
