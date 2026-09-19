@@ -308,28 +308,38 @@ html[data-theme="dark"] .masthead__menu-item.selected a {
   content: none !important;
 }
 
-/* 桌面端：站名靠左，其他导航靠右。
-   这里用 flex，而不是给第一个 table-cell 设置 100% 宽度；
-   后者会把整张导航表撑出容器，导致右侧菜单跑出屏幕。 */
+/* 桌面端：站名固定在左侧，其他导航保持 greedy-nav 原生 table
+   布局并靠右。给导航容器预留站名宽度，这样 greedy-nav 的 JS
+   仍能正确计算可用空间，不会误把所有菜单折叠起来。 */
 @media screen and (min-width: 1025px) {
+  .masthead__menu .greedy-nav {
+    box-sizing: border-box;
+    padding-left: 15rem;
+  }
+
   .masthead__menu .greedy-nav .visible-links {
-    display: flex !important;
-    align-items: center;
-    width: 100% !important;
-    max-width: 100%;
-    margin: 0 !important;
+    display: table !important;
+    width: auto !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
   }
 
   .masthead__menu .greedy-nav .visible-links > li {
-    display: block !important;
-    flex: 0 0 auto;
+    display: table-cell !important;
+    vertical-align: middle;
   }
 
   .masthead__menu .greedy-nav .masthead__menu-item--lg {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block !important;
     width: auto !important;
-    margin-right: auto;
+    margin: 0;
     padding-left: 0;
     padding-right: 2rem;
+    z-index: 2;
   }
 
   .masthead__menu .greedy-nav .masthead__menu-item--lg a {
