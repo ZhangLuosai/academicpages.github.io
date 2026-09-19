@@ -33,9 +33,9 @@ Education
 Selected Publications
 ======
 
-1. Zhang, L. (2025). “The Properness of Weak Stability Notions.” *Economics Letters*, **247**, 112163.
+1. Zhang, L. (2025). [“The Properness of Weak Stability Notions.”](/files/Zhang_2025_Properness_Weak_Stability.pdf) *Economics Letters*, **247**, 112163.
 
-2. Chen, Y., Jiao, Z., Zhang, C., and Zhang, L. (2025). “Some New Characterizations of Top Trading Cycles.” *Journal of Mathematical Economics*, **121**, 103190.
+2. Chen, Y., Jiao, Z., Zhang, C., and Zhang, L. (2025). [“Some New Characterizations of Top Trading Cycles.”](https://www.sciencedirect.com/science/article/pii/S0304406825001077/pdfft?isDTMRedir=true&download=true) *Journal of Mathematical Economics*, **121**, 103190.
 
 Working Papers and Papers Under Review
 ======
