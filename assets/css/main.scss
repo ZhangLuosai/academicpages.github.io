@@ -308,22 +308,36 @@ html[data-theme="dark"] .masthead__menu-item.selected a {
   content: none !important;
 }
 
-/* 桌面端：站名固定左侧，其余导航整体靠右。
-   保留 greedy-nav 的 table 布局，避免破坏折叠菜单逻辑。 */
+/* 桌面端：站名靠左，其他导航靠右。
+   这里用 flex，而不是给第一个 table-cell 设置 100% 宽度；
+   后者会把整张导航表撑出容器，导致右侧菜单跑出屏幕。 */
 @media screen and (min-width: 1025px) {
   .masthead__menu .greedy-nav .visible-links {
-    width: calc(100% - 3rem);
+    display: flex !important;
+    align-items: center;
+    width: 100% !important;
+    max-width: 100%;
     margin: 0 !important;
   }
 
+  .masthead__menu .greedy-nav .visible-links > li {
+    display: block !important;
+    flex: 0 0 auto;
+  }
+
   .masthead__menu .greedy-nav .masthead__menu-item--lg {
-    width: 100%;
+    width: auto !important;
+    margin-right: auto;
     padding-left: 0;
     padding-right: 2rem;
   }
 
   .masthead__menu .greedy-nav .masthead__menu-item--lg a {
     margin-left: 0;
+  }
+
+  .masthead__menu .greedy-nav #theme-toggle {
+    padding-right: 0;
   }
 }
 
