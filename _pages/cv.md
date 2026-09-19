@@ -89,4 +89,5 @@ Honors and Awards
 
 References
 ======
-* Available upon request
+* **Professor Sambuddha Ghosh**
+* **Professor Qianfeng Tang**
