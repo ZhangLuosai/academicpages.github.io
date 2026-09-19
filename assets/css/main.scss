@@ -314,7 +314,7 @@ html[data-theme="dark"] .masthead__menu-item.selected a {
 @media screen and (min-width: 1025px) {
   .masthead__menu .greedy-nav {
     box-sizing: border-box;
-    padding-left: 15rem;
+    padding-left: 12rem;
   }
 
   .masthead__menu .greedy-nav .visible-links {
@@ -327,6 +327,15 @@ html[data-theme="dark"] .masthead__menu-item.selected a {
   .masthead__menu .greedy-nav .visible-links > li {
     display: table-cell !important;
     vertical-align: middle;
+  }
+
+  /* 桌面端适当收紧右侧菜单间距，确保 CV 不会被 greedy-nav
+     误判为空间不足而折叠进隐藏菜单。 */
+  .masthead__menu .greedy-nav .visible-links > li:not(.masthead__menu-item--lg) a {
+    margin-left: 0.45rem;
+    margin-right: 0.45rem;
+    padding-left: 0.45rem;
+    padding-right: 0.45rem;
   }
 
   .masthead__menu .greedy-nav .masthead__menu-item--lg {
