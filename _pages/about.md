@@ -43,7 +43,7 @@ Working Papers and Papers Under Review
 - **Nash Implementation of Dynamic Matching Rules.**  
   Revise and resubmit, *Mathematical Social Sciences*.
 
-- **School Choice with Positional Preferences.**  
+- **School choice with positional preferences.**  
   With G. Fu, X. Lang, and J. Zheng. Revise and resubmit, *Games and Economic Behavior*.
 
 - **Multi-Period Matching with Externalities.**  
