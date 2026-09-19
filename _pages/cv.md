@@ -89,5 +89,5 @@ Honors and Awards
 
 References
 ======
-* **Professor Sambuddha Ghosh**
-* **Professor Qianfeng Tang**
+* **[Professor Sambuddha Ghosh](https://sites.google.com/site/sambuddhaghosh0/home)**
+* **[Professor Qianfeng Tang](https://sites.google.com/view/qianfeng)**
