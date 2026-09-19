@@ -89,5 +89,5 @@ author: zh
 
 推荐人
 ======
-* **Sambuddha Ghosh 教授**
-* **唐前锋教授**
+* **[Sambuddha Ghosh 教授](https://sites.google.com/site/sambuddhaghosh0/home)**
+* **[唐前锋教授](https://sites.google.com/view/qianfeng)**
