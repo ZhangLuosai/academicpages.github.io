@@ -20,8 +20,8 @@ Research Interests
 - Matching Theory and Market Design
 - Dynamic and Multi-Period Matching
 - Game Theory and Mechanism Design
-- Stability, Commitment, and Implementation
-- School Choice and Information Design
+- School Choice
+- Information Design
 
 Education
 ======
