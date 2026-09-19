@@ -9,6 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
+**[Download PDF CV](/files/Luosai_Zhang_CV_EN.pdf)**
+
 Education
 ======
 * 2017 – 2025: Ph.D. in Economics, Shanghai University of Finance and Economics (SUFE)
@@ -34,14 +36,14 @@ Employment
 * 2015.5 – 2015.8: Credit Risk Management Intern
   * BASF (China) Co., Ltd.
 
-* 2012.9 – 2013.9: Matchmaking Service
+* 2012.9 – 2013.9: Matchmaking Customer Service Representative
   * Shenzhen Zhenai Network Information Technology Co., Ltd.
 
 Skills
 ======
 * Languages: English, Mandarin Chinese
 * Computers: LaTeX, MySQL, Stata, Mathematica
-* Others: Psychological Counselling Training (Level-3)
+* Qualification: Psychological Counselor (Level 3)
 
 Publications
 ======
@@ -54,7 +56,7 @@ Working Papers
 1. "Nash Implementation of Dynamic Matching Rules," 2026. *Revise and resubmit at Mathematical Social Sciences.*
 2. "Rank-Dependent Preferences in School Choice," with G. Fu, X. Lang, and J. Zheng, 2026. *Revise and resubmit at Games and Economic Behavior.*
 3. "Multi-period Matching with Externalities," with S. Ghosh, 2025.
-4. "Instantaneous Stability and the Matchmaker Game," with S. Ghosh, 2023.
+4. "Instantaneous Stability and the Dynamic Matchmaker Game," with S. Ghosh, 2023.
 5. "Strategic Commitment and Legal Enforcement in Dynamic Matching," with J. Zheng, 2026.
 6. "Dynamic Matching with Commitments," with M. Zhang and J. Zheng, 2026.
 

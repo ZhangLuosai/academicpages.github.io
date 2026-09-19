@@ -9,6 +9,8 @@ author: zh
 
 {% include base_path %}
 
+**[下载 PDF 简历](/files/Luosai_Zhang_CV_CN.pdf)**
+
 教育背景
 ======
 * 2017 – 2025：经济学博士，上海财经大学
@@ -34,14 +36,14 @@ author: zh
 * 2015.5 – 2015.8：信用风险管理实习生
   * 巴斯夫（中国）有限公司
 
-* 2012.9 – 2013.9：婚恋匹配服务
-  * 深圳市珍爱网信息技术有限公司
+* 2012.9 – 2013.9：红娘客服
+  * 深圳珍爱网信息技术有限公司
 
 技能
 ======
 * 语言：英语、普通话
 * 计算机：LaTeX、MySQL、Stata、Mathematica
-* 其他：心理咨询师（三级）
+* 职业资格：心理咨询师三级
 
 发表论文
 ======
@@ -54,7 +56,7 @@ author: zh
 1. "Nash Implementation of Dynamic Matching Rules," 2026. *Revise and resubmit at Mathematical Social Sciences.*
 2. "Rank-Dependent Preferences in School Choice," with G. Fu, X. Lang, and J. Zheng, 2026. *Revise and resubmit at Games and Economic Behavior.*
 3. "Multi-period Matching with Externalities," with S. Ghosh, 2025.
-4. "Instantaneous Stability and the Matchmaker Game," with S. Ghosh, 2023.
+4. "Instantaneous Stability and the Dynamic Matchmaker Game," with S. Ghosh, 2023.
 5. "Strategic Commitment and Legal Enforcement in Dynamic Matching," with J. Zheng, 2026.
 6. "Dynamic Matching with Commitments," with M. Zhang and J. Zheng, 2026.
 
