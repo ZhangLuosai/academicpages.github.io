@@ -308,10 +308,22 @@ html[data-theme="dark"] .masthead__menu-item.selected a {
   content: none !important;
 }
 
-/* 桌面端链接居中：保持 table 布局，只加 margin */
+/* 桌面端：站名固定左侧，其余导航整体靠右。
+   保留 greedy-nav 的 table 布局，避免破坏折叠菜单逻辑。 */
 @media screen and (min-width: 1025px) {
   .masthead__menu .greedy-nav .visible-links {
-    margin-inline: auto !important;
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  .masthead__menu .greedy-nav .masthead__menu-item--lg {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 2rem;
+  }
+
+  .masthead__menu .greedy-nav .masthead__menu-item--lg a {
+    margin-left: 0;
   }
 }
 
