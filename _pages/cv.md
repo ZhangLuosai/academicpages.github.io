@@ -89,5 +89,5 @@ Honors and Awards
 
 References
 ======
-* **[Professor Sambuddha Ghosh](https://sites.google.com/site/sambuddhaghosh0/home)**
+* **[Professor Sambuddha Ghosh](https://econ.sufe.edu.cn/SambuddhaGhosh_en/main.htm)**
 * **[Professor Qianfeng Tang](https://sites.google.com/view/qianfeng)**
